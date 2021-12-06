@@ -13,8 +13,6 @@ import { CreateDiscussionButton } from '../../components/CreateDiscussionButton.
 import { ListSuggestedDiscussions } from '../../components/ListSuggestesdDiscussions';
 import { SearchDiscussion } from '../../components/SearchDiscussion';
 
-import { getDiscussions } from '../../utils/getDiscussions';
-
 const useStyles = makeStyles({
   row: {
     display: 'flex',
@@ -32,10 +30,19 @@ function Home() {
   const classes = useStyles();
   
   useEffect(() => {
+<<<<<<< HEAD
     getDiscussions('http://localhost:3001/api/discussions').then((response) => { 
       setData(response);
       console.log(data)
     });
+=======
+    fetch('http://localhost:3001/api/discussions/')
+        .then(response => response.json())
+        .then(response =>{
+          setData(response.slice(0, 7));
+          console.log(data);
+        })
+>>>>>>> 7f00b7b (Bring data of API and pass the props from main view to any other view or component)
   }, []);
 
   return (
@@ -57,7 +64,9 @@ function Home() {
           <SelectCategories />
         </div>
         <br /><br />
-        <ListSuggestedDiscussions />
+        { data.length > 0 && <ListSuggestedDiscussions data={data} /> }
+        
+        
 
       </Container>
     </React.Fragment>

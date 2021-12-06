@@ -2,8 +2,8 @@ import React from 'react';
 import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
-import { Icon } from '@mui/material';
-import PropTypes from 'prop-types';
+/* import { Icon } from '@mui/material';
+import PropTypes from 'prop-types'; */
 
 type DiscussionProps={
     title: string,

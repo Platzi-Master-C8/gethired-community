@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
-import { borders } from '@mui/system';
+/* import { borders } from '@mui/system'; */
 
 
 function DiscussionLikeButton() {

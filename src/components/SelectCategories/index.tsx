@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { MenuItem, TextField } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material/Select';
 
 function SelectCategories() {
