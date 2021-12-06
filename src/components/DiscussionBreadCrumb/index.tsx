@@ -30,6 +30,7 @@ function DiscussionBreadCrumb() {
         <Breadcrumbs
           separator={<NavigateNextIcon fontSize="small" />}
           aria-label="breadcrumb"
+          color='secondary'
         >
           {breadcrumbs}
         </Breadcrumbs>
