@@ -1,6 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 export default {}
 =======
+=======
+>>>>>>> aaad871 (Creat components and add styles to the discussion main page)
 import React, { useEffect, useState } from 'react';
 import { Container, Typography } from '@mui/material';
 import{ makeStyles } from '@mui/styles';
@@ -62,4 +65,7 @@ function Home() {
 }
 
 export { Home };
+<<<<<<< HEAD
 >>>>>>> cf9b24f (Creat components and add styles to the discussion main page)
+=======
+>>>>>>> aaad871 (Creat components and add styles to the discussion main page)
