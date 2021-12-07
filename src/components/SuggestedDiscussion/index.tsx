@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     },
     column: {
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
     },
     card: {
 
@@ -50,39 +50,41 @@ function SuggestedDiscussion(props: DiscussionProps) {
 
             <Card raised={false} sx={{ marginBottom: '1rem', padding: '.5rem' }} variant="outlined">
                 <div className={`${classes.row} ${classes.header}`}>
-                    <div>
-                        { console.log('Mandamos: ' + props.is_active) }
+                    <div className={classes.column}>
                         <DiscussionLikeButton isActive={ props.is_active } />
-                        <Typography>5</Typography>
+                        <Typography align="center">5</Typography>
                     </div>
-                    <div>
-                        <Typography noWrap variant="h5" component="h2">
+                    <div className={classes.column}>
                             <Link 
                                 to={`/discussions/${props.id}/`}
+                                style={{ textDecoration: 'none' }}
                             >
-                                {props.title}
+                                <Typography sx={{color: 'black'}} variant="h5" component="h2">
+                                    {props.title}
+                                </Typography>
                             </Link>
-                        </Typography>
-                        <div className={classes.row}>
-                            <AccountCircleRounded />
-                            <Typography>{props.created_by}</Typography>
+                        <div className={classes.row} style={{ 
+                            margin: '10px 0'
+                         }}>
+                            <AccountCircleRounded color='secondary' />
+                            <Typography ml={1}>{props.created_by}</Typography>
                         </div>
                     </div>
                 </div>
                 <CardContent sx={{ margin: '0rem', padding: '0rem' }}>
                     <Container  >
-                        <Typography className={classes.content} >
+                        <Typography ml={6.5} className={classes.content} >
                             {props.content}
                         </Typography>
                     </Container>
                     <div className={classes.row}>
                         <div className={classes.row}>
-                            <CommentRounded />
-                            <Typography>5</Typography>
+                            <CommentRounded color='secondary' />
+                            <Typography ml={1}>5</Typography>
                         </div>
                         <div className={classes.row}>
-                            <AccessTimeFilledRounded />
-                            <Typography>{props.created_at}</Typography>
+                            <AccessTimeFilledRounded color='secondary' />
+                            <Typography ml={1}>{props.created_at}</Typography>
                         </div>
                     </div>
                 </CardContent>

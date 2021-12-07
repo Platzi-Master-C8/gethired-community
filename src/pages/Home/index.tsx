@@ -34,21 +34,26 @@ function Home() {
   return (
     <React.Fragment>
       <Container fixed maxWidth="md">
-        <Typography 
-          align="left"
-          variant="h5" 
-          component="h2"
-          gutterBottom
-        >
-          Forums
-        </Typography>
-        
-        <CreateDiscussionButton />
-        
+        <div className={classes.row} >
+          <Typography 
+            variant="h5" 
+            component="h2"
+            gutterBottom
+          >
+            Forums
+          </Typography>
+        </div>
+          <CreateDiscussionButton  />
         <div className={classes.row}>
           <SearchDiscussion />
           <SelectCategories />
         </div>
+        <Typography 
+          variant="h6" 
+          component="h2"
+        >
+          Suggested Forums:
+        </Typography>
         <br /><br />
         { data.length > 0 && <ListSuggestedDiscussions data={data} /> }
       </Container>

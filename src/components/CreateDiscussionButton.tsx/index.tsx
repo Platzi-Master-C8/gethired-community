@@ -5,7 +5,12 @@ import CreateIcon from '@mui/icons-material/Create';
 function CreateDiscussionButton () {
     return (
         <React.Fragment>
-            <Button variant="contained" color="secondary" startIcon={ <CreateIcon /> }>
+            <Button 
+                
+                variant="contained" 
+                color="secondary" 
+                startIcon={ <CreateIcon /> 
+            }>
                 New Discussion
             </Button>
             <br /><br />

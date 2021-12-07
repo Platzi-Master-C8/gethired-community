@@ -13,8 +13,6 @@ type LikeProps = {
 }
 
 function DiscussionLikeButton(props: LikeProps) {
-    console.log('Traemos: ' + props.isActive)
-
     const [likeStatus, setLikeStatus] = React.useState<boolean>();
 
     useEffect(() => {
@@ -26,7 +24,7 @@ function DiscussionLikeButton(props: LikeProps) {
     }
 
     return (
-         <Box pt={2.5}>
+        <Box>
             <div>
                 <Button variant="text" color="secondary" size='small' onClick={clicked}>
                             { likeStatus && <FavoriteRounded /> }
