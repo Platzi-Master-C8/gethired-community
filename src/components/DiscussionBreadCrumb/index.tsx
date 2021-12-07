@@ -15,19 +15,19 @@ function DiscussionBreadCrumb() {
   const breadcrumbs = [
     <nav>
       <Link to="/">
-        <LinkMui underline="hover" key="1" color="inherit" href="/">
-        Home
+        <LinkMui underline="hover" key="1" color="secondary" href="/">
+          Home
         </LinkMui>
       </Link>
     </nav>
     ,
     <LinkMui
-      
+
       key="2"
       color="inherit"
-      
+
     >
-      Forum
+      Discussion
     </LinkMui>,
   ];
   return (

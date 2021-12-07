@@ -41,7 +41,7 @@ function Discussion() {
 
     return (
         <Grid container justifyContent='center'>
-            <Grid item sm={11} md={11} lg={8} xl={6}>
+            <Grid item sm={11} md={7} lg={8} xl={6}>
                 <DiscussionBreadCrumb />
             </ Grid>
             <Grid container justifyContent='center'>
