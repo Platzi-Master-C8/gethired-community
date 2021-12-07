@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { DiscussionLikeButton } from '../../components/DiscussionLikeButton';
 import { DiscussionPost } from '../../components/DiscussionPost';
 import { DiscussionBreadCrumb } from '../../components/DiscussionBreadCrumb';
 import { makeStyles } from '@mui/styles';
 import { Grid } from '@mui/material';
+import { useParams } from 'react-router';
+
 const useStyles = makeStyles({
     discussion: {
 
@@ -14,24 +16,28 @@ const useStyles = makeStyles({
 
 function Discussion() {
 
-    const [discussionData, setDiscussionData] = useState({title:'',
-                                                        content:'',
-                                                        created_at:'',
-                                                        created_by:0});
-    
+    const { id } = useParams();
 
-    useEffect(()=>{
-        fetch('http://localhost:3001/api/discussions/3')
-        .then(response => response.json())
-        .then(discussion =>{
-            console.log(discussion);
+    const [discussionData, setDiscussionData] = useState({
+        title: '',
+        content: '',
+        created_at: '',
+        created_by: 0
+    });
 
-            setDiscussionData(discussion)
-            
-        })
-        
-        
-    },[])
+
+    useEffect(() => {
+        fetch(`http://localhost:3001/api/discussions/${id}`)
+            .then(response => response.json())
+            .then(discussion => {
+
+
+                setDiscussionData(discussion)
+
+            })
+
+
+    }, [])
 
     return (
         <Grid container justifyContent='center'>
@@ -43,11 +49,11 @@ function Discussion() {
                     <Grid container justifyContent='center'>
                         <DiscussionLikeButton />
                         <Grid item lg={8}>
-                            <DiscussionPost 
-                            title={discussionData.title} 
-                            content={discussionData.content} 
-                            created_at={discussionData.created_at}
-                            created_by={discussionData.created_by}
+                            <DiscussionPost
+                                title={discussionData.title}
+                                content={discussionData.content}
+                                created_at={discussionData.created_at}
+                                created_by={discussionData.created_by}
                             />
                         </ Grid>
                     </Grid>
