@@ -1,43 +1,37 @@
-import React from 'react';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { Button } from '@mui/material';
+import React, { useEffect } from 'react';
+
+/* import { useLocation } from 'react-router-dom' */
+
+/* import { makeStyles } from '@mui/styles'; */
 import Box from '@mui/material/Box';
-import { borders } from '@mui/system';
-import { makeStyles } from '@mui/styles';
+import { FavoriteBorderRounded } from '@mui/icons-material';
+import { FavoriteRounded } from '@mui/icons-material';
+import { Button } from '@mui/material';
 
-const useStyles = makeStyles({
-    likeBtn: {
-      color: '#DCB0FF',
-    },
-    likeBtn_active: {
-      color: '#A178DF',
-    },
-});
+type LikeProps = {
+    isActive: boolean;
+}
 
+function DiscussionLikeButton(props: LikeProps) {
+    console.log('Traemos: ' + props.isActive)
 
+    const [likeStatus, setLikeStatus] = React.useState<boolean>();
 
-function DiscussionLikeButton() {
-
-    const classes = useStyles();
-    
-    const [ likeStatus, setLikeStatus ] = React.useState(false);
+    useEffect(() => {
+        setLikeStatus(props.isActive);
+    }, [])
 
     const clicked = () => {
-        setLikeStatus(!likeStatus)
+        setLikeStatus(!likeStatus);
     }
 
     return (
          <Box pt={2.5}>
             <div>
-                 <Button variant="text" color="secondary" size='small'>
-                    <span>
-                        <FavoriteBorderIcon 
-                        sx={{ cursor: 'pointer' }}
-                        className={ `${ classes.likeBtn } ${ likeStatus && classes.likeBtn_active }` }
-                        onClick={ clicked }
-                        />       
-                    </span>
-                </Button> 
+                <Button variant="text" color="secondary" size='small' onClick={clicked}>
+                            { likeStatus && <FavoriteRounded /> }
+                            { !likeStatus && <FavoriteBorderRounded /> }
+                </Button>
             </div>
         </Box>
     );

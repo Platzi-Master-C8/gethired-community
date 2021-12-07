@@ -2,17 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { DiscussionLikeButton } from '../../components/DiscussionLikeButton';
 import { DiscussionPost } from '../../components/DiscussionPost';
 import { DiscussionBreadCrumb } from '../../components/DiscussionBreadCrumb';
-import { makeStyles } from '@mui/styles';
 import { Grid } from '@mui/material';
 import { useParams } from 'react-router';
-
-const useStyles = makeStyles({
-    discussion: {
-
-    },
-});
-
-
 
 function Discussion() {
 
@@ -22,7 +13,8 @@ function Discussion() {
         title: '',
         content: '',
         created_at: '',
-        created_by: 0
+        created_by: 0,
+        is_active: false
     });
 
 
@@ -30,13 +22,8 @@ function Discussion() {
         fetch(`http://localhost:3001/api/discussions/${id}`)
             .then(response => response.json())
             .then(discussion => {
-
-
-                setDiscussionData(discussion)
-
+                setDiscussionData(discussion);
             })
-
-
     }, [])
 
     return (
@@ -47,15 +34,21 @@ function Discussion() {
             <Grid container justifyContent='center'>
                 <Grid item lg={9} xl={6}>
                     <Grid container justifyContent='center'>
-                        <DiscussionLikeButton />
-                        <Grid item lg={8}>
-                            <DiscussionPost
-                                title={discussionData.title}
-                                content={discussionData.content}
-                                created_at={discussionData.created_at}
-                                created_by={discussionData.created_by}
-                            />
-                        </ Grid>
+                        { discussionData.content && console.log(discussionData) }
+                        { discussionData.content && 
+                            <React.Fragment>
+                                { console.log(discussionData.is_active) }
+                                <DiscussionLikeButton isActive={discussionData.is_active} />
+                                <Grid item lg={8}>
+                                    <DiscussionPost
+                                        title={discussionData.title}
+                                        content={discussionData.content}
+                                        created_at={discussionData.created_at}
+                                        created_by={discussionData.created_by}
+                                    />
+                                </ Grid>
+                            </React.Fragment>  
+                        }  
                     </Grid>
                 </ Grid>
             </ Grid>

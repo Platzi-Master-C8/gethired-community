@@ -7,8 +7,8 @@ function SearchDiscussion () {
     return (
         <React.Fragment>
             <TextField fullWidth id="outlined-search" label="Search for a discussion..." type="search" InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
+          endAdornment: (
+            <InputAdornment position="end">
               <SearchOutlined />
             </InputAdornment>
           ),

@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   row: {
     display: 'flex',
     margin: '1rem',
-    alignContent: 'center',
+    alignItems: 'baseline'
   },
   column: {
       display: 'flex',
@@ -28,7 +28,6 @@ function Home() {
         .then(response => response.json())
         .then(response =>{
           setData(response.slice(0, 7));
-          console.log(data);
         })
   }, []);
 
@@ -52,9 +51,6 @@ function Home() {
         </div>
         <br /><br />
         { data.length > 0 && <ListSuggestedDiscussions data={data} /> }
-        
-        
-
       </Container>
     </React.Fragment>
   );

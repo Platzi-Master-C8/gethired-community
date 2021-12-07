@@ -13,7 +13,7 @@ function DiscussionBreadCrumb() {
 
 
   const breadcrumbs = [
-    <nav>
+    <nav key="home">
       <Link to="/">
         <LinkMui underline="hover" key="1" color="secondary" href="/">
           Home
