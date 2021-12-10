@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Container, Typography } from '@mui/material';
 import{ makeStyles } from '@mui/styles';
 
-import { SelectCategories } from '../../components/SelectCategories';
-import { CreateDiscussionButton } from '../../components/CreateDiscussionButton.tsx';
-import { ListSuggestedDiscussions } from '../../components/ListSuggestesdDiscussions';
-import { SearchDiscussion } from '../../components/SearchDiscussion';
+import { SelectCategories } from '../../components/networking/SelectCategories';
+import { CreateDiscussionButton } from '../../components/networking/CreateDiscussionButton.tsx';
+import { ListSuggestedDiscussions } from '../../components/networking/ListSuggestesdDiscussions'; 
+import { SearchDiscussion } from '../../components/networking/SearchDiscussion'; 
 
 const useStyles = makeStyles({
   row: {
@@ -61,4 +61,4 @@ function Home() {
   );
 }
 
-export { Home };
+export default Home;

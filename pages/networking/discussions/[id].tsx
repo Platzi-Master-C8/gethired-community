@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { DiscussionLikeButton } from '../../components/DiscussionLikeButton';
-import { DiscussionPost } from '../../components/DiscussionPost';
-import { DiscussionBreadCrumb } from '../../components/DiscussionBreadCrumb';
+
+import { useRouter } from 'next/router';
+
 import { Grid } from '@mui/material';
-import { useParams } from 'react-router';
+
+import { DiscussionLikeButton } from '../../../components/networking/DiscussionLikeButton';
+import { DiscussionPost } from '../../../components/networking/DiscussionPost';
+import { DiscussionBreadCrumb } from '../../../components/networking/DiscussionBreadCrumb';
 
 function Discussion() {
 
-    const { id } = useParams();
+    const { query: { id } } = useRouter();
 
     const [discussionData, setDiscussionData] = useState({
         title: '',
@@ -19,12 +22,14 @@ function Discussion() {
 
 
     useEffect(() => {
-        fetch(`http://localhost:3001/api/discussions/${id}`)
-            .then(response => response.json())
-            .then(discussion => {
-                setDiscussionData(discussion);
-            })
-    }, [])
+        if (id) {
+            fetch(`http://localhost:3001/api/discussions/${id}`)
+                .then(response => response.json())
+                .then(discussion => {
+                    setDiscussionData(discussion);
+                });
+        }
+    }, [id])
 
     return (
         <Grid container justifyContent='center'>
@@ -34,10 +39,10 @@ function Discussion() {
             <Grid container justifyContent='center'>
                 <Grid item lg={9} xl={6}>
                     <Grid container justifyContent='center'>
-                        { discussionData.content && console.log(discussionData) }
-                        { discussionData.content && 
+                        {discussionData.content && console.log(discussionData)}
+                        {discussionData.content &&
                             <React.Fragment>
-                                { console.log(discussionData.is_active) }
+                                {console.log(discussionData.is_active)}
                                 <DiscussionLikeButton isActive={discussionData.is_active} />
                                 <Grid item lg={8}>
                                     <DiscussionPost
@@ -47,8 +52,8 @@ function Discussion() {
                                         created_by={discussionData.created_by}
                                     />
                                 </ Grid>
-                            </React.Fragment>  
-                        }  
+                            </React.Fragment>
+                        }
                     </Grid>
                 </ Grid>
             </ Grid>
@@ -56,4 +61,4 @@ function Discussion() {
     );
 }
 
-export { Discussion };
+export default Discussion;

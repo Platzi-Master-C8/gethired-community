@@ -1,7 +1,9 @@
 import React from 'react';
+
+import Link from 'next/link';
+
 import { Card, CardContent, Container, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { Link } from "react-router-dom";
 
 import { CommentRounded } from '@mui/icons-material';
 import { AccessTimeFilledRounded } from '@mui/icons-material';
@@ -56,10 +58,9 @@ function SuggestedDiscussion(props: DiscussionProps) {
                     </div>
                     <div className={classes.column}>
                             <Link 
-                                to={`/discussions/${props.id}/`}
-                                style={{ textDecoration: 'none' }}
+                                href={`/networking/discussions/${props.id}/`}
                             >
-                                <Typography sx={{color: 'black'}} variant="h5" component="h2">
+                                <Typography sx={{color: 'black'}} variant="h5" component="h2" style={{ textDecoration: 'none' }}>
                                     {props.title}
                                 </Typography>
                             </Link>
