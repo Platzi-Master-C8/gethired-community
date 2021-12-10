@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Link from 'next/link';
+import Link from '../../Link';
 
 import { Card, CardContent, Container, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';

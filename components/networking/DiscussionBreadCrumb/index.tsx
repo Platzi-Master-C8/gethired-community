@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Link from 'next/link';
+import Link from '../../Link';
 
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 /* import Typography from '@mui/material/Typography'; */
-import LinkMui from '@mui/material/Link';
+// import LinkMui from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Box from '@mui/material/Box';
@@ -16,21 +16,24 @@ function DiscussionBreadCrumb() {
 
   const breadcrumbs = [
     <nav key="home">
-      <Link href="/">
-        <LinkMui underline="hover" key="1" color="secondary" href="/">
-          Home
-        </LinkMui>
+      <Link
+        underline="hover"
+        key="1"
+        color="secondary"
+        href="/networking"
+      >
+        Home
       </Link>
     </nav>
     ,
-    <LinkMui
-
+    <Link
+      underline="hover"
       key="2"
       color="inherit"
-
+      href="#"
     >
       Discussion
-    </LinkMui>,
+    </Link>,
   ];
   return (
     <Box pt={2}>
