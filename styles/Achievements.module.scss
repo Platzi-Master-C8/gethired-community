@@ -1,0 +1,101 @@
+
+  .goals-wrapper {
+    width: 100%;
+    max-width: 950px;
+    margin: auto;
+  }
+  
+  .goals-wrapper__title {
+    max-width: 950px;
+    text-align: center;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px;
+    background-color: #5f64ff;
+    background-image: linear-gradient(90deg, #5f64ff 0%, #ae4eff 100%);
+  }
+  
+  .goals-container {
+    margin:20px auto;
+  }
+  
+  .alert {
+    border: 1px solid red;
+    width: 100%;
+    padding: 15px;
+    margin: auto;
+    text-align: center;
+    background-color: #ff535323;
+    color: #FF5353;
+    border-radius: 5px;
+    cursor: pointer;
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center; */
+  }
+  
+  /* .fa-times-circle {
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #ff53537c;
+  }
+  
+  .fa-times-circle:hover {
+    color: #ff5353;
+  } */
+  
+  .goals-container--cards {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .card-container{
+    height: 80px;
+    width: 320px;
+    border-radius: 5px;
+    display: flex;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: all cubic-bezier(0.55, 0.055, 0.675, 0.19) 200ms;
+    filter: grayscale(100%);
+  }
+  
+  /* When the goal is completed, uses this class */
+  .success {
+    filter: grayscale(0%);
+    color: rgb(40, 189, 40);
+  }
+  
+  .card-container:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+  }
+  
+  .card-img {
+    height: 100%;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 5px 0 0 5px;
+  }
+  
+  .card-text {
+    width: 220px;
+    padding: 5px 8px;
+    text-align: left;
+  }
+  
+  .card-title {
+    /* opacity: 0.8; */
+    color: gray;
+  }
+  
+  .card-description {
+    width: 100%;
+    line-height: 2;
+    font-size: 0.8rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }

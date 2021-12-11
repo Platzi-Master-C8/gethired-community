@@ -1,0 +1,52 @@
+.navBar{
+  width: 250px;
+  height: 100vh;
+  &-user {
+    height: 70px;
+    background: $colorIcon;
+    & img {
+      position: relative;
+      top: 15px;
+      left: 15px;
+    }
+    & a {
+      color: white;
+      font-size: 22px;
+      margin-top: 25px;
+      padding-left: 13px;
+    }
+  }
+  &-menu {
+    font-size: 18px;
+    & ul {
+      list-style: none;
+      & li {
+        width: 100%;
+        text-align: center;
+        & a {
+          width: 100%;
+          padding: 15px 0;
+          display: flex;
+          justify-content: space-evenly;
+          gap: 20px;
+          align-items: center;
+        }
+        & img {
+          width: 25px;
+          height: 25px;
+        }
+        .navBar-menu__text {
+          width: 110px;
+          text-align: center;
+          background-color: transparent;
+        }
+      }
+      & li:hover {
+        background: $gradientePrincipal;
+        .navBar-menu__text {
+          color: white;
+        }
+      }
+    }
+  }
+}
