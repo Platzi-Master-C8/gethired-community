@@ -1,25 +1,27 @@
 import React from 'react';
 import Image from 'next/image';
-import Logo from '../../../public/icons/LogoPlataforma1.png';
-import Avatar from '../../../public/icons/Avatar.png';
+import Logop from '../../../public/icons/LogoPlataforma1.png';
+import styles from '../../../styles/Header.module.scss';
+import position from '../../../styles/Profile.module.scss';
 
 const Header = () => {
   return (
-    <div className="item-header">
-      <header className='header'>
-      <div className='header-logo'>
-        <a href='$'>
-          <Image src={Logo} alt='Logo de la pagina' />
-        </a>
-      </div>
-      <nav className='header-navBar'>
-      </nav>
-      <div className='header-photo'>
-        <a href='#'><Image src={Avatar} alt='' /></a>
-      </div>
+    <div className={position.iheader}>
+
+      <header className={styles.header}>
+        <div className={styles.logo}>
+          <a className="" href='$'>
+            <Image
+              src={Logop}
+              alt='Logo de la pagina'
+              />
+          </a>
+        </div>
+        <nav className={styles.navBar}>
+        </nav>
     </header>
     </div>
   )
 }
 
-export default Header
+export default Header;

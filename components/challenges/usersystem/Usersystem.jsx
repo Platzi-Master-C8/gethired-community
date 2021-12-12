@@ -1,20 +1,21 @@
 import React from 'react';
-import nextRank from '../../utils/nextRank.js';
+import styles from '../../../styles/Usersystem.module.scss';
+import position from '../../../styles/Profile.module.scss';
 
-const System = ({ data, ranks }) => {
+const Usersystem = ({ data, ranks }) => {
   if (data && ranks) {
     let dataP = data.points;
     return (
-      <div className="item-system">
-        <div className="container">
-          <div className="first-circle">
-            <p>{dataP}</p>
+      <div className={position.isystem}>
+         <div className={styles.container}>
+          <div className={styles.first_circle}>
+            <p className={styles.text}>{dataP}</p>
           </div>
-          <p>Points</p>
-          <div className="second-circle">
-            <p>{ranks[1].required_points}</p>
+          <p className={styles.text}>Points</p>
+          <div className={styles.second_circle}>
+            <p className={styles.text}>{ranks[1].required_points}</p>
           </div>
-          <p>Next Rank</p>
+          <p className={styles.text}>Next Rank</p>
         </div>
       </div>
     );
@@ -22,7 +23,6 @@ const System = ({ data, ranks }) => {
     return null;
   }
 };
- 
 
 
-export default System;
+export default Usersystem;

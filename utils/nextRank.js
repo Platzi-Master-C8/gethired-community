@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 function nextRank(points, ranks) {
   if (points < 101) {

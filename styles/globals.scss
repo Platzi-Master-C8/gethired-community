@@ -1,5 +1,3 @@
-//Global Settings
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -13,34 +11,9 @@ html {
 body {
   font-family: 'Mulish', sans-serif;
   font-size: 100%;
-  overflow-y: scroll;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
   background-color: white;
 }
 
 a {
   text-decoration: none;
 }
-
-//Project Colors
-
-$gradientePrincipal: linear-gradient(90deg, rgba(95, 100, 255, 0.7) 0%, rgba(174, 78, 255, 0.85) 100%);
-$secondaryGradient: linear-gradient(90deg, #A2A5EE 0%, #585EFF 100%);
-$colorIcon: #A779FF;
-$colorHover: rgba(85, 91, 255, 0.79);
-
-
-
-//Components Styles:
-
-@import '../components/systempoint/System.scss';
-@import '../components/header/Header.scss';
-@import '../components/navbar/Navbar.scss';
-@import '../components/container/Container.scss';
-@import '../components/StreakAndRank/StreakAndRank.scss';
-@import '../components/user-graph/user-graph.scss';
-@import '../components/achievements/Achievements.scss';

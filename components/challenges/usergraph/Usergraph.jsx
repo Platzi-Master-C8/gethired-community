@@ -1,14 +1,15 @@
 import React from 'react';
 import { Chart as ChartJS } from 'chart.js/auto';
 import { Bar } from 'react-chartjs-2';
-
+import styles from '../../../styles/Usergraph.module.scss';
+import position from '../../../styles/Profile.module.scss';
 
 const UserGraph = ({ activity }) => {
   if (activity) {
 
     return (
-      <div className="item-graph">
-        <div className='container-graph'>
+      <div className={position.igraph}>
+        <div className={styles.container_graph}>
         <Bar
           className='graph'
           data={{
@@ -85,11 +86,11 @@ const UserGraph = ({ activity }) => {
           }}
         />
       </div>
-      </div>
+        </div>
     )
 
   } else {
-    return 'Error';
+    return null;
   }
 }
 
