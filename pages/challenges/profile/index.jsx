@@ -7,9 +7,10 @@ import UserGraph from '../../../components/challenges/usergraph/Usergraph'
 import Achievements from '../../../components/challenges/achievements/Achievements'
 import Footer from '../../../components/challenges/footer/Footer'
 import styles from '../../../styles/Profile.module.scss';
+import fetch from 'isomorphic-fetch';
 
-async function getStaticProps(context) {
-  const res = await fetch(`http:ocalhost:3500/data`)
+export const getServerSideProps = async (params) => {
+  const res = await fetch(` http://localhost:3500/data`)
   const data = await res.json()
 
   if (!data) {
@@ -23,18 +24,20 @@ async function getStaticProps(context) {
   }
 }
 
-const Profile = (data) => {
-console.log(data)
 
-  if (data) {
+
+const Profile = (data) => {
+  let info = data.data
+
+  if (info) {
     return (
       <div className={styles.container}>
         <Header />
         <Navbar  />
-        <StreakAndRank ranks={data.ranks} challenges={data.challenges} />
-        <Usersystem  data={data} ranks={data.ranks} />
-        <Achievements  goals={data.achievements} />
-        <UserGraph  activity={data.activity} />
+        <StreakAndRank ranks={info.ranks} challenges={info.challenges} />
+        <Usersystem  data={info} ranks={info.ranks} />
+        <Achievements  goals={info.achievements} />
+        <UserGraph  activity={info.activity} />
         <Footer />
       </div>
     );
