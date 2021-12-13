@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Link from '../../Link';
 
@@ -47,18 +47,29 @@ type DiscussionProps = {
 function SuggestedDiscussion(props: DiscussionProps) {
     const classes = useStyles();
 
+    const [likeCount, setLikeCount] = useState(5);
+
+    const handleLikeButtonClick = (liked: boolean) => {
+        if (liked) {
+            setLikeCount(likeCount + 1);
+        } else {
+            setLikeCount(likeCount - 1);
+        }
+    };
+
     return (
         <React.Fragment>
 
             <Card raised={false} sx={{ marginBottom: '1rem', padding: '.5rem' }} variant="outlined">
                 <div className={`${classes.row} ${classes.header}`}>
                     <div className={classes.column}>
-                        <DiscussionLikeButton isActive={ props.is_active } />
-                        <Typography align="center">5</Typography>
+                        <DiscussionLikeButton isActive={ props.is_active } onClick={handleLikeButtonClick} />
+                        <Typography align="center">{likeCount}</Typography>
                     </div>
                     <div className={classes.column}>
                             <Link 
                                 href={`/networking/discussions/${props.id}/`}
+                                underline="hover"
                             >
                                 <Typography sx={{color: 'black'}} variant="h5" component="h2" style={{ textDecoration: 'none' }}>
                                     {props.title}

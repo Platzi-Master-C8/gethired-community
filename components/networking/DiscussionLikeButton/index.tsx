@@ -10,6 +10,7 @@ import { Button } from '@mui/material';
 
 type LikeProps = {
     isActive: boolean;
+    onClick?: ((liked: boolean) => void);
 }
 
 function DiscussionLikeButton(props: LikeProps) {
@@ -19,14 +20,16 @@ function DiscussionLikeButton(props: LikeProps) {
         setLikeStatus(props.isActive);
     }, [])
 
-    const clicked = () => {
+    const handleClick = () => {
+        props.onClick?.(!likeStatus);
+
         setLikeStatus(!likeStatus);
     }
 
     return (
         <Box>
             <div>
-                <Button variant="text" color="secondary" size='small' onClick={clicked}>
+                <Button variant="text" color="secondary" size='small' onClick={handleClick}>
                             { likeStatus && <FavoriteRounded /> }
                             { !likeStatus && <FavoriteBorderRounded /> }
                 </Button>
