@@ -4,12 +4,9 @@ import { SearchOutlined } from '@mui/icons-material';
 import { makeStyles } from '@mui/styles';
 
 const useStyle = makeStyles({
-  searchDiscussion: {
-    borderColor: '#555bff',
-    borderRadius: '10px',
-    outline: 'none'
-
-
+  notchedOutline: {
+    borderWidth: '2px',
+    borderColor: '#555bff !important',
   }
 })
 
@@ -17,13 +14,21 @@ function SearchDiscussion() {
   const classes = useStyle()
   return (
     <React.Fragment>
-      <TextField fullWidth id="text-search" label="Search for a discussion..." type="search" InputProps={{
-        endAdornment: (
-          <InputAdornment position="end">
-            <SearchOutlined />
-          </ InputAdornment>
-        ),
-      }}
+      <TextField fullWidth
+        id="text-search"
+        label="Search for a discussion..."
+        type="search"
+        variant="outlined"
+        InputProps={{
+          classes: {
+            notchedOutline: classes.notchedOutline,
+          },
+          endAdornment: (
+            <InputAdornment position="end">
+              <SearchOutlined />
+            </ InputAdornment>
+          ),
+        }}
       >
       </TextField>
     </React.Fragment>

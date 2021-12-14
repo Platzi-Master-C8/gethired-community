@@ -16,6 +16,13 @@ const useStyles = makeStyles({
   column: {
     display: 'flex',
     flexDirection: 'column'
+  },
+  forum__title: {
+    fontWeight: '600'
+  },
+  forum__discussions: {
+    marginLeft: '18px',
+    marginButtom: '3px'
   }
 });
 
@@ -36,9 +43,11 @@ function Home() {
       <Container fixed maxWidth="md">
         <div className={classes.row} >
           <Typography
+            className={classes.forum__title}
             variant="h5"
             component="h2"
             gutterBottom
+
           >
             Forum
           </Typography>
@@ -49,10 +58,11 @@ function Home() {
           <SelectCategories />
         </div>
         <Typography
+          className={classes.forum__discussions}
           variant="h6"
           component="h2"
         >
-          Suggested discussions:
+          Suggested discussions
         </Typography>
         <br /><br />
         {data.length > 0 && <ListSuggestedDiscussions data={data} />}

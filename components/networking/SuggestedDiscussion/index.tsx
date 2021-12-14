@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     },
 
     discussionTitle: {
-        fontWeight: 'bold'
+        fontWeight: 'bolder'
     },
     link: {
         textDecoration: 'none'

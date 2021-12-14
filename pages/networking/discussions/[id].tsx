@@ -7,8 +7,16 @@ import { Grid } from '@mui/material';
 import { DiscussionLikeButton } from '../../../components/networking/DiscussionLikeButton';
 import { DiscussionPost } from '../../../components/networking/DiscussionPost';
 import { DiscussionBreadCrumb } from '../../../components/networking/DiscussionBreadCrumb';
+import { makeStyles } from '@mui/styles';
+
+const useStyle = makeStyles({
+    likeButtonContainer: {
+        paddingTop: '16px'
+    }
+})
 
 function Discussion() {
+    const classes = useStyle()
 
     const { query: { id } } = useRouter();
 
@@ -43,7 +51,9 @@ function Discussion() {
                         {discussionData.content &&
                             <React.Fragment>
                                 {console.log(discussionData.is_active)}
-                                <DiscussionLikeButton isActive={discussionData.is_active} />
+                                <div className={classes.likeButtonContainer}>
+                                    <DiscussionLikeButton isActive={discussionData.is_active} />
+                                </div>
                                 <Grid item lg={8}>
                                     <DiscussionPost
                                         title={discussionData.title}
