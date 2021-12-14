@@ -3,8 +3,6 @@ import React from 'react';
 import Link from '../../Link';
 
 import Breadcrumbs from '@mui/material/Breadcrumbs';
-/* import Typography from '@mui/material/Typography'; */
-// import LinkMui from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Box from '@mui/material/Box';
@@ -19,7 +17,7 @@ function DiscussionBreadCrumb() {
       <Link
         underline="hover"
         key="1"
-        color="secondary"
+        color='#ae4eff'
         href="/networking"
       >
         Home
@@ -29,7 +27,7 @@ function DiscussionBreadCrumb() {
     <Link
       underline="hover"
       key="2"
-      color="inherit"
+      color='#ae4eff'
       href="#"
     >
       Discussion
@@ -41,7 +39,7 @@ function DiscussionBreadCrumb() {
         <Breadcrumbs
           separator={<NavigateNextIcon fontSize="small" />}
           aria-label="breadcrumb"
-          color='secondary'
+          color='#ae4eff'
         >
           {breadcrumbs}
         </Breadcrumbs>

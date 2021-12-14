@@ -21,7 +21,22 @@ const useStyles = makeStyles({
         flexDirection: 'column',
     },
     card: {
+        border: '2px solid #555bff',
+        borderRadius: '10px'
 
+    },
+
+    discussionTitle: {
+        fontWeight: 'bold'
+    },
+    link: {
+        textDecoration: 'none'
+    },
+    userIcon: {
+        color: '#ae4eff'
+    },
+    postDetails: {
+        color: '#ae4eff'
     },
     header: {
         spaceBetween: 'center'
@@ -60,25 +75,25 @@ function SuggestedDiscussion(props: DiscussionProps) {
     return (
         <React.Fragment>
 
-            <Card raised={false} sx={{ marginBottom: '1rem', padding: '.5rem' }} variant="outlined">
+            <Card className={classes.card} raised={false} sx={{ marginBottom: '1rem', padding: '.5rem' }} variant="outlined">
                 <div className={`${classes.row} ${classes.header}`}>
                     <div className={classes.column}>
-                        <DiscussionLikeButton isActive={ props.is_active } onClick={handleLikeButtonClick} />
-                        <Typography align="center">{likeCount}</Typography>
+                        <DiscussionLikeButton isActive={props.is_active} onClick={handleLikeButtonClick} />
+                        <Typography className={classes.discussionTitle} align="center">{likeCount}</Typography>
                     </div>
                     <div className={classes.column}>
-                            <Link 
-                                href={`/networking/discussions/${props.id}/`}
-                                underline="hover"
-                            >
-                                <Typography sx={{color: 'black'}} variant="h5" component="h2" style={{ textDecoration: 'none' }}>
-                                    {props.title}
-                                </Typography>
-                            </Link>
-                        <div className={classes.row} style={{ 
+                        <Link
+                            className={classes.link}
+                            href={`/networking/discussions/${props.id}/`}
+                        >
+                            <Typography sx={{ color: 'black' }} variant="h5" component="h2" style={{ textDecoration: 'none' }}>
+                                {props.title}
+                            </Typography>
+                        </Link>
+                        <div className={classes.row} style={{
                             margin: '10px 0'
-                         }}>
-                            <AccountCircleRounded color='secondary' />
+                        }}>
+                            <AccountCircleRounded className={classes.userIcon} />
                             <Typography ml={1}>{props.created_by}</Typography>
                         </div>
                     </div>
@@ -91,11 +106,11 @@ function SuggestedDiscussion(props: DiscussionProps) {
                     </Container>
                     <div className={classes.row}>
                         <div className={classes.row}>
-                            <CommentRounded color='secondary' />
+                            <CommentRounded className={classes.postDetails} />
                             <Typography ml={1}>5</Typography>
                         </div>
                         <div className={classes.row}>
-                            <AccessTimeFilledRounded color='secondary' />
+                            <AccessTimeFilledRounded className={classes.postDetails} />
                             <Typography ml={1}>{props.created_at}</Typography>
                         </div>
                     </div>

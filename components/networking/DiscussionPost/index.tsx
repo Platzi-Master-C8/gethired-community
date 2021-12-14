@@ -2,17 +2,25 @@ import React from 'react';
 import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
-/* import { Icon } from '@mui/material';
-import PropTypes from 'prop-types'; */
+import { makeStyles } from '@mui/styles';
 
-type DiscussionProps={
+const useStyle = makeStyles({
+    userIcon: {
+        color: '#ae4eff'
+    }
+})
+
+type DiscussionProps = {
     title: string,
     content: string,
     created_at: string,
     created_by: number,
 }
 
-function DiscussionPost(props:DiscussionProps) {
+function DiscussionPost(props: DiscussionProps) {
+
+    const classes = useStyle()
+
     return (
         <div>
             <Box p={2}>
@@ -21,14 +29,14 @@ function DiscussionPost(props:DiscussionProps) {
                 </ Typography>
                 <Box pt={2}>
                     <Typography paragraph>
-                        {props.content} 
+                        {props.content}
                     </Typography>
                 </Box>
             </Box>
-            <Box pl={1.5}  sx={{display:'flex', alignItems:'center'}}>
-                
-                <AccountCircleTwoToneIcon fontSize='large' color='secondary'/>
-                
+            <Box pl={1.5} sx={{ display: 'flex', alignItems: 'center' }}>
+
+                <AccountCircleTwoToneIcon className={classes.userIcon} fontSize='large' />
+
                 <Typography paragraph m={0} px={1}>
                     {props.created_by}
                 </ Typography>
