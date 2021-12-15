@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Link from '../../Link';
 
@@ -41,10 +41,17 @@ const useStyles = makeStyles({
     header: {
         spaceBetween: 'center'
     },
+    title: {
+        display: "-webkit-box",
+        boxOrient: "vertical",
+        lineClamp: 1,
+        wordBreak: "break-all",
+        overflow: "hidden"
+    },
     content: {
         display: "-webkit-box",
         boxOrient: "vertical",
-        lineClamp: 2,
+        lineClamp: 1,
         wordBreak: "break-all",
         overflow: "hidden"
     }
@@ -55,7 +62,7 @@ type DiscussionProps = {
     title: string,
     content: string,
     created_at: string,
-    created_by: number,
+    created_by: string,
     is_active: boolean,
 }
 
@@ -64,9 +71,8 @@ function SuggestedDiscussion(props: DiscussionProps) {
 
     return (
         <React.Fragment>
-
-            <Card className={classes.card} raised={false} sx={{ marginBottom: '1rem', padding: '.5rem' }} variant="outlined">
-                <div className={`${classes.row} ${classes.header}`}>
+            <Card className={classes.card} raised={false} sx={{ marginBottom: '1rem', padding: '0' }} variant="outlined">
+                <div className={`${classes.row} ${classes.header}`} style={{ marginBottom: '0' }}>
                     <DiscussionLikeCounter
                         isActive={props.is_active}
                         typographyProps={{
@@ -78,10 +84,10 @@ function SuggestedDiscussion(props: DiscussionProps) {
                             className={classes.link}
                             href={`/networking/discussions/${props.id}/`}
                         >
-                            <Typography sx={{ color: 'black' }} variant="h5" component="h2" style={{ textDecoration: 'none' }}>
+                            <Typography sx={{ color: 'black' }} className={classes.title} variant="h5" component="h2">
                                 {props.title}
                             </Typography>
-                        </Link>
+                        </Link>           
                         <div className={classes.row} style={{
                             margin: '10px 0'
                         }}>
@@ -90,22 +96,22 @@ function SuggestedDiscussion(props: DiscussionProps) {
                         </div>
                     </div>
                 </div>
-                <CardContent sx={{ margin: '0rem', padding: '0rem' }}>
-                    <Container  >
+                <CardContent style={{ padding: 0, marginBottom: '1rem' }}>
+                    <Container >
                         <Typography ml={6.5} className={classes.content} >
                             {props.content}
                         </Typography>
                     </Container>
-                    <div className={classes.row}>
-                        <div className={classes.row}>
+                    <Container className={classes.row} style={{ paddingBottom: 0, marginBottom: 0 }}>
+                        <div className={classes.row} style={{ margin: 0, marginRight: '15px' }}>
                             <CommentRounded className={classes.postDetails} />
                             <Typography ml={1}>5</Typography>
                         </div>
-                        <div className={classes.row}>
+                        <div className={classes.row} style={{ margin: 0 }}>
                             <AccessTimeFilledRounded className={classes.postDetails} />
                             <Typography ml={1}>{props.created_at}</Typography>
                         </div>
-                    </div>
+                    </Container>
                 </CardContent>
             </Card>
 

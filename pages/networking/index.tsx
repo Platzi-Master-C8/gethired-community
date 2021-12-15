@@ -53,7 +53,6 @@ function Home() {
             variant="h5"
             component="h2"
             gutterBottom
-
           >
             Forum
           </Typography>

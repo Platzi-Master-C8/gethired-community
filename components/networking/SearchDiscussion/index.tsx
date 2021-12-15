@@ -25,7 +25,7 @@ function SearchDiscussion() {
           },
           endAdornment: (
             <InputAdornment position="end">
-              <SearchOutlined />
+              <SearchOutlined sx={{color: "#ae4eff"}} />
             </ InputAdornment>
           ),
         }}

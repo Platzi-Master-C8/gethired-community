@@ -13,7 +13,7 @@ type DiscussionProps = {
         is_active: boolean
     }[];
     names: {
-        id: number,
+        id: string,
         name: string
     }[];
 }
