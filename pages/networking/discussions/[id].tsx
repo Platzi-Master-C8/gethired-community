@@ -16,14 +16,14 @@ function Discussion() {
         title: '',
         content: '',
         created_at: '',
-        created_by: 0,
+        created_by: '',
         is_active: false
     });
 
 
     useEffect(() => {
         if (id) {
-            fetch(`http://localhost:3001/api/discussions/${id}`)
+            fetch(`https://get-hired-forum-dev.herokuapp.com/api/discussions/${id}`)
                 .then(response => response.json())
                 .then(discussion => {
                     setDiscussionData(discussion);
@@ -48,8 +48,8 @@ function Discussion() {
                                     <DiscussionPost
                                         title={discussionData.title}
                                         content={discussionData.content}
-                                        created_at={discussionData.created_at}
-                                        created_by={discussionData.created_by}
+                                        created_at={discussionData.created_at.slice(0, 10)}
+                                        created_by="Cesar Turner"
                                     />
                                 </ Grid>
                             </React.Fragment>

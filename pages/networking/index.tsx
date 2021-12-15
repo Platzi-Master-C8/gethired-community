@@ -7,6 +7,8 @@ import { CreateDiscussionButton } from '../../components/networking/CreateDiscus
 import { ListSuggestedDiscussions } from '../../components/networking/ListSuggestesdDiscussions';
 import { SearchDiscussion } from '../../components/networking/SearchDiscussion';
 
+import { getUserNames } from './helpers/userNames';
+
 const useStyles = makeStyles({
   row: {
     display: 'flex',
@@ -22,14 +24,18 @@ const useStyles = makeStyles({
 function Home() {
   const [data, setData] = useState([]);
   const classes = useStyles();
+  var names = [];
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/discussions/')
+    fetch('https://get-hired-forum-dev.herokuapp.com/api/discussions')
       .then(response => response.json())
       .then(response => {
         setData(response.slice(0, 7));
+        
       })
   }, []);
+
+  names = getUserNames(data);
 
   return (
     <React.Fragment>
@@ -55,7 +61,7 @@ function Home() {
           Suggested discussions:
         </Typography>
         <br /><br />
-        {data.length > 0 && <ListSuggestedDiscussions data={data} />}
+        {data.length > 0 && <ListSuggestedDiscussions data={data} names={names} />}
       </Container>
     </React.Fragment>
   );
