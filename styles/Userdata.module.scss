@@ -1,3 +1,4 @@
+@import '../styles/Variables.module.scss';
 // .App_loginButton{
 //   margin-right: 100px;
 //   background: linear-gradient(to right,  #ae4eff, #5f64ff);
@@ -30,7 +31,8 @@
   margin-right: 110px;
   border: none;
   outline: none;
-  background: linear-gradient(to right,  #ae4eff, #5f64ff);
+  // background: linear-gradient(to right,  #ae4eff, #5f64ff);
+  background: $gradientePrincipal;
   color: #fff;
   font-size: 14px;
   font-weight: bold;
@@ -46,7 +48,8 @@
   margin-right: 5px;
   border: none;
   outline: none;
-  background: linear-gradient(to right,  #ae4eff, #5f64ff);
+  // background: linear-gradient(to right,  #ae4eff, #5f64ff);
+  background: $gradientePrincipal;
   color: #fff;
   font-size: 14px;
   font-weight: bold;
