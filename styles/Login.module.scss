@@ -1,0 +1,14 @@
+@import '../styles/Variables.module.scss';
+
+.loginButton{
+  background: $gradientePrincipal;
+  margin-right: 50px;
+  width: 90px;
+  height: 35px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  font-family: 'Mulish', sans-serif;
+  cursor: pointer;
+}

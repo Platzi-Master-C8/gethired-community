@@ -1,0 +1,97 @@
+@import '../styles/Variables.module.scss';
+// .App_loginButton{
+//   margin-right: 100px;
+//   background: linear-gradient(to right,  #ae4eff, #5f64ff);
+//   font-size: 14px;
+//   border-radius: 6px;
+//   width: 89px;
+//   height: 34px;
+//   color: white;
+//   font-family: 'Mulish', sans-serif;
+//   font-weight: bold;
+//   border: none;
+// }
+
+// .App_logoutButton{
+
+//   margin-right: 100px;
+//   background: linear-gradient(to right,  #ae4eff, #5f64ff);
+//   font-size: 20px;
+//   border-radius: 6px;
+//   width: 89px;
+//   height: 34px;
+//   color: white;
+//   font-family: 'Mulish', sans-serif;
+//   font-weight: bold;
+//   font-size: 14;
+//   border: none;
+// }
+
+.login_button{
+  margin-right: 110px;
+  border: none;
+  outline: none;
+  // background: linear-gradient(to right,  #ae4eff, #5f64ff);
+  background: $gradientePrincipal;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Mulish', sans-serif;
+  padding: 0.9rem 2.6rem; // original
+  // padding: 1rem 2.8rem;
+  // padding: 17px 45px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.logout_button{
+  margin-right: 5px;
+  border: none;
+  outline: none;
+  // background: linear-gradient(to right,  #ae4eff, #5f64ff);
+  background: $gradientePrincipal;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Mulish', sans-serif;
+  padding: 0.9rem 2rem; // original
+  // padding: 1rem 2.8rem;
+  // padding: 17px 45px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+
+.profile{
+  display: flex;
+  flex-direction: row-reverse;
+  right: 100px;
+}
+
+.img_profile{
+  height: 50px;
+  margin: 0px 50px 0px 10px;
+  border-radius: 50%;
+}
+
+.profile_data{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.h2-profile__nombre{
+  font-size: 30px;
+  margin: 10px;
+}
+
+.p-profile__email{
+  font-size: 20px;
+  margin: 0;
+}
+
+.contenedor_hb{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

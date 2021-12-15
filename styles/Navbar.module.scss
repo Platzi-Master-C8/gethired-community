@@ -1,0 +1,57 @@
+@import '../styles/Variables.module.scss';
+.navBar {
+  width: 250px;
+  height: 100vh;
+}
+.navBar_user {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 60px;
+  background: $colorIcon;
+}
+.navBar_user_name {
+  display: inline-block;
+  height: 30px;
+  color: white;
+  font-size: 22px;
+}
+.avatar_profile {
+
+}
+
+.navBar_menu {
+  font-size: 18px;
+}
+
+.navBar_menu ul {
+  list-style: none;
+}
+.navBar_menu li {
+  width: 100%;
+  text-align: center;
+}
+.navBar_menu li:hover {
+  background: $gradientePrincipal;
+  .navBar_menu__text {
+    color: white;
+  }
+}
+.navBar_menu_link {
+  width: 100%;
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
+  align-items: center;
+}
+
+.navBar_menu__text {
+  color: black;
+  width: 110px;
+  text-align: center;
+  background-color: transparent;
+}
+
+
+
