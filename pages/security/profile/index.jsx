@@ -2,7 +2,7 @@ import Usersystem from '../../../components/challenges/usersystem/Usersystem'
 import Header from '../../../components/security/header/Header'
 import Navbar from '../../../components/security/navbar/Navbar'
 import StreakAndRank from '../../../components/challenges/StreakAndRank/StreakAndRank'
-import UserGraph from '../../../components/challenges/usergraph/Usergraph'
+/* import UserGraph from '../../../components/challenges/usergraph/Usergraph' */
 import Achievements from '../../../components/challenges/achievements/Achievements'
 import Footer from '../../../components/challenges/footer/Footer'
 import styles from '../../../styles/Profile.module.scss';
@@ -34,7 +34,7 @@ console.log(data)
           <StreakAndRank ranks={data.ranks} challenges={data.challenges} />
           <Usersystem  data={data} ranks={data.ranks} />
           <Achievements  goals={data.achievements} />
-          <UserGraph  activity={data.activity} />
+         {/*  <UserGraph  activity={data.activity} /> */}
           <Footer />
       </div>
     );

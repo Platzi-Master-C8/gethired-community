@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Logop from '../../../public/icons/LogoPlataforma1.png';
 import styles from '../../../styles/Header.module.scss';
 import position from '../../../styles/Profile.module.scss';
+import { LoginButton } from '../../security/loginbutton/login';
 
 
 const Header = () => {
@@ -20,6 +21,7 @@ const Header = () => {
           </a>               
         </div>
         <nav className={styles.navBar}>
+            <LoginButton />
         </nav>
     </header>
     </div>
