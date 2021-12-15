@@ -31,7 +31,7 @@ function Home() {
   const classes = useStyles();
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/discussions/')
+    fetch('https://get-hired-forum-dev.herokuapp.com/api/discussions/')
       .then(response => response.json())
       .then(response => {
         setData(response.slice(0, 7));
