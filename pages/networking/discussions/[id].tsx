@@ -4,11 +4,20 @@ import { useRouter } from 'next/router';
 
 import { Grid } from '@mui/material';
 
-import { DiscussionLikeButton } from '../../../components/networking/DiscussionLikeButton';
 import { DiscussionPost } from '../../../components/networking/DiscussionPost';
 import { DiscussionBreadCrumb } from '../../../components/networking/DiscussionBreadCrumb';
+import { makeStyles } from '@mui/styles';
+import { DiscussionLikeCounter } from '../../../components/networking/DiscussionLikeCounter';
+import { Box } from '@mui/system';
+
+const useStyle = makeStyles({
+    likeButtonContainer: {
+        paddingTop: '16px'
+    }
+})
 
 function Discussion() {
+    const classes = useStyle()
 
     const { query: { id } } = useRouter();
 
@@ -32,32 +41,34 @@ function Discussion() {
     }, [id])
 
     return (
-        <Grid container justifyContent='center'>
-            <Grid item sm={11} md={7} lg={8} xl={6}>
-                <DiscussionBreadCrumb />
-            </ Grid>
+        <>
+            <Grid container justifyContent='center'>
+                <Grid item sm={11} md={7} lg={8} xl={6}>
+                    <DiscussionBreadCrumb />
+                </ Grid>
+            </Grid>
             <Grid container justifyContent='center'>
                 <Grid item lg={9} xl={6}>
-                    <Grid container justifyContent='center'>
-                        {discussionData.content && console.log(discussionData)}
-                        {discussionData.content &&
-                            <React.Fragment>
-                                {console.log(discussionData.is_active)}
-                                <DiscussionLikeButton isActive={discussionData.is_active} />
-                                <Grid item lg={8}>
-                                    <DiscussionPost
-                                        title={discussionData.title}
-                                        content={discussionData.content}
-                                        created_at={discussionData.created_at.slice(0, 10)}
-                                        created_by="Cesar Turner"
-                                    />
-                                </ Grid>
-                            </React.Fragment>
-                        }
-                    </Grid>
-                </ Grid>
-            </ Grid>
-        </Grid>
+                    {discussionData.content &&
+                        <Box display="flex" flexDirection="row">
+                            <DiscussionLikeCounter
+                                isActive={discussionData.is_active}
+                                boxProps={{
+                                    pt: '1em'
+                                }}
+                            />
+                            
+                            <DiscussionPost
+                                title={discussionData.title}
+                                content={discussionData.content}
+                                created_at={discussionData.created_at.slice(0, 10)}
+                                created_by="Cesar Turner"
+                            />
+                        </Box>
+                    }
+                </Grid>
+            </Grid>
+        </>
     );
 }
 

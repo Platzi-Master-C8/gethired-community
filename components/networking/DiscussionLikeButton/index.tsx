@@ -11,12 +11,15 @@ type LikeProps = {
 }
 
 const useStyle = makeStyles({
+
     buttonLiked: {
-        color: '#ae4eff'
+        color: '#ae4eff',
+
     },
 
-    buttonUnliked: {
-        color: '#DCB0FF'
+    unlikedButton: {
+        color: '#DCB0FF',
+
     }
 })
 
@@ -43,7 +46,7 @@ function DiscussionLikeButton(props: LikeProps) {
             <div>
                 <Button variant="text" color="secondary" size='small' onClick={handleClick}>
                     {likeStatus && <FavoriteRounded className={classes.buttonLiked} />}
-                    {!likeStatus && <FavoriteBorderRounded className={classes.buttonUnliked} />}
+                    {!likeStatus && <FavoriteBorderRounded className={classes.unlikedButton} />}
                 </Button>
             </div>
         </Box>
