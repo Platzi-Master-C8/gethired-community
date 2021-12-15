@@ -9,7 +9,7 @@ import { CommentRounded } from '@mui/icons-material';
 import { AccessTimeFilledRounded } from '@mui/icons-material';
 import { AccountCircleRounded } from '@mui/icons-material';
 
-import { DiscussionLikeButton } from '../DiscussionLikeButton';
+import { DiscussionLikeCounter } from '../DiscussionLikeCounter';
 
 const useStyles = makeStyles({
     row: {
@@ -62,25 +62,17 @@ type DiscussionProps = {
 function SuggestedDiscussion(props: DiscussionProps) {
     const classes = useStyles();
 
-    const [likeCount, setLikeCount] = useState(5);
-
-    const handleLikeButtonClick = (liked: boolean) => {
-        if (liked) {
-            setLikeCount(likeCount + 1);
-        } else {
-            setLikeCount(likeCount - 1);
-        }
-    };
-
     return (
         <React.Fragment>
 
             <Card className={classes.card} raised={false} sx={{ marginBottom: '1rem', padding: '.5rem' }} variant="outlined">
                 <div className={`${classes.row} ${classes.header}`}>
-                    <div className={classes.column}>
-                        <DiscussionLikeButton isActive={props.is_active} onClick={handleLikeButtonClick} />
-                        <Typography className={classes.discussionTitle} align="center">{likeCount}</Typography>
-                    </div>
+                    <DiscussionLikeCounter
+                        isActive={props.is_active}
+                        typographyProps={{
+                            className: classes.discussionTitle,
+                        }}
+                    />
                     <div className={classes.column}>
                         <Link
                             className={classes.link}
