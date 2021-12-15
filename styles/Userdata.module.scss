@@ -1,0 +1,63 @@
+
+.App-loginButton{
+
+  margin-right: 100px;
+  /* padding: 20px; */
+  /* background-color: #369fff; */
+  background: linear-gradient(to right,  #ae4eff, #5f64ff);
+  font-size: 20px;
+  border-radius: 6px;
+  width: 150px;
+  height: 60px;
+  color: white;
+  font-weight: bold;
+  border: none;
+  /* box-shadow: 5px 5px 19px -1px rgba(0,0,0,0.72); */
+}
+
+.App-logoutButton{
+
+  margin-right: 100px;
+  /* padding: 20px; */
+  /* background-color: #369fff; */
+  background: linear-gradient(to right,  #ae4eff, #5f64ff);
+  font-size: 20px;
+  border-radius: 6px;
+  width: 150px;
+  height: 60px;
+  color: white;
+  font-weight: bold;
+  border: none;
+  /* box-shadow: 5px 5px 19px -1px rgba(0,0,0,0.72); */
+}
+
+.profile{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.img_profile{
+  height: 80px;
+  margin: 10px;
+}
+
+.profile_data{
+  display: flex;
+  flex-direction: column;
+}
+
+.h2-profile__nombre{
+  font-size: 30px;
+  margin: 10px;
+}
+
+.p-profile__email{
+  font-size: 20px;
+  margin: 0;
+}
+
+.contenedor_hb{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
