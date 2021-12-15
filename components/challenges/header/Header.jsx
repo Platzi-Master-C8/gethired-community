@@ -32,11 +32,11 @@ const Header = () => {
             </>
             ):(
               
-              <LoginButton />
-          
-          )} */}
+              
+            )} */}
         </div>
         <nav className={styles.navBar}>
+            <LoginButton />
         </nav>
     </header>
     </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import styles from "../../../styles/Login.module.scss";
 
 const LoginButton = () => {
 
@@ -12,7 +13,7 @@ const LoginButton = () => {
     // )
 
     return(
-        <button className = "App-loginButton" onClick = {() => {
+        <button className={styles.loginButton} onClick = {() => {
 
             loginWithRedirect()
         }}> 
