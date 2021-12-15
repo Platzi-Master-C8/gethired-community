@@ -1,14 +1,15 @@
 import Usersystem from '../../../components/challenges/usersystem/Usersystem'
-import Header from '../../../components/challenges/header/Header'
-import Navbar from '../../../components/challenges/navbar/Navbar'
+import Header from '../../../components/security/header/Header'
+import Navbar from '../../../components/security/navbar/Navbar'
 import StreakAndRank from '../../../components/challenges/StreakAndRank/StreakAndRank'
 /* import UserGraph from '../../../components/challenges/usergraph/Usergraph' */
 import Achievements from '../../../components/challenges/achievements/Achievements'
 import Footer from '../../../components/challenges/footer/Footer'
 import styles from '../../../styles/Profile.module.scss';
 
+
 async function getStaticProps(context) {
-  const res = await fetch(`http:ocalhost:3500/data`)
+  const res = await fetch(`http:localhost:3500/data`)
   const data = await res.json()
 
   if (!data) {
