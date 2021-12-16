@@ -19,8 +19,7 @@ const Header = () => {
 
       <header className={styles.header}>
         <div className={styles.logo}>
-        
-        
+
           <a className="" href='$'>
             <Image
               src={Logop}
@@ -28,7 +27,7 @@ const Header = () => {
               />
           </a>
 
-               
+
         </div>
         <nav className={styles.navBar}>
           <a className= {styles2.logout_button} href="/api/auth/logout">Logout</a>
@@ -36,16 +35,16 @@ const Header = () => {
         </nav>
     </header>
     </div>
-      
+
       )
     }
-    
+
     return (
       <div className={position.iheader}>
 
       <header className={styles.header}>
         <div className={styles.logo}>
-        
+
           <a className="" href='$'>
             <Image
               src={Logop}
@@ -53,11 +52,10 @@ const Header = () => {
               />
           </a>
 
-               
+
         </div>
         <nav className={styles.navBar}>
           <a className= {styles2.login_button} href="/api/auth/login">Login</a>
-       {/* <LoginButton /> */}
         </nav>
     </header>
     </div>
