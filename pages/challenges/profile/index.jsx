@@ -8,9 +8,12 @@ import Achievements from '../../../components/challenges/achievements/Achievemen
 import Footer from '../../../components/challenges/footer/Footer'
 import styles from '../../../styles/Profile.module.scss';
 import fetch from 'isomorphic-fetch';
+import { useUser } from '@auth0/nextjs-auth0';
+
+
 
 export const getServerSideProps = async (params) => {
-  const res = await fetch(` http://localhost:3500/data`)
+  const res = await fetch(` https://cg-challenges.herokuapp.com/api/v1/challengers/1`)
   const data = await res.json()
 
   if (!data) {
@@ -28,8 +31,9 @@ export const getServerSideProps = async (params) => {
 
 const Profile = (data) => {
   let info = data.data
-
-  if (info) {
+  
+  const {user} = useUser();
+  if (user) {
     return (
       <div className={styles.container}>
         <Header />

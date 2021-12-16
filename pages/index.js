@@ -1,11 +1,11 @@
-import styles from '../styles/Home.module.scss'
-import Profile from '../pages/security/profile/index'
+import styles from '../styles/Profile.module.scss'
+import Home from '../pages/security/home/index'
 
-export default function Home() {
-  
+export default function Container() {
+
     return (
       <div className={styles.container}>
-        <Profile />
+        <Home />
       </div>
     );
 }
