@@ -5,24 +5,14 @@ import styles from "../../../styles/Login.module.scss";
 const LoginButton = () => {
 
     const { loginWithRedirect } = useAuth0();
-
-    // return(
-        
-    //     loginWithRedirect()
-  
-    // )
-
     return(
         <button className={styles.loginButton} onClick = {() => {
 
             loginWithRedirect()
-        }}> 
-        
-        Login 
-        
-        </button>          
-        
-    )    
+        }}>
+        Login
+        </button>
+    )
 }
 
 export { LoginButton };
