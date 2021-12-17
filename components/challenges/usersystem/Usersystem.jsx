@@ -4,12 +4,11 @@ import position from '../../../styles/Profile.module.scss';
 
 const Usersystem = ({ data, ranks }) => {
   if (data && ranks) {
-    let dataP = data.points;
     return (
       <div className={position.isystem}>
          <div className={styles.containerp}>
           <div className={styles.first_circle}>
-            <p className={styles.text}>{dataP}</p>
+            <p className={styles.text}>{data.points}</p>
           </div>
           <p className={styles.text}>Points</p>
           <div className={styles.second_circle}>
@@ -20,7 +19,20 @@ const Usersystem = ({ data, ranks }) => {
       </div>
     );
   } else {
-    return null;
+    return (
+      <div className={position.isystem}>
+         <div className={styles.containerp}>
+          <div className={styles.first_circle}>
+            <p className={styles.text}>ERROR</p>
+          </div>
+          <p className={styles.text}>Points</p>
+          <div className={styles.second_circle}>
+            <p className={styles.text}>ERROR</p>
+          </div>
+          <p className={styles.text}>Next Rank</p>
+        </div>
+      </div>
+    );
   }
 };
 
