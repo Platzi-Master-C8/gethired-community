@@ -31,7 +31,7 @@ const Profile = (data) => {
   const { user } = useUser();
   let info = data.data.data
   if (user) {
-     if (info) {
+    if (info) {
     return (
       <div className={styles.container}>
         <Header />
@@ -44,8 +44,8 @@ const Profile = (data) => {
       </div>
     );
   }
-  else { return false}
- }else { return null}
+    else { return false}
+  }else { return null}
 };
 
 export default Profile;
