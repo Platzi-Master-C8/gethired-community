@@ -29,7 +29,7 @@ export const getServerSideProps = async (params) => {
 
 const Profile = (data) => {
   const { user } = useUser();
-  let info = data.data.data
+  let info = data.data.data;
   if (user) {
     if (info) {
     return (
@@ -37,7 +37,7 @@ const Profile = (data) => {
         <Header />
         <Navbar  />
         <StreakAndRank ranks={info.ranks} challenges={info.challenges} />
-        <Usersystem  data={info.data} ranks={info.ranks} />
+        <Usersystem  data={info} ranks={info.ranks} />
         <Achievements  goals={info.achievements.completed} />
         <UserGraph  activity={info.activity} />
         <Footer />
