@@ -6,7 +6,7 @@ const Usersystem = ({ data, ranks }) => {
   if (data && ranks) {
     return (
       <div className={position.isystem}>
-         <div className={styles.containerp}>
+        <div className={styles.containerp}>
           <div className={styles.first_circle}>
             <p className={styles.text}>{data.points}</p>
           </div>
@@ -21,7 +21,7 @@ const Usersystem = ({ data, ranks }) => {
   } else {
     return (
       <div className={position.isystem}>
-         <div className={styles.containerp}>
+        <div className={styles.containerp}>
           <div className={styles.first_circle}>
             <p className={styles.text}>ERROR</p>
           </div>

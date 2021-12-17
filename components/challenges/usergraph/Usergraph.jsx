@@ -13,8 +13,7 @@ const UserGraph = ({ activity }) => {
     return (
       <div className={position.igraph}>
         <div className={styles.container_graph}>
-        <Bar
-          className='graph'
+        <Bar className='graph'
           data={{
             labels: keys.map(item => new Intl.DateTimeFormat('es-MX', { month: 'long', day: 'numeric' }).format(new Date(item))),
             datasets: [

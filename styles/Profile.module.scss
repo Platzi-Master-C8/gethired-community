@@ -1,14 +1,15 @@
 .container {
+  overflow-y: hidden;
     width: 100%;
-    height: auto;
+    height: 100vh;
     display: grid;
-    grid-template-columns: 20% 55% 25%;
-    grid-template-rows: 60px 20% 30% 34%;
+    grid-template-columns: 18% 62% 20%;
+    grid-template-rows: 80px 20% 35% 35%;
     grid-template-areas:
     " header header header"
     " navbar minicards systemp"
     " navbar achievements systemp"
-    " navbar graph systemp"
+    " navbar graph ."
     ;
   }
   .iheader {
@@ -34,7 +35,8 @@
   }
   .igraph {
     grid-area: graph;
-    justify-self: center;
+    width: 75%;
+    justify-self:center;
     align-self: center;
   }
   .ifooter {
