@@ -7,13 +7,13 @@ const Usersystem = ({ data, ranks }) => {
     let dataP = data.points;
     return (
       <div className={position.isystem}>
-         <div className={styles.container}>
+         <div className={styles.containerp}>
           <div className={styles.first_circle}>
             <p className={styles.text}>{dataP}</p>
           </div>
           <p className={styles.text}>Points</p>
           <div className={styles.second_circle}>
-            <p className={styles.text}>{ranks[1].required_points}</p>
+            <p className={styles.text}>{ranks.next.required_points}</p>
           </div>
           <p className={styles.text}>Next Rank</p>
         </div>

@@ -6,6 +6,9 @@ import position from '../../../styles/Profile.module.scss';
 
 const UserGraph = ({ activity }) => {
   if (activity) {
+    let values = Object.values(activity);
+    let keys = Object.keys(activity);
+    console.log(keys);
 
     return (
       <div className={position.igraph}>
@@ -13,11 +16,11 @@ const UserGraph = ({ activity }) => {
         <Bar
           className='graph'
           data={{
-            labels: activity.map(item => new Intl.DateTimeFormat('es-MX', { month: 'long', day: 'numeric' }).format(new Date(item.day))),
+            labels: keys.map(item => new Intl.DateTimeFormat('es-MX', { month: 'long', day: 'numeric' }).format(new Date(item))),
             datasets: [
               {
                 label: 'Retos completados',
-                data: activity.map(item => item.points),
+                data: values.map(item => item),
                 backgroundColor: '#2196F3',
                 borderColor: '#A779FF',
                 borderWidth: 1,
@@ -28,18 +31,18 @@ const UserGraph = ({ activity }) => {
           options={{
             layout: {
               padding: {
-                left: 10,
-                right: 10
+                left: 5,
+                right: 5
               }
             },
             plugins: {
               title: {
                 display: true,
                 text: 'Actividad Semanal',
-                padding: 30,
+                padding: 20,
                 color: '#12619c',
                 font: {
-                  size: 26
+                  size: 25
                 }
               },
               legend: {
@@ -56,12 +59,12 @@ const UserGraph = ({ activity }) => {
                 bodyFont: {
                   size: 20
                 },
-                padding: 10
+                padding: 20
               }
             },
             elements: {
               bar: {
-                inflateAmount: 1,
+                inflateAmount: 0.5,
                 borderSkipped: 'bottom',
                 hoverBorderWidth: 5,
                 hoverBackgroundColor: '#A779FF'

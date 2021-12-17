@@ -30,7 +30,7 @@ const Header = () => {
 
         </div>
         <nav className={styles.navBar}>
-        <Link  className= {styles2.login_button} href="/api/auth/logout">Logout</Link>
+        <a  className= {styles2.login_button} href="/api/auth/logout">Logout</a>
           <Image width={45} height={45} className = {styles2.img_profile} src = { user.picture } alt = { user.name } />
         </nav>
     </header>
@@ -47,7 +47,7 @@ const Header = () => {
 
         </div>
         <nav className={styles.navBar}>
-          <Link className= {styles2.login_button} href="/api/auth/login">Login</Link>
+          <a className= {styles2.login_button} href="/api/auth/login">Login</a>
         </nav>
     </header>
     </div>

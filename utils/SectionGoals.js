@@ -9,11 +9,10 @@ const SectionGoals = ({ goals }) => {
         {
           goals.map((goal, index) => (
           <Card
-            title={goal.title}
-            img={goal.img}
+            title={goal.name}
+            img={goal.badge}
             description={goal.description}
             completed={goal.completed}
-            date={goal.date}
             key={index}
           />
           ))
