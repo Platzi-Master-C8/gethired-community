@@ -9,7 +9,7 @@ type DiscussionProps = {
         title: string,
         content: string,
         created_at: string,
-        created_by: string,
+        created_by: number,
         is_active: boolean
     }[];
     names: {
@@ -19,7 +19,6 @@ type DiscussionProps = {
 }
 
 function ListSuggestedDiscussions(props: DiscussionProps) {
-    
 
     return (
         <React.Fragment>
