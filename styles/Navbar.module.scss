@@ -1,10 +1,13 @@
 @import '../styles/Variables.module.scss';
+
 .navBar {
+  width: 15%;
   height: 100vh;
   position: absolute;
   z-index: 2;
   cursor: pointer;
 }
+
 .navBar_user {
   display: flex;
   align-items: center;
