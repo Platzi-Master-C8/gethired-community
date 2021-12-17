@@ -15,7 +15,7 @@ const StreakAndRank = ({ ranks, challenges }) => {
 
         <div className={styles.step__container}>
           <Image layout="fill" className={styles.rank_icon} src={rankLogo} alt="ranks" />
-          <p className={styles.rank_value}>{ranks ? ranks[1].next : []}</p>
+          <p className={styles.rank_value}>{ranks ? ranks.next : []}</p>
           <p className={styles.rank_button}>Rank</p>
         </div>
 
