@@ -30,7 +30,7 @@ const NavBar = () => {
           <div className={styles.navBar_menu}>
             <ul>
               <li>
-                <a className={styles.navBar_menu_link} href='/networking/discussions'><Image  src={Forum} alt='' /><p className={styles.navBar_menu__text}>Forum</p></a>
+                <a className={styles.navBar_menu_link} href='/networking'><Image  src={Forum} alt='' /><p className={styles.navBar_menu__text}>Forum</p></a>
               </li>
               <li>
                 <a className={styles.navBar_menu_link} href='/'><Image  src={Challenges} alt='' /><p className={styles.navBar_menu__text}>Challenges</p></a>
