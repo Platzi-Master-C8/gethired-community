@@ -14,7 +14,7 @@ type DiscussionProps = {
     title: string,
     content: string,
     created_at: string,
-    created_by: number,
+    created_by: string,
 }
 
 function DiscussionPost(props: DiscussionProps) {
