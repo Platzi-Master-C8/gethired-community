@@ -43,7 +43,7 @@ const Profile = (data) => {
     );
   } else {
     return null;
-   }
+  }
 };
 
 export default Profile;
