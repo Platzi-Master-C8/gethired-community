@@ -24,7 +24,7 @@ const Header = () => {
             </Link>
           </div>
           <nav className={styles.navBar}>
-          <a href="/api/auth/login">Login</a>
+          <Link href="/api/auth/login">Login</Link>
           </nav>
       </header>
       </div>
