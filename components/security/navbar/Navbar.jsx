@@ -33,7 +33,7 @@ const NavBar = () => {
                 <a className={styles.navBar_menu_link} href='/networking'><Image  src={Forum} alt='' /><p className={styles.navBar_menu__text}>Forum</p></a>
               </li>
               <li>
-                <a className={styles.navBar_menu_link} href='/'><Image  src={Challenges} alt='' /><p className={styles.navBar_menu__text}>Challenges</p></a>
+                <a className={styles.navBar_menu_link} href='/challenges/playground'><Image  src={Challenges} alt='' /><p className={styles.navBar_menu__text}>Challenges</p></a>
               </li>
               <li>
                 <a className={styles.navBar_menu_link} href='/challenges/profile'><Image  src={Profile} alt='' /><p className={styles.navBar_menu__text}>Profile</p></a>

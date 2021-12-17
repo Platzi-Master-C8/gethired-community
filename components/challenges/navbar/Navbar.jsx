@@ -1,4 +1,6 @@
 import React from 'react';
+import Link from 'react-router-dom'
+
 import Image from 'next/image';
 import Avatar from '../../../public/icons/Avatar.png';
 import Forum from '../../../public/icons/forum.svg';
@@ -31,7 +33,9 @@ const NavBar = () => {
               <a className={styles.navBar_menu_link} href='#'><Image  src={Challenges} alt='' /><p className={styles.navBar_menu__text}>Challenges</p></a>
             </li>
             <li>
-              <a className={styles.navBar_menu_link} href='#'><Image  src={Profile} alt='' /><p className={styles.navBar_menu__text}>Profile</p></a>
+              <Link>
+                <a className={styles.navBar_menu_link} href='#'><Image  src={Profile} alt='' /><p className={styles.navBar_menu__text}>Profile</p></a>
+              </Link>
             </li>
           </ul>
         </div>
