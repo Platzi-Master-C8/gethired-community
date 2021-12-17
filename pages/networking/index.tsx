@@ -7,7 +7,7 @@ import { CreateDiscussionButton } from '../../components/networking/CreateDiscus
 import { ListSuggestedDiscussions } from '../../components/networking/ListSuggestesdDiscussions';
 import { SearchDiscussion } from '../../components/networking/SearchDiscussion';
 
-import { getUserNames } from './helpers/userNames';
+import { getUserNames } from '../../utils/helpers/userNames';
 
 const useStyles = makeStyles({
   row: {

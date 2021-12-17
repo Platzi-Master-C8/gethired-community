@@ -4,6 +4,7 @@
   height: 100vh;
   position: absolute;
   z-index: 2;
+  cursor: pointer;
 }
 .navBar_user {
   display: flex;
@@ -11,12 +12,14 @@
   justify-content: space-evenly;
   height: 60px;
   background: $colorIcon;
+  cursor: pointer;
 }
 .navBar_user_name {
   display: inline-block;
   height: 30px;
   color: white;
   font-size: 22px;
+  cursor: pointer;
 }
 
 
@@ -30,6 +33,7 @@
 .navBar_menu li {
   width: 100%;
   text-align: center;
+  cursor: pointer;
 }
 .navBar_menu li:hover {
   background: $gradientePrincipal;
@@ -44,6 +48,7 @@
   justify-content: space-evenly;
   gap: 20px;
   align-items: center;
+  cursor: pointer;
 }
 
 .navBar_menu__text {
@@ -51,6 +56,7 @@
   width: 110px;
   text-align: center;
   background-color: transparent;
+  cursor: pointer;
 }
 
 

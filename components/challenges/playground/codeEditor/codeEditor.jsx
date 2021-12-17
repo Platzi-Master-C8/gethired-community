@@ -17,7 +17,6 @@ function CodeEditor () {
       <p className={styles.solutionHeader}>Solucion: </p>
         <Editor
         height='870px'
-        /* width='950px' */
         defaultLanguage='javascript'
         defaultValue={content}
         theme='vs-dark'
