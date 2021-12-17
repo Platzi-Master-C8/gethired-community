@@ -2,6 +2,8 @@
 .navBar {
   width: 250px;
   height: 100vh;
+  position: absolute;
+  z-index: 2;
 }
 .navBar_user {
   display: flex;
@@ -16,9 +18,7 @@
   color: white;
   font-size: 22px;
 }
-.avatar_profile {
 
-}
 
 .navBar_menu {
   font-size: 18px;

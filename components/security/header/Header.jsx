@@ -19,9 +19,8 @@ const Header = () => {
 
       <header className={styles.header}>
         <div className={styles.logo}>
-        
-        
-          <a className="" href='$'>
+
+          <a className="" href='/'>
             <Image
               src={Logop}
               alt='Logo de la pagina'
@@ -53,11 +52,9 @@ const Header = () => {
               />
           </a>
 
-               
         </div>
         <nav className={styles.navBar}>
           <a className= {styles2.login_button} href="/api/auth/login">Login</a>
-       {/* <LoginButton /> */}
         </nav>
     </header>
     </div>

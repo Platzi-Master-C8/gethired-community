@@ -1,15 +1,16 @@
 
 import Usersystem from '../../../components/challenges/usersystem/Usersystem'
-import Header from '../../../components/challenges/header/Header'
-import Navbar from '../../../components/challenges/navbar/Navbar'
+import Header from '../../../components/security/header/Header'
 import StreakAndRank from '../../../components/challenges/StreakAndRank/StreakAndRank'
 import UserGraph from '../../../components/challenges/usergraph/Usergraph'
 import Achievements from '../../../components/challenges/achievements/Achievements'
 import Footer from '../../../components/challenges/footer/Footer'
 import styles from '../../../styles/Profile.module.scss';
+import { useUser } from '@auth0/nextjs-auth0'
+import Navbar from '../../../components/security/navbar/Navbar'
 
-async function getStaticProps(context) {
-  const res = await fetch(`http:ocalhost:3500/data`)
+async function GetServerSideProps(context) {
+  const res = await fetch(`https://cg-challenges.herokuapp.com/api/v1/challengers/1`)
   const data = await res.json()
 
   if (!data) {
@@ -24,23 +25,30 @@ async function getStaticProps(context) {
 }
 
 const Profile = (data) => {
-console.log(data)
-
-  if (data) {
-    return (
-      <div className={styles.container}>
-        <Header />
-        <Navbar  />
-        <StreakAndRank ranks={data.ranks} challenges={data.challenges} />
-        <Usersystem  data={data} ranks={data.ranks} />
-        <Achievements  goals={data.achievements} />
-        <UserGraph  activity={data.activity} />
-        <Footer />
-      </div>
-    );
+  const { user } = useUser();
+  const info = data.data;
+  console.log(info)
+  if (user) {
+    if (info) {
+      return (
+        <div className={styles.container}>
+          <Header />
+          <Navbar />
+          <StreakAndRank ranks={info.ranks} challenges={info.challenges} />
+          <Usersystem  data={info} ranks={info.ranks} />
+          <Achievements  goals={info.achievements} />
+          <UserGraph  activity={info.activity} />
+          <Footer />
+        </div>
+      );
+    } else {
+      return null;
+     }
   } else {
     return null;
-   }
+  }
+
+
 };
 
 export default Profile;
