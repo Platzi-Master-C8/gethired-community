@@ -1,11 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
 
-import challenges from "../../public/icons/challenges.png";
-import networking from "../../public/icons/networking.png";
-import forum from "../../public/icons/forum.png";
-import laptop_girl from "../../public/icons/laptop_girl.png";
-
 const JoinToCommunity = ({styles}) => {
   return (
     <div className={styles.community_container}>

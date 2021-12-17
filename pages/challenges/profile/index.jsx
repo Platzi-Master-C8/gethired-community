@@ -27,11 +27,9 @@ export const getServerSideProps = async (params) => {
   }
 }
 
-
-
 const Profile = (data) => {
   let info = data.data
-  
+ console.log(info)
   const {user} = useUser();
   if (user) {
     return (

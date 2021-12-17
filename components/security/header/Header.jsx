@@ -11,9 +11,9 @@ import styles2 from '../../../styles/Userdata.module.scss';
 
 const Header = () => {
 
-  const {user} = useUser();
+  const { user } = useUser();
 
-  if(!user)
+  if(user)
   {
     return(
       <div className={position.iheader}>
@@ -22,7 +22,7 @@ const Header = () => {
         <div className={styles.logo}>
 
           <Link href='/' passHref>
-            <Image
+              <Image
               src={Logop}
               alt='Logo de la pagina'
               />
@@ -30,8 +30,8 @@ const Header = () => {
 
         </div>
         <nav className={styles.navBar}>
-        <Link href="/api/auth/login">Login</Link>
-          <Image className = {styles2.img_profile} src = { user.picture } alt = { user.name } />
+        <a  className= {styles2.login_button} href="/api/auth/logout">Logout</a>
+          <Image width={45} height={45} className = {styles2.img_profile} src = { user.picture } alt = { user.name } />
         </nav>
     </header>
     </div>
