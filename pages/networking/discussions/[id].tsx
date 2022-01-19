@@ -54,12 +54,9 @@ function Discussion() {
                             <DiscussionLikeCounter
                                 isLiked={discussionData.is_active}
                                 discussionId={parseInt(id.toString())}
+                                userId={101} // TODO: Get the global user id
                                 boxProps={{
                                     pt: '1em'
-                                }}
-                                buttonProps={{
-                                    discussionId: parseInt(id.toString()),
-                                    userId: 101 // TODO: Get the global user id
                                 }}
                             />
                             

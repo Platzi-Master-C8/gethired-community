@@ -70,12 +70,9 @@ function SuggestedDiscussion(props: DiscussionProps) {
                     <DiscussionLikeCounter
                         isLiked={props.is_active}
                         discussionId={props.id}
+                        userId={101} // TODO: Get the global user id
                         typographyProps={{
                             className: classes.discussionTitle,
-                        }}
-                        buttonProps={{
-                            discussionId: props.id,
-                            userId: 101, // TODO: Get the global user id
                         }}
                     />
                     <div className={classes.column}>
