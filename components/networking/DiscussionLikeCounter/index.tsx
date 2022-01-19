@@ -4,14 +4,14 @@ import { ComponentProps, useState } from "react";
 import { DiscussionLikeButton } from "../DiscussionLikeButton";
 
 interface DiscussionLikeCounterProps {
-  isActive: boolean;
-  boxProps?: ComponentProps<typeof Box>;
-  buttonProps?: ComponentProps<typeof DiscussionLikeButton>;
-  typographyProps?: ComponentProps<typeof Typography>;
+  isLiked: boolean;
+  boxProps?: Partial<ComponentProps<typeof Box>>;
+  buttonProps?: Partial<ComponentProps<typeof DiscussionLikeButton>>;
+  typographyProps?: Partial<ComponentProps<typeof Typography>>;
 }
 
 function DiscussionLikeCounter({
-  isActive,
+  isLiked,
   boxProps,
   buttonProps,
   typographyProps,
@@ -35,7 +35,7 @@ function DiscussionLikeCounter({
       {...boxProps}
     >
       <DiscussionLikeButton
-        isActive={isActive}
+        isLiked={isLiked}
         onClick={handleLikeButtonClick}
         {...buttonProps}
       />
