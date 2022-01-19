@@ -1,8 +1,10 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { useUser } from '@auth0/nextjs-auth0'
-import Header from '../../../components/security/header/Header'
-import Navbar from '../../../components/security/navbar/Navbar'
+import React from 'react';
+import styled from '@emotion/styled';
+import { useUser } from '@auth0/nextjs-auth0';
+import Header from '../../../components/security/header/Header';
+import Navbar from '../../../components/security/navbar/Navbar';
+import Link from 'next/link';
+
 
 const Container = styled.div`
 width: 100%;
@@ -36,7 +38,6 @@ letter-spacing: .1rem;
 line-height: 2.5rem;
 `;
 const Title = styled.h1`
-margin-top: 3rem;
 text-align: center;
 font-size: 3rem;
 margin-bottom: 2.5rem;
@@ -81,6 +82,7 @@ const Boton = styled.button`
   font-size: 1.4rem;
   &:hover {
     background-color: #A779FF;
+    color: white;
   }
 `;
 const Boton2 = styled(Boton)`
@@ -91,6 +93,7 @@ const Boton3 = styled(Boton)`
   position:relative;
   left: 36rem;
 `;
+
 const Caja = styled.div`
   border-radius: 5px;
   background-color: #F8F8F8;
@@ -106,6 +109,10 @@ const Caja = styled.div`
   " img title title"
   " img dificult botonCard"
   " img texto texto";
+  transition: transform 0.3s;
+  &:hover {
+    transform:scale(1.1);
+  }
 `;
 const Cajacopia1 = styled(Caja)`
   grid-area: retos;
@@ -147,10 +154,15 @@ const LogoDificultad = styled.p`
 
 const BotonCard = styled.button`
   grid-area:botonCard;
+  cursor:pointer;
   border-radius: 20px;
   border: none;
   background-color: #A779FF;
   color: white;
+  transition: transform 0.5s;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const TextCard = styled(Paragraph)`
@@ -188,28 +200,36 @@ const Categories = () => {
             <ImgTarjeta />
             <TitleCard>Algorithms</TitleCard>
             <LogoDificultad>Dificil</LogoDificultad>
-            <BotonCard>Resolver =></BotonCard>
+            <Link href='/challenges/playground' passHref>
+              <BotonCard>Resolver =</BotonCard>
+            </Link>
             <TextCard>Genetic Algorithms are a useful tool</TextCard>
           </Caja>
           <Cajacopia1>
             <ImgTarjeta />
             <TitleCard>Algorithms</TitleCard>
             <LogoDificultad>Dificil</LogoDificultad>
-            <BotonCard>Resolver =></BotonCard>
+            <Link href='/challenges/playground' passHref>
+              <BotonCard>Resolver =</BotonCard>
+            </Link>
             <TextCard>Genetic Algorithms are a useful tool</TextCard>
           </Cajacopia1>
           <Caja2>
             <ImgTarjeta />
             <TitleCard>Algorithms</TitleCard>
             <LogoDificultad>Dificil</LogoDificultad>
-            <BotonCard>Resolver =></BotonCard>
+            <Link href='/challenges/playground' passHref>
+              <BotonCard>Resolver =</BotonCard>
+            </Link>
             <TextCard>Genetic Algorithms are a useful tool</TextCard>
           </Caja2>
           <Cajacopia2>
             <ImgTarjeta />
             <TitleCard>Algorithms</TitleCard>
             <LogoDificultad>Dificil</LogoDificultad>
-            <BotonCard>Resolver =></BotonCard>
+            <Link href='/challenges/playground' passHref>
+              <BotonCard>Resolver =</BotonCard>
+            </Link>
             <TextCard>Genetic Algorithms are a useful tool</TextCard>
           </Cajacopia2>
         </Container>
