@@ -1,10 +1,12 @@
-import { Typography } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { ComponentProps, useState } from "react";
+import { ComponentProps, useEffect, useState } from "react";
+import { findDiscussionLikes } from "../../../services/networking/forum-api";
 import { DiscussionLikeButton } from "../DiscussionLikeButton";
 
 interface DiscussionLikeCounterProps {
   isLiked: boolean;
+  discussionId: number;
   boxProps?: Partial<ComponentProps<typeof Box>>;
   buttonProps?: Partial<ComponentProps<typeof DiscussionLikeButton>>;
   typographyProps?: Partial<ComponentProps<typeof Typography>>;
@@ -12,12 +14,25 @@ interface DiscussionLikeCounterProps {
 
 function DiscussionLikeCounter({
   isLiked,
+  discussionId,
   boxProps,
   buttonProps,
   typographyProps,
 }: DiscussionLikeCounterProps): JSX.Element {
   // TODO: Make a request to fetch post's likes
-  const [likeCount, setLikeCount] = useState(5);
+  const [likeCount, setLikeCount] = useState<number>(null);
+
+  const loadDiscussionLikes = async () => {
+    const likes = await findDiscussionLikes({
+      discussionId,
+      groupBy: 'discussionId'
+    });
+    setLikeCount(likes.length);
+  }
+
+  useEffect(() => {
+    loadDiscussionLikes();
+  }, []);
 
   const handleLikeButtonClick = (liked: boolean) => {
     if (liked) {
@@ -43,7 +58,7 @@ function DiscussionLikeCounter({
         align="center"
         {...typographyProps}
       >
-        {likeCount}
+        {likeCount ?? <CircularProgress />}
       </Typography>
     </Box>
   );

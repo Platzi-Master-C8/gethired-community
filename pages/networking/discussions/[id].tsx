@@ -53,6 +53,7 @@ function Discussion() {
                         <Box display="flex" flexDirection="row">
                             <DiscussionLikeCounter
                                 isLiked={discussionData.is_active}
+                                discussionId={parseInt(id.toString())}
                                 boxProps={{
                                     pt: '1em'
                                 }}

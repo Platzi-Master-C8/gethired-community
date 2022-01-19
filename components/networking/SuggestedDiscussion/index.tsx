@@ -69,6 +69,7 @@ function SuggestedDiscussion(props: DiscussionProps) {
                 <div className={`${classes.row} ${classes.header}`}>
                     <DiscussionLikeCounter
                         isLiked={props.is_active}
+                        discussionId={props.id}
                         typographyProps={{
                             className: classes.discussionTitle,
                         }}
