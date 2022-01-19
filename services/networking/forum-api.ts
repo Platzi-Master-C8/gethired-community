@@ -49,6 +49,7 @@ export function updateDiscussion(object: UpdateDiscussionRequest) {
 
 export interface LikeRequest extends Pick<LikeModel, 'discussionId'> {
   user_id: number;
+  userId: number;
   groupBy: keyof Omit<LikeRequest, 'groupBy'>;
 }
 

@@ -3,5 +3,6 @@ export default interface LikeModel {
   discussionId: number;
   likedAt: string;
   userId: number;
-  isActive: true;
+  isActive: boolean;
+  count: number;
 }
