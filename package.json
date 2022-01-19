@@ -9,7 +9,8 @@
     "server": "json-server --watch data.json -p 3500",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d  next build",
-    "heroku-postbuild": "npm run build "
+    "heroku-postbuild": "npm run build ",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.8.0",
@@ -30,12 +31,35 @@
     "@emotion/styled": "^11.6.0",
     "@types/node": "^16.11.12",
     "@types/react": "^17.0.37",
-    "eslint": "8.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.7.0",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "12.0.7",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "gh-pages": "^3.2.3",
+    "husky": "^7.0.4",
     "json-server": "^0.17.0",
+    "lint-staged": "^12.2.1",
+    "prettier": "^2.5.1",
     "react-chartjs-2": "^4.0.0",
     "sass": "^1.45.0",
     "typescript": "^4.5.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "standard --fix"
+    ]
   }
 }
