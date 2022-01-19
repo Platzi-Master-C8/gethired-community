@@ -10,24 +10,24 @@ function fetchJSON<T extends object>(
   return fetch(input, init).then((value) => value.json());
 }
 
-type DiscussionRequest = Pick<
+export type DiscussionRequest = Pick<
   DiscussionModel,
   'id' | 'title' | 'content' | 'category'
 >;
 
-type DiscussionResponse = DiscussionModel;
+export type DiscussionResponse = DiscussionModel;
 
 export function findAllDiscussions() {
   return fetchJSON<DiscussionResponse[]>(`${FORUM_URL}/api/discussions`);
 }
 
-type FindDiscussionRequest = Pick<DiscussionRequest, 'id'>;
+export type FindDiscussionRequest = Pick<DiscussionRequest, 'id'>;
 
 export function findDiscussion({ id }: FindDiscussionRequest) {
   return fetchJSON<DiscussionResponse>(`${FORUM_URL}/api/discussions/${id}`);
 }
 
-type InsertDiscussionRequest = Omit<DiscussionRequest, 'id'>;
+export type InsertDiscussionRequest = Omit<DiscussionRequest, 'id'>;
 
 export function insertDiscussion(object: InsertDiscussionRequest) {
   return fetchJSON(`${FORUM_URL}/api/discussions/create`, {
@@ -40,33 +40,35 @@ export function insertDiscussion(object: InsertDiscussionRequest) {
   });
 }
 
-type UpdateDiscussionRequest = Pick<DiscussionRequest, 'id'> &
+export type UpdateDiscussionRequest = Pick<DiscussionRequest, 'id'> &
   Partial<DiscussionRequest>;
 
-export function updateDiscussion(object: UpdateDiscussionRequest) {}
+export function updateDiscussion(object: UpdateDiscussionRequest) {
+  // TODO: Implement update call action
+}
 
-interface LikeRequest extends Pick<LikeModel, 'discussionId'> {
+export interface LikeRequest extends Pick<LikeModel, 'discussionId'> {
   user_id: number;
   groupBy: keyof Omit<LikeRequest, 'groupBy'>;
 }
 
-type LikeResponse = LikeModel;
+export type LikeResponse = LikeModel;
 
-export function findAllLikes() {
+export function findAllDiscussionsLikes() {
   return fetchJSON<LikeResponse[]>(`${FORUM_URL}/api/likes/discussions`);
 }
 
-type FindLikeRequest = Partial<LikeRequest>;
+export type FindLikeRequest = Partial<LikeRequest>;
 
-export function findLikes(filter: FindLikeRequest) {
+export function findDiscussionsLikes(filter: FindLikeRequest) {
   return fetchJSON<LikeResponse[]>(`${FORUM_URL}/api/likes/discussions`, {
     body: new URLSearchParams(filter as Record<string, string>),
   });
 }
 
-type ToggleLikeRequest = Omit<LikeRequest, 'groupBy'>;
+export type ToggleLikeRequest = Omit<LikeRequest, 'groupBy'>;
 
-export function toggleLike(object: ToggleLikeRequest) {
+export function toggleDiscussionLike(object: ToggleLikeRequest) {
   return fetchJSON<LikeResponse>(`${FORUM_URL}/api/likes/discussions`, {
     method: 'POST',
     mode: 'cors',
