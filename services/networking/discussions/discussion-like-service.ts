@@ -1,4 +1,4 @@
-import { findAllDiscussionsLikes, findDiscussionsLikes, toggleDiscussionLike } from "../forum-api";
+import { findAllDiscussionsLikes, findDiscussionLikes, toggleDiscussionLike } from "../forum-api";
 import LikeService from "../like-service";
 
 class DiscussionLikeService implements LikeService {
@@ -6,7 +6,7 @@ class DiscussionLikeService implements LikeService {
     return findAllDiscussionsLikes();
   }
   findLikes(filter: any) {
-    return findDiscussionsLikes(filter);
+    return findDiscussionLikes(filter);
   }
   toggleLike(data: any) {
     return toggleDiscussionLike(data);

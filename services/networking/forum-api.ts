@@ -60,10 +60,10 @@ export function findAllDiscussionsLikes() {
 
 export type FindLikeRequest = Partial<LikeRequest>;
 
-export function findDiscussionsLikes(filter: FindLikeRequest) {
-  return fetchJSON<LikeResponse[]>(`${FORUM_URL}/api/likes/discussions`, {
-    body: new URLSearchParams(filter as Record<string, string>),
-  });
+export function findDiscussionLikes(filter: FindLikeRequest) {
+  return fetchJSON<LikeResponse[]>(`${FORUM_URL}/api/likes/discussions?${
+    new URLSearchParams(filter as Record<string, string>).toString()
+  }`);
 }
 
 export type ToggleLikeRequest = Omit<LikeRequest, 'groupBy'>;
