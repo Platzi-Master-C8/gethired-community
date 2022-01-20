@@ -58,7 +58,7 @@ background-size: cover;
 background-repeat: no-repeat;
 background-position: center;
 `;
-const Buscador = styled.input`
+const Input = styled.input`
   grid-area: buscador;
   margin-top: 1rem;
   width: 105%;
@@ -71,7 +71,7 @@ const Buscador = styled.input`
     background-color: white;
   }
 `;
-const Boton = styled.button`
+const InputButton = styled.button`
   grid-area: botones;
   width: 15rem;
   height: 4rem;
@@ -85,16 +85,16 @@ const Boton = styled.button`
     color: white;
   }
 `;
-const Boton2 = styled(Boton)`
+const InputButtonCompleted = styled(InputButton)`
   position:relative;
   left: 18rem;
 `;
-const Boton3 = styled(Boton)`
+const InputButtonProgress = styled(InputButton)`
   position:relative;
   left: 36rem;
 `;
 
-const Caja = styled.div`
+const BoxCard = styled.div`
   border-radius: 5px;
   background-color: #F8F8F8;
   padding-right: 0.5rem;
@@ -114,20 +114,20 @@ const Caja = styled.div`
     transform:scale(1.1);
   }
 `;
-const Cajacopia1 = styled(Caja)`
+const BoxCardLeft = styled(BoxCard)`
   grid-area: retos;
   position:relative;
   top: 17rem;
 `;
-const Caja2 = styled(Caja)`
+const BoxCardRigth = styled(BoxCard)`
   grid-area: retos2;
 `;
-const Cajacopia2 = styled(Cajacopia1)`
+const BoxCardRigthDown = styled(BoxCardRigth)`
   grid-area: retos2;
   position:relative;
   top: 17rem;
 `;
-const ImgTarjeta = styled(Picture)`
+const BoxImage = styled(Picture)`
   width:100%;
   height: 100%;
   border-radius: 5px;
@@ -140,7 +140,7 @@ const TitleCard = styled(Paragraph)`
   font-size: 2.5rem;
 `;
 
-const LogoDificultad = styled.p`
+const DificultButton = styled.p`
   grid-area: dificult;
   font-size: 1.6rem;
   padding-top: 0.5rem;
@@ -152,7 +152,7 @@ const LogoDificultad = styled.p`
   text-align:center;
 `;
 
-const BotonCard = styled.button`
+const ButtonToChallenge = styled.button`
   grid-area:botonCard;
   cursor:pointer;
   border-radius: 20px;
@@ -192,46 +192,46 @@ const Categories = () => {
               <Picture />
             </BoxImg>
           </Introduction>
-          <Buscador placeholder='Buscar'/>
-          <Boton>Todos los ejercicios 45</Boton>
-          <Boton2>Completados 5</Boton2>
-          <Boton3>En progreso 2</Boton3>
-          <Caja>
-            <ImgTarjeta />
+          <Input placeholder='Buscar'/>
+          <InputButton>Todos los ejercicios 45</InputButton>
+          <InputButtonCompleted>Completados 5</InputButtonCompleted>
+          <InputButtonProgress>En progreso 2</InputButtonProgress>
+          <BoxCard>
+            <BoxImage />
             <TitleCard>Algorithms</TitleCard>
-            <LogoDificultad>Dificil</LogoDificultad>
+            <DificultButton>Dificil</DificultButton>
             <Link href='/challenges/playground' passHref>
-              <BotonCard>Resolver =</BotonCard>
+              <ButtonToChallenge>Resolver =</ButtonToChallenge>
             </Link>
             <TextCard>Genetic Algorithms are a useful tool</TextCard>
-          </Caja>
-          <Cajacopia1>
-            <ImgTarjeta />
+          </BoxCard>
+          <BoxCardLeft>
+            <BoxImage />
             <TitleCard>Algorithms</TitleCard>
-            <LogoDificultad>Dificil</LogoDificultad>
+            <DificultButton>Dificil</DificultButton>
             <Link href='/challenges/playground' passHref>
-              <BotonCard>Resolver =</BotonCard>
+              <ButtonToChallenge>Resolver =</ButtonToChallenge>
             </Link>
             <TextCard>Genetic Algorithms are a useful tool</TextCard>
-          </Cajacopia1>
-          <Caja2>
-            <ImgTarjeta />
+          </BoxCardLeft>
+          <BoxCardRigth>
+            <BoxImage />
             <TitleCard>Algorithms</TitleCard>
-            <LogoDificultad>Dificil</LogoDificultad>
+            <DificultButton>Dificil</DificultButton>
             <Link href='/challenges/playground' passHref>
-              <BotonCard>Resolver =</BotonCard>
+              <ButtonToChallenge>Resolver =</ButtonToChallenge>
             </Link>
             <TextCard>Genetic Algorithms are a useful tool</TextCard>
-          </Caja2>
-          <Cajacopia2>
-            <ImgTarjeta />
+          </BoxCardRigth>
+          <BoxCardRigthDown>
+            <BoxImage />
             <TitleCard>Algorithms</TitleCard>
-            <LogoDificultad>Dificil</LogoDificultad>
+            <DificultButton>Dificil</DificultButton>
             <Link href='/challenges/playground' passHref>
-              <BotonCard>Resolver =</BotonCard>
+              <ButtonToChallenge>Resolver =</ButtonToChallenge>
             </Link>
             <TextCard>Genetic Algorithms are a useful tool</TextCard>
-          </Cajacopia2>
+          </BoxCardRigthDown>
         </Container>
       </>
     );
