@@ -1,5 +1,7 @@
 import React from "react";
 import Image from 'next/image';
+import Link from 'next/link';
+
 import Coolicon from '../../../../public/icons/coolicon.svg'
 
 import position from '../../../../styles/styles-PlayGround/playGround.module.scss'
@@ -26,6 +28,9 @@ const Info = () => {
         <h2 className ={styles.itemTitle2}>Objetivos</h2>
         <p className={styles.itemParraf} >{datos.objectives}</p>
       <div className={styles.itemButton}>
+        <Link href='/challenges/categories' passHref>
+          <button className={styles.itemButtonSubmit}>Regresar</button>
+        </Link>
         <button className={styles.itemButtonRun} onClick={() => alert('Corriendo el Desafio ... ')} >
           Correr el codigo
           <Image className={styles.runChallengeIcon} id='img-icon' src={Coolicon} alt='Run Challenge'/>
