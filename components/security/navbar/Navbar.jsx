@@ -22,7 +22,7 @@ const NavBar = () => {
           <div className={styles.navBar_user}>
 
             <Link  href='/' passHref>
-             <div className={styles.navBar_user_name}>{user.name}</div>
+              <div className={styles.navBar_user_name}>{user.name}</div>
             </Link>
             <div className={styles.avatar_profile}>
             <Image layout="fixed"  src={Avatar} alt='' />
@@ -34,13 +34,13 @@ const NavBar = () => {
             <ul>
               <li>
                 <Link  href='/networking' passHref>
-                  <div className={styles.navBar_menu_link}> 
+                  <div className={styles.navBar_menu_link}>
                   <Image src={Forum} alt='' /><p className={styles.navBar_menu__text}>Forum</p>
                     </div>
                 </Link>
               </li>
               <li>
-                <Link  href='/challenges/playground'  passHref>
+                <Link  href='/challenges/categories'  passHref>
                   <div className={styles.navBar_menu_link}>
                     <Image src={Challenges} alt='' /><p className={styles.navBar_menu__text}>Challenges</p>
                     </div>
