@@ -7,6 +7,7 @@ import { makeStyles } from '@mui/styles';
 import { DiscussionLikeCounter } from '../../../components/networking/DiscussionLikeCounter';
 import { Box } from '@mui/system';
 import { Skeleton } from '@mui/material';
+import { FixedBottomNavigation } from '../../../components/networking/CommentsSystem';
 
 const useStyle = makeStyles({
     likeButtonContainer: {
@@ -90,8 +91,9 @@ function Discussion() {
                                 </Box>
                             }
                         </Grid>
-
                 }
+                
+                <FixedBottomNavigation />
             </Grid>
         </>
     );
