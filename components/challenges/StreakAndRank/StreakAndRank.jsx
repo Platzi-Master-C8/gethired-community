@@ -3,7 +3,6 @@ import Image from 'next/image';
 import rankLogo from '../../../public/icons/rank.svg';
 import doneLogo from '../../../public/icons//done.svg';
 import streakLogo from '../../../public/icons/streak.svg';
-import position from '../../../styles/Profile.module.scss';
 import styled from '@emotion/styled';
 
 
@@ -61,8 +60,8 @@ export const StreakButton = styled(RankButton)`
 export const RankValue = styled.p`
   color: rgba(174, 78, 255, 0.85);
   text-align: center;
-  padding: 10px;
-  font-size: 20px;
+  padding: 1rem;
+  font-size: 2rem;
   font-weight: 500;
   @media (max-width: 1210px) {
     font-size: 1.5rem;
