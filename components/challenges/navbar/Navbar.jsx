@@ -9,34 +9,30 @@ import { useUser } from '@auth0/nextjs-auth0';
 import styled from '@emotion/styled';
 
 const ContainerAsideNavbar = styled.div`
-  grid-area: navbar;
+  grid-column: 1 / 2;
+  grid-row: 2;
 `
 const AsideNavbar = styled.aside`
-  width: 210px;
-  height: 100vh;
-  position: absolute;
-  z-index: 2;
   background-color: #fff;
 `
 const NavbarUser = styled.div`
-  width: 100%;
   padding: 1rem 0;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
   background: #A779FF;
   `
 const NavbarUserName = styled.div`
-  display: inline-block;
+  width: fit-content;
   color: white;
-  font-size: 2rem;
+  font-size: 1.2rem;
   cursor: pointer;
 `
 const NavbarAvatarProfile = styled.div`
-  /* className={styles.avatar_profile} */
+  width: fit-content;
 `
 const NavbarMenu = styled.div`
-  font-size: 1.8rem;
+  font-size: 1.2rem;
 `
 const NavbarMenuList = styled.ul`
   list-style: none;
@@ -49,7 +45,7 @@ const NavbarMenuItem = styled.li`
   }
 `
 const NavbarMenuLink = styled.div`
-  padding: 15px 0;
+  padding: 1rem 0;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
