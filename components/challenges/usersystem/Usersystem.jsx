@@ -7,13 +7,14 @@ export const Wrapper = styled.div`
 `;
 
 export const SystemContainer = styled.div`
-  width: 30rem;
+  width: 25rem;
   height: 60rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   @media (max-width: 1250px) {
+    width: 20rem;
     height: 50rem;
   }
 `;
