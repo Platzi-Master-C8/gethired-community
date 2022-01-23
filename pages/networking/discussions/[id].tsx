@@ -24,9 +24,9 @@ function Discussion() {
     const [discussionData, setDiscussionData] = useState({
         title: '',
         content: '',
-        created_at: '',
-        created_by: '',
-        is_active: false
+        createdAt: '',
+        createdAy: '',
+        isActive: false
     });
 
 
@@ -52,7 +52,7 @@ function Discussion() {
                     {discussionData.content &&
                         <Box display="flex" flexDirection="row">
                             <DiscussionLikeCounter
-                                isLiked={discussionData.is_active}
+                                isLiked={discussionData.isActive}
                                 discussionId={parseInt(id.toString())}
                                 userId={101} // TODO: Get the global user id
                                 boxProps={{
@@ -63,7 +63,7 @@ function Discussion() {
                             <DiscussionPost
                                 title={discussionData.title}
                                 content={discussionData.content}
-                                created_at={discussionData.created_at.slice(0, 10)}
+                                created_at={discussionData.createdAt.slice(0, 10)}
                                 created_by="Cesar Turner"
                             />
                         </Box>
