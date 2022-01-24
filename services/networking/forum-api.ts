@@ -12,7 +12,7 @@ function fetchJSON<T extends object>(
 
 export type DiscussionRequest = Pick<
   DiscussionModel,
-  'id' | 'title' | 'content' | 'category'
+  'id' | 'title' | 'content' | 'categoryId'
 >;
 
 export type DiscussionResponse = DiscussionModel;

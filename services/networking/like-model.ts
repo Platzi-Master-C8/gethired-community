@@ -4,5 +4,5 @@ export default interface LikeModel {
   likedAt: string;
   userId: number;
   isActive: boolean;
-  count: number;
+  currentdiscussionLikes: number;
 }
