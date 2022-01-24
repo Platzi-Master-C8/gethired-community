@@ -29,7 +29,7 @@ function DiscussionLikeCounter({
       discussionId,
       groupBy: 'discussionId'
     });
-    setLikeCount(likes.length > 0 ? likes[0].count : 0);
+    setLikeCount(likes.length > 0 ? likes[0].currentdiscussionLikes : 0);
 
     const hasLiked = await findDiscussionLikes({
       discussionId,
