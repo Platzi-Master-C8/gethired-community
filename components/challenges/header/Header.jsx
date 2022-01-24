@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 
 
-const CotainerHeader = styled.div`
+const ContainerHeader = styled.div`
   grid-row: 1 / 2;
   grid-column: span 2;
 `
@@ -55,7 +55,7 @@ const Header = () => {
 
   if (user) {
     return (
-      <CotainerHeader >
+      <ContainerHeader >
 
         <HeaderHome >
 
@@ -79,13 +79,13 @@ const Header = () => {
 
         </HeaderHome>
 
-      </CotainerHeader>
+      </ContainerHeader>
 
     )
   }
 
   return (
-    <CotainerHeader >
+    <ContainerHeader >
 
       <HeaderHome >
         <HeaderLogo >
@@ -98,7 +98,7 @@ const Header = () => {
         </NavbarHome>
 
       </HeaderHome>
-    </CotainerHeader>
+    </ContainerHeader>
   )
 }
 
