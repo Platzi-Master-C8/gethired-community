@@ -61,8 +61,8 @@ type DiscussionProps = {
     id: number,
     title: string,
     content: string,
-    created_at: string,
-    created_by: string,
+    createdAt: string,
+    createdBy: string,
     is_active: boolean,
 }
 
@@ -92,7 +92,7 @@ function SuggestedDiscussion(props: DiscussionProps) {
                             margin: '10px 0'
                         }}>
                             <AccountCircleRounded className={classes.userIcon} />
-                            <Typography ml={1}>{props.created_by}</Typography>
+                            <Typography ml={1}>{props.createdBy}</Typography>
                         </div>
                     </div>
                 </div>
@@ -109,7 +109,7 @@ function SuggestedDiscussion(props: DiscussionProps) {
                         </div>
                         <div className={classes.row} style={{ margin: 0 }}>
                             <AccessTimeFilledRounded className={classes.postDetails} />
-                            <Typography ml={1}>{props.created_at}</Typography>
+                            <Typography ml={1}>{props.createdAt}</Typography>
                         </div>
                     </Container>
                 </CardContent>

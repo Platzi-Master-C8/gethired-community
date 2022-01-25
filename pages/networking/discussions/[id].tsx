@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Grid } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import { DiscussionPost } from '../../../components/networking/DiscussionPost';
 import { DiscussionBreadCrumb } from '../../../components/networking/DiscussionBreadCrumb';
 import { makeStyles } from '@mui/styles';
@@ -29,8 +29,8 @@ function Discussion() {
     const [discussionData, setDiscussionData] = useState({
         title: '',
         content: '',
-        created_at: '',
-        created_by: '',
+        createdAt: '',
+        createdBy: '',
         is_active: false
     });
 
@@ -50,9 +50,9 @@ function Discussion() {
 
 
     return (
-        <>
-            <Grid container justifyContent='center'>
-                <Grid item sm={11} md={7} lg={8} xl={6}>
+        <Container maxWidth="lg">
+            <Container>
+                <Grid item sm={11} md={7} lg={11} xl={6}>
                     {loading
                         ?
                         <div className={classes.Discussion_bread}>
@@ -63,7 +63,7 @@ function Discussion() {
 
                     }
                 </ Grid>
-            </Grid>
+            </Container>
             <Grid container justifyContent='center'>
                 {
                     loading
@@ -72,7 +72,7 @@ function Discussion() {
                             <Skeleton variant='rectangular' width={900} height={500} />
                         </div>
                         :
-                        <Grid item lg={9} xl={6}>
+                        <Grid item xl={12}>
                             {discussionData.content &&
                                 <Box display="flex" flexDirection="row">
                                     <DiscussionLikeCounter
@@ -85,8 +85,8 @@ function Discussion() {
                                     <DiscussionPost
                                         title={discussionData.title}
                                         content={discussionData.content}
-                                        created_at={discussionData.created_at.slice(0, 10)}
-                                        created_by={discussionData.created_by}
+                                        created_at={discussionData.createdAt.slice(0, 10)}
+                                        created_by={discussionData.createdBy}
                                     />
                                 </Box>
                             }
@@ -95,7 +95,7 @@ function Discussion() {
                 
                 <FixedBottomNavigation />
             </Grid>
-        </>
+        </ Container>
     );
 }
 
