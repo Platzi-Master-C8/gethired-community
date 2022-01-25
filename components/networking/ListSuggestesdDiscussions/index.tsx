@@ -8,8 +8,8 @@ type DiscussionProps = {
         id: number,
         title: string,
         content: string,
-        created_at: string,
-        created_by: string,
+        createdAt: string,
+        createdBy: string,
         is_active: boolean
     }[];
     names: {
@@ -31,8 +31,8 @@ function ListSuggestedDiscussions(props: DiscussionProps) {
                             id={item.id}
                             title={item.title}
                             content={item.content}
-                            created_at={item.created_at.slice(0, 10)}
-                            created_by={ props.names.find(element => element.id == item.created_by).name }
+                            createdAt={item.createdAt.slice(0, 10)}
+                            createdBy={ props.names.find(element => element.id == item.createdBy).name }
                             is_active={item.is_active}
                         />
                     );
