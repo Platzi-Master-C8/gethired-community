@@ -1,10 +1,11 @@
 import React from 'react';
 import CodeEditor from '../../../components/challenges/playground/codeEditor/codeEditor';
+import Coolicon from '../../../public/icons/coolicon.svg';
 import Header from '../../../components/security/header/Header';
-import styles from '../../../styles/styles-PlayGround/playGround.module.scss';
-import styled from '@emotion/styled';
 import Image from 'next/image';
 import Link from 'next/link';
+import styles from '../../../styles/styles-PlayGround/playGround.module.scss';
+import styled from '@emotion/styled';
 
 const ContainerPG = styled.div`
   overflow-y: hidden;
