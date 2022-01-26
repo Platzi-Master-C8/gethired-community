@@ -1,10 +1,9 @@
-import React, { useState, useRef } from 'react'
-import Editor from '@monaco-editor/react'
-import position from '../../../../styles/styles-PlayGround/playGround.module.scss'
-import styles from '../../../../styles/styles-PlayGround/codeEditor.module.scss'
+import React, { useState, useRef } from 'react';
+import Editor from '@monaco-editor/react';
+import styled from '@emotion/styled';
 
 function CodeEditor () {
-  const [ content, setContent ] = useState('// Comienza tu codigo aqui...')
+  const [ content, setContent ] = useState('// Comienza tu código aqui...')
 
   const editorRef = useRef(null)
 
@@ -12,9 +11,27 @@ function CodeEditor () {
     editorRef.current = editor
   }
 
+  const ItemCodeView = styled.div`
+    grid-area: codeView;
+    & section {
+      width: 100%;
+      margin: 0;
+    }
+  `;
+
+  const SolutionHeader = styled.div`
+    background-color: #474b4e;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 17px;
+    margin: 0;
+    padding: 10px 0 30px 10px;
+    height:30px;
+  `;
+
   return (
-    <div className={position.itemCodeView}>
-      <p className={styles.solutionHeader}>Solucion: </p>
+    <ItemCodeView>
+      <SolutionHeader>Solución:</SolutionHeader>
         <Editor
         height='870px'
         defaultLanguage='javascript'
@@ -23,7 +40,7 @@ function CodeEditor () {
         onChange={(value) => setContent(value)}
         onMount={handleEditor}
       />
-    </div>
+    </ItemCodeView>
   )
 }
 

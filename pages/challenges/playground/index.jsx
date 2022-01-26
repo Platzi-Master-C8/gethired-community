@@ -4,7 +4,6 @@ import Coolicon from '../../../public/icons/coolicon.svg';
 import Header from '../../../components/security/header/Header';
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from '../../../styles/styles-PlayGround/playGround.module.scss';
 import styled from '@emotion/styled';
 
 const ContainerPG = styled.div`
@@ -99,8 +98,8 @@ const ItemButtonSubmit = styled.div`
 
 const datos = {
   "title": "Reto # 1",
-  "instructions": "El ejercicio clasico e introductorio. Tan solo un Hola, Mundo!!. Hola ,Mundo! es el tradicional primer programa para acercarse al ambeinte en un lenjuague de programación.",
-  "objectives": "Crea un afunción que retorne una cadena de texto 'Hola mundo'. Corre el codigo y asegurate de que sea exitoso. Si tu solucion es correcta estaras listo para pasar al siguiente ejercicio y adentrarse en el maravilloso mundo de JavaScript.",
+  "instructions": "El ejercicio clasico e introductorio. Tan solo un Hola, Mundo!!. Hola ,Mundo! es el tradicional primer programa para acercarse al ambiente en un lenjuague de programación.",
+  "objectives": "Crea una función que retorne una cadena de texto 'Hola mundo'. Corre el codigo y asegurate de que sea exitoso. Si tu solución es correcta estaràs listo para pasar al siguiente ejercicio y adentrarte en el maravilloso mundo de JavaScript.",
   "debug": "When a test fails, a message is displayed describing what went wrong and for which input. You can also use the fact that any console output will be shown too. You can write to the console using:  'Console.log('Debug Message')'",
   "solved": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, .",
   "error": {
@@ -115,7 +114,6 @@ const PlayGround = () => {
     <ContainerPG>
       <Header />
       <CodeEditor/>
-      {/* <Info /> */}
       <ItemInfo>
         <ItemTitle >{datos.title}</ItemTitle>
         <ItemTitle2>Instrucciones</ItemTitle2>
@@ -128,7 +126,7 @@ const PlayGround = () => {
           </Link>
             <ItemButtonRun>
               Correr el codigo
-              <Image className={styles.runChallengeIcon} id='img-icon' src={Coolicon} alt='Run Challenge'/>
+              <Image id='img-icon' src={Coolicon} alt='Run Challenge'/>
             </ItemButtonRun>
           <ItemButtonSubmit>Guardar</ItemButtonSubmit>
         </ItemButton>
