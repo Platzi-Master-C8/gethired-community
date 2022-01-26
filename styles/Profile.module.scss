@@ -10,34 +10,34 @@
     " navbar achievements systemp"
     " navbar graph .";
 }
-  .iheader {
-    grid-area: header;
-  }
-  .inavbar {
-    grid-area: navbar;
-  }
-  .iminicards {
-    grid-area: minicards;
-    align-self: center;
-  }
-  .isystem {
-    grid-area: systemp;
-    justify-self: center;
-    align-self: center;
-  }
-  .iachievements {
-    grid-area: achievements;
-    display: block;
-    justify-content: center;
-    align-self: center;
-  }
-  .igraph {
-    grid-area: graph;
-    width: 75%;
-    justify-self:center;
-    align-self: center;
-  }
-  .ifooter {
-    grid-area: footer;
-    /* background-color: blue; */
-  }
+.iheader {
+  grid-area: header;
+}
+.inavbar {
+  grid-area: navbar;
+}
+.iminicards {
+  grid-area: minicards;
+  align-self: center;
+}
+.isystem {
+  grid-area: systemp;
+  justify-self: center;
+  align-self: center;
+}
+.iachievements {
+  grid-area: achievements;
+  display: block;
+  justify-content: center;
+  align-self: center;
+}
+.igraph {
+  grid-area: graph;
+  width: 75%;
+  justify-self:center;
+  align-self: center;
+}
+.ifooter {
+  grid-area: footer;
+  /* background-color: blue; */
+}
