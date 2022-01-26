@@ -11,22 +11,10 @@
     ;
 }
 
-
-.itemHeader {
-    grid-area: header;
-}
 .itemCodeView {
     grid-area: codeView;
     & section {
       width: 100%;
       margin: 0;
     }
-}
-
-.itemInfo {
-    grid-area: info;
-}
-
-.itemFooter {
-    grid-area: footer;
 }
