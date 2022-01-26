@@ -94,11 +94,6 @@ const ItemButtonSubmit = styled.div`
     border: 0.5px solid rgba(85, 91, 255, 0.79);
     box-shadow: 0px 2px 2px 0px black;
   }
-
-`;
-
-const TEST = styled.div`
-
 `;
 
 const datos = {
