@@ -6,7 +6,6 @@ import { CallToAction } from "../../../components/security/CallToAction";
 import JoinToCommunity from "../../../components/security/JoinToCommunity";
 import { useUser } from '@auth0/nextjs-auth0';
 
-
 const LandingPage = () => {
   const {user} = useUser();
   if (!user) {
