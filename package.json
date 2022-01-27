@@ -6,7 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix": "standard --fix",
+    "lint:fix": "next lint --fix",
     "server": "json-server --watch data.json -p 3500",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d  next build",
