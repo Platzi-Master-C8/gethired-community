@@ -3,7 +3,6 @@ import CodeEditor from '../../../components/challenges/playground/codeEditor/cod
 import Coolicon from '../../../public/icons/coolicon.svg';
 import Header from '../../../components/security/header/Header';
 import Image from 'next/image';
-import Link from 'next/link';
 import styled from '@emotion/styled';
 
 const ContainerPG = styled.div`
@@ -36,10 +35,10 @@ const ItemTitle = styled.div`
 const ItemTitle2 = styled.div`
   display: flex;
   width: 100%;
-  height: 100px;
+  height: 70px;
   align-items: center;
   justify-content: center;
-  font-size: 34px;
+  font-size: 21px;
   border-bottom: 2px solid #A779FF;
 `;
 
@@ -49,7 +48,7 @@ const ItemParraf = styled.div`
   padding-left: 10px;
   padding-right: 10px;
   text-align: justify;
-  font-size: 18px;
+  font-size: 15px;
   margin-bottom: 25px;
   line-height: 40px;
 `;
@@ -84,13 +83,17 @@ const ItemButtonRun = styled.div`
 const ItemButtonSubmit = styled.div`
   height: 35px;
   width: 145px;
-  color: white;
-  background: linear-gradient(90deg, rgba(95, 100, 255, 0.7) 0%, rgba(174, 78, 255, 0.85) 100%);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #A779FF;
+  background-color: white;
   border-radius: 20px;
   border: 1px solid #A779FF;
+  padding-top: 3px;
   &:hover {
-    color: $#A779FF;
-    background: white;
+    color: white;
+    background-color: #A779FF;
     border: 0.5px solid rgba(85, 91, 255, 0.79);
     box-shadow: 0px 2px 2px 0px black;
   }
@@ -122,14 +125,11 @@ const PlayGround = () => {
         <ItemTitle2>Objetivos</ItemTitle2>
         <ItemParraf>{datos.objectives}</ItemParraf>
         <ItemButton>
-          <Link href='/challenges/categories' passHref>
-            <ItemButtonSubmit>Regresar</ItemButtonSubmit>
-          </Link>
             <ItemButtonRun>
               Correr el codigo
               <Image id='img-icon' src={Coolicon} alt='Run Challenge'/>
             </ItemButtonRun>
-          <ItemButtonSubmit>Guardar</ItemButtonSubmit>
+          <ItemButtonSubmit>Submit</ItemButtonSubmit>
         </ItemButton>
       </ItemInfo>
     </ContainerPG>
