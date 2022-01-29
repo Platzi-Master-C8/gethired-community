@@ -64,9 +64,7 @@ const datos = {
   }
 }
 
-
 const PlayGround = () => {
-
   return (
     <ContainerPG>
       <Header />

@@ -5,14 +5,14 @@ import Image from 'next/image';
 import styled from '@emotion/styled';
 
 const ItemCodeView = styled.div`
-    box-shadow: 3px 3px 3px #A779FF;
-    grid-area: codeView;
-    & section {
-      margin: 0;
-    }
-  `;
+  box-shadow: 3px 3px 3px #A779FF;
+  grid-area: codeView;
+  & section {
+    margin: 0;
+  }
+`;
 
-  const ItemButton = styled.div`
+const ItemButton = styled.div`
   display: flex;
   width: 100%;
   height: 8%;
