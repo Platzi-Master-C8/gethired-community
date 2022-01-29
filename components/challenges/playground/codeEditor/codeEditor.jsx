@@ -6,19 +6,8 @@ const ItemCodeView = styled.div`
     box-shadow: 3px 3px 3px #A779FF;
     grid-area: codeView;
     & section {
-      width: 100%;
       margin: 0;
     }
-  `;
-
-  const SolutionHeader = styled.div`
-    background-color: #474b4e;
-    color: white;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 17px;
-    margin: 0;
-    padding: 10px 0 30px 10px;
-    height:30px;
   `;
 
 function CodeEditor () {
@@ -32,12 +21,11 @@ function CodeEditor () {
 
   return (
     <ItemCodeView>
-      <SolutionHeader>Solución:</SolutionHeader>
         <Editor
-        height='870px'
+        height='700px'
         defaultLanguage='javascript'
         defaultValue={content}
-        theme='vs-light'
+        theme='vs-dark'
         onChange={(value) => setContent(value)}
         onMount={handleEditor}
       />
