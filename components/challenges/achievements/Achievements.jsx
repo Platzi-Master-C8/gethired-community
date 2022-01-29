@@ -23,10 +23,10 @@ export const Title = styled.h1`
   justify-self: center;
   width: 100%;
   text-align: center;
-  font-size: 20px;
+  font-size: 1.5rem;
   color: #fff;
-  font-weight: 600;
-  padding: 10px;
+  font-weight: bold;
+  padding: 1rem;
   background-color: #5f64ff;
   background-image: linear-gradient(90deg, #5f64ff 0%, #ae4eff 100%);
 `;
