@@ -14,21 +14,21 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 18% 62% 20%;
-  grid-template-rows: 5.5rem 25% 45% 1fr;
+  grid-template-columns: 24% 53% 29%;
+  grid-template-rows: 5.5rem 12% 33% 30%;
   grid-template-areas:
     " header header header"
     " navbar minicards systemp"
     " navbar achievements systemp"
     " navbar graph .";
-    @media (max-width: 1250px) {
+    /* @media (max-width: 1250px) {
     grid-template-rows: 5.5rem 25% 37% 1fr;
     grid-template-columns: 20% 50% 30%;
   }
     @media (max-width: 1100px) {
     grid-template-rows: 5.5rem 25% 32% 1fr;
     grid-template-columns: 23% 50% 1fr;
-  }
+  } */
 `;
 
 

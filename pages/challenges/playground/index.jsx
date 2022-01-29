@@ -9,7 +9,7 @@ import styled from '@emotion/styled';
 const ContainerPG = styled.div`
   overflow-y: hidden;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: grid;
   grid-template-columns: 33% 33% 34%;
   grid-template-rows: 60px 909px;

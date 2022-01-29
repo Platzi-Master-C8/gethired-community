@@ -13,10 +13,6 @@ export const SystemContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  @media (max-width: 1250px) {
-    width: 20rem;
-    height: 50rem;
-  }
 `;
 
 export const PointsCircle = styled.div`
@@ -29,10 +25,6 @@ export const PointsCircle = styled.div`
    align-items: center;
    border: 4rem solid #555BFF;
    margin-bottom: .5rem;
-   @media (max-width: 1250px) {
-    height: 18rem;
-	  width: 18rem;
-  }
  `;
 
 export const RankCircle = styled(PointsCircle)``;
