@@ -8,7 +8,7 @@ import styled from '@emotion/styled';
 const ContainerPG = styled.div`
   overflow-y: hidden;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: grid;
   grid-template-columns: 33% 33% 34%;
   grid-template-rows: 60px 909px;
@@ -53,53 +53,53 @@ const ItemParraf = styled.div`
   line-height: 40px;
 `;
 
-const ItemButton = styled.div`
-  display: flex;
-  width: 100%;
-  height: 30%;
-  justify-content: space-around;
-  align-items: center;
-`;
+// const ItemButton = styled.div`
+//   display: flex;
+//   width: 100%;
+//   height: 30%;
+//   justify-content: space-around;
+//   align-items: center;
+// `;
 
-const ItemButtonRun = styled.div`
-  height: 35px;
-  width: 131px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  color: #A779FF;
-  background-color: white;
-  border-radius: 6px;
-  border: 1px solid #A779FF;
-  font-size: 14px;
-  font-weight: bold;
-  padding-top: 3px;
-  &:hover {
-    color: white;
-    background-color: #A779FF;
-    border: 0.5px solid rgba(85, 91, 255, 0.79);
-  }
-`;
+// const ItemButtonRun = styled.div`
+//   height: 35px;
+//   width: 131px;
+//   display: flex;
+//   justify-content: space-around;
+//   align-items: center;
+//   color: #A779FF;
+//   background-color: white;
+//   border-radius: 6px;
+//   border: 1px solid #A779FF;
+//   font-size: 14px;
+//   font-weight: bold;
+//   padding-top: 3px;
+//   &:hover {
+//     color: white;
+//     background-color: #A779FF;
+//     border: 0.5px solid rgba(85, 91, 255, 0.79);
+//   }
+// `;
 
-const ItemButtonSubmit = styled.div`
-  height: 35px;
-  width: 82px;
-  font-size: 14px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  color: white;
-  font-weight: bold;
-  background-color: #A779FF;
-  border-radius: 6px;
-  border: 1px solid #A779FF;
-  padding-top: 3px;
-  &:hover {
-    color: #A779FF;
-    background-color: white;
-    border: 0.5px solid rgba(85, 91, 255, 0.79);
-  }
-`;
+// const ItemButtonSubmit = styled.div`
+//   height: 35px;
+//   width: 82px;
+//   font-size: 14px;
+//   display: flex;
+//   justify-content: space-around;
+//   align-items: center;
+//   color: white;
+//   font-weight: bold;
+//   background-color: #A779FF;
+//   border-radius: 6px;
+//   border: 1px solid #A779FF;
+//   padding-top: 3px;
+//   &:hover {
+//     color: #A779FF;
+//     background-color: white;
+//     border: 0.5px solid rgba(85, 91, 255, 0.79);
+//   }
+// `;
 
 const datos = {
   "title": "Reto # 1",
@@ -126,13 +126,6 @@ const PlayGround = () => {
         <ItemParraf>{datos.instructions}</ItemParraf>
         <ItemTitle2>Objetivos</ItemTitle2>
         <ItemParraf>{datos.objectives}</ItemParraf>
-        <ItemButton>
-            <ItemButtonRun onClick={() => alert('Running Challenge ... ')}>
-              Run Tests
-              <Image id='img-icon' src={Coolicon} alt='Run Challenge'/>
-            </ItemButtonRun>
-          <ItemButtonSubmit onClick={() => alert('Sending Challenge ...')}>Submit</ItemButtonSubmit>
-        </ItemButton>
       </ItemInfo>
     </ContainerPG>
   );
