@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
-import Editor from '@monaco-editor/react';
-import styled from '@emotion/styled';
 import Coolicon from '../../../../public/icons/coolicon.svg';
+import Editor from '@monaco-editor/react';
 import Image from 'next/image';
+import styled from '@emotion/styled';
 
 const ItemCodeView = styled.div`
     box-shadow: 3px 3px 3px #A779FF;
