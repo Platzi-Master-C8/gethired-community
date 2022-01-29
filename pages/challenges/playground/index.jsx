@@ -49,7 +49,7 @@ const ItemParraf = styled.div`
   text-align: justify;
   font-size: 15px;
   margin-bottom: 25px;
-  line-height: 40px;
+  line-height: 25px;
 `;
 
 const datos = {
