@@ -2,16 +2,8 @@ import React, { useState, useRef } from 'react';
 import Editor from '@monaco-editor/react';
 import styled from '@emotion/styled';
 
-function CodeEditor () {
-  const [ content, setContent ] = useState('// Comienza tu código aqui...')
-
-  const editorRef = useRef(null)
-
-  const handleEditor = (editor, monaco) => {
-    editorRef.current = editor
-  }
-
-  const ItemCodeView = styled.div`
+const ItemCodeView = styled.div`
+    box-shadow: 3px 3px 3px #A779FF;
     grid-area: codeView;
     & section {
       width: 100%;
@@ -29,6 +21,15 @@ function CodeEditor () {
     height:30px;
   `;
 
+function CodeEditor () {
+  const [ content, setContent ] = useState('// Comienza tu codigo aqui...')
+
+  const editorRef = useRef(null)
+
+  const handleEditor = (editor, monaco) => {
+    editorRef.current = editor
+  }
+
   return (
     <ItemCodeView>
       <SolutionHeader>Solución:</SolutionHeader>
@@ -36,7 +37,7 @@ function CodeEditor () {
         height='870px'
         defaultLanguage='javascript'
         defaultValue={content}
-        theme='vs-dark'
+        theme='vs-light'
         onChange={(value) => setContent(value)}
         onMount={handleEditor}
       />
