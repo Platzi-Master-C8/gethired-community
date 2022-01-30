@@ -21,7 +21,6 @@ grid-template-areas:
 `;
 const Introduction = styled.section`
 width: 80vw;
-height: 40vh;
 display: flex;
 justify-content: center;
 border-bottom: 1px solid gray;
@@ -50,10 +49,11 @@ height: 100%;
 display: flex;
 justify-content: center;
 align-items: center;
+
 `;
 const Picture = styled.img`
-width: 70%;
-height: 80%;
+width: 90%;
+height: 90%;
 background-image: url('https://res.cloudinary.com/dckunlwcb/image/upload/v1639763358/5DaysOfCode_kohn4t.jpg');
 background-size: cover;
 background-repeat: no-repeat;
@@ -114,6 +114,7 @@ const ContainerBoxCards = styled.div`
   gap:  0 4rem;
   justify-content:space-evenly;
   width: 100%;
+  min-height:35rem;
   @media only screen and (max-width: 1024px) {
     display: grid;
     grid-template-columns: 100%;
