@@ -77,7 +77,7 @@ function CodeEditor () {
         height='800px'
         defaultLanguage='javascript'
         defaultValue={content}
-        theme='vs-light'
+        theme='vs-dark'
         onChange={(value) => setContent(value)}
         onMount={handleEditor}
       />
