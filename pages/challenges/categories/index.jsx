@@ -11,13 +11,13 @@ width: 100%;
 height: 100vh;
 display: grid;
 grid-template-columns: 18% 41% 41%;
-grid-template-rows: 76px 40% 8% 10% 40%;
+grid-template-rows: 76px 40% 8% 7% 43%;
 grid-template-areas:
   " header header header"
   " navbar introduction introduction"
-  " navbar buscador ."
-  " navbar botones ."
-  " navbar retos retos2";
+  " navbar buscador buscador"
+  " navbar botones botones"
+  " navbar containerCards containerCards";
 `;
 const Introduction = styled.section`
 width: 80vw;
@@ -33,13 +33,14 @@ height: 100%;
 padding: 2rem 0;
 `;
 const Paragraph = styled.p`
-font-size: 1.8rem;
+font-size: 2rem;
 letter-spacing: .1rem;
-line-height: 2.5rem;
+line-height: 4.5rem;
+padding-left: 5rem;
 `;
 const Title = styled.h1`
 text-align: center;
-font-size: 3rem;
+font-size: 4rem;
 margin-bottom: 2.5rem;
 
 `;
@@ -61,27 +62,38 @@ background-position: center;
 const Input = styled.input`
   grid-area: buscador;
   margin-top: 1rem;
-  width: 105%;
+  width: 45%;
   height: 70%;
-  background-color: #F8F8F8;
+  background-color: #ffffff;
+  border: 1px solid #ABA9A9;
   border-radius: 5px;
   font-size: 2rem;
   padding-left: 1rem;
-  &:hover {
-    background-color: white;
+  &:focus {
+    background-color: #555BFF;
+    color: white;
+    &::placeholder {
+      color: white;
+    }
+  }
+  &::placeholder {
+    color:black;
+  }
+  @media only screen and (max-width: 1024px) {
+    width:65%;
   }
 `;
 const InputButton = styled.button`
   grid-area: botones;
   width: 15rem;
   height: 4rem;
-  border-radius: 5px;
+  border-radius: 8px;
   border: none;
   background-color: white;
   margin-left: 2rem;
   font-size: 1.4rem;
   &:hover {
-    background-color: #A779FF;
+    background-color: #555BFF;
     color: white;
   }
 `;
@@ -94,16 +106,34 @@ const InputButtonProgress = styled(InputButton)`
   left: 36rem;
 `;
 
+const ContainerBoxCards = styled.div`
+  grid-area: containerCards;
+  display: grid;
+  grid-template-columns: 45% 45%;
+  grid-template-rows: 50% 50%;
+  gap:  0 4rem;
+  justify-content:space-evenly;
+  width: 100%;
+  @media only screen and (max-width: 1024px) {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 25% 25% 25% 25%;
+    gap:  2rem;
+    height: 50rem;
+  }
+`;
+
 const BoxCard = styled.div`
-  border-radius: 5px;
-  background-color: #F8F8F8;
+  border-radius: 8px;
+  background-color: #ffffff;
   padding-right: 0.5rem;
-  grid-area: retos;
-  box-shadow: 3px 3px #a19f9f;
-  width: 90%;
-  height: 150px;
+  box-shadow: 0px 3px #a19f9f;
+  width: 100%;
+  height: 15rem;
+  margin: 0 auto;
+  grid-column:1/2;
   display:grid;
-  grid-template-columns: 30% 50% 20%;
+  grid-template-columns: 30% 35% 35%;
   grid-template-rows: 30%  25% 45%;
   grid-template-areas:
   " img title title"
@@ -113,51 +143,89 @@ const BoxCard = styled.div`
   &:hover {
     transform:scale(1.1);
   }
+  @media only screen and (max-width: 1024px) {
+    grid-row: 1/2;
+    grid-column: 1/2;
+    height: 100%;
+    width: 70%;
+    margin: 0;
+  }
 `;
 const BoxCardLeft = styled(BoxCard)`
-  grid-area: retos;
-  position:relative;
-  top: 17rem;
+  grid-column:2/2;
+  @media only screen and (max-width: 1024px) {
+    grid-row: 2/3;
+    grid-column: 1/2;
+    height: 100%;
+    width: 70%;
+    display:grid;
+    justify-self:flex-end;
+    margin: 0 3rem 0 0;
+  }
 `;
 const BoxCardRigth = styled(BoxCard)`
-  grid-area: retos2;
+  @media only screen and (max-width: 1024px) {
+    grid-row: 4/5;
+    grid-column: 1/2;
+    height: 100%;
+    width: 70%;
+    display:grid;
+    justify-self:flex-end;
+    margin: 0 3rem 0 0;
+  }
 `;
-const BoxCardRigthDown = styled(BoxCardRigth)`
-  grid-area: retos2;
-  position:relative;
-  top: 17rem;
+const BoxCardRigthDown = styled(BoxCard)`
+  grid-column: 2/3;
+  @media only screen and (max-width: 1024px) {
+    grid-row: 3/4;
+    grid-column: 1/2;
+    height: 100%;
+    width: 70%;
+  }
 `;
 const BoxImage = styled(Picture)`
   width:100%;
   height: 100%;
   border-radius: 5px;
-  position:relative;
   grid-area: img;
 `;
 
-const TitleCard = styled(Paragraph)`
-  padding: 1rem;
+const TitleCard = styled.p`
+  grid-area: title;
   font-size: 2.5rem;
+  text-align: center;
 `;
 
-const DificultButton = styled.p`
+const DificultButtonHard = styled.p`
   grid-area: dificult;
+  width: 50%;
+  margin: 0 0 0 1rem;
   font-size: 1.6rem;
-  padding-top: 0.5rem;
-  background-color: #bd1648;
+  padding-top: 1rem;
+  background-image: linear-gradient(to right, #FB1818, #FF5353);
   color: white;
-  height: 3rem;
-  width: 7rem;
   border-radius: 20px;
   text-align:center;
+  @media only screen and (max-width: 1024px) {
+    padding: 0.8rem;
+  }
+`;
+const DificultButtonMedium = styled(DificultButtonHard)`
+  background-image: linear-gradient(to right, #FBA618, #FF5353);
+`;
+const DificultButtonEasy = styled(DificultButtonHard)`
+  background-image: linear-gradient(to right, #00FF38, #67FF4E);
 `;
 
 const ButtonToChallenge = styled.button`
   grid-area:botonCard;
+  width: 50%;
+  justify-self: flex-end;
+  margin: 0 1rem 0 0;
   cursor:pointer;
   border-radius: 20px;
   border: none;
-  background-color: #A779FF;
+  background: linear-gradient(to right, #5F64FF, #AE4EFF);
   color: white;
   transition: transform 0.5s;
   &:hover {
@@ -165,11 +233,12 @@ const ButtonToChallenge = styled.button`
   }
 `;
 
-const TextCard = styled(Paragraph)`
+const TextCard = styled.p`
   position: relative;
   grid-area: texto;
   text-align: center;
   padding-top:1rem;
+  font-size: 2.2rem;
 `;
 
 
@@ -185,8 +254,8 @@ const Categories = () => {
           <Header />
           <Introduction>
             <TextBox>
-              <Title>Algorithms</Title>
-              <Paragraph>In this category you will find excercises related to algorithms  from basics to advanced, including topics such as recursion, sorting, trees, data structure, Dijkstra, dynamic programming etc. In this page you can test your abilities solving and implementing algorithms.</Paragraph>
+              <Title>Categorias</Title>
+              <Paragraph>Hola usuario, en esta vista podras ver todos los retos que hay para poner a prueba tus habilidades, elige uno por su dificultad y a completarlos todos.</Paragraph>
             </TextBox>
             <BoxImg>
               <Picture />
@@ -196,42 +265,44 @@ const Categories = () => {
           <InputButton>Todos los ejercicios 45</InputButton>
           <InputButtonCompleted>Completados 5</InputButtonCompleted>
           <InputButtonProgress>En progreso 2</InputButtonProgress>
+          <ContainerBoxCards>
           <BoxCard>
             <BoxImage />
-            <TitleCard>Algorithms</TitleCard>
-            <DificultButton>Dificil</DificultButton>
+            <TitleCard>Algoritmos</TitleCard>
+            <DificultButtonHard>Dificil</DificultButtonHard>
             <Link href='/challenges/playground' passHref>
               <ButtonToChallenge>Resolver =</ButtonToChallenge>
             </Link>
-            <TextCard>Genetic Algorithms are a useful tool</TextCard>
+            <TextCard>La multiplicacion mas grande</TextCard>
           </BoxCard>
           <BoxCardLeft>
             <BoxImage />
-            <TitleCard>Algorithms</TitleCard>
-            <DificultButton>Dificil</DificultButton>
+            <TitleCard>Matematicas</TitleCard>
+            <DificultButtonMedium>Medio</DificultButtonMedium>
             <Link href='/challenges/playground' passHref>
               <ButtonToChallenge>Resolver =</ButtonToChallenge>
             </Link>
-            <TextCard>Genetic Algorithms are a useful tool</TextCard>
+            <TextCard>Despejando variables</TextCard>
           </BoxCardLeft>
           <BoxCardRigth>
             <BoxImage />
-            <TitleCard>Algorithms</TitleCard>
-            <DificultButton>Dificil</DificultButton>
+            <TitleCard>Logica</TitleCard>
+            <DificultButtonHard>Dificil</DificultButtonHard>
             <Link href='/challenges/playground' passHref>
               <ButtonToChallenge>Resolver =</ButtonToChallenge>
             </Link>
-            <TextCard>Genetic Algorithms are a useful tool</TextCard>
+            <TextCard>Manipulacion de arrays</TextCard>
           </BoxCardRigth>
           <BoxCardRigthDown>
             <BoxImage />
-            <TitleCard>Algorithms</TitleCard>
-            <DificultButton>Dificil</DificultButton>
+            <TitleCard>Algoritmos</TitleCard>
+            <DificultButtonEasy>Facil</DificultButtonEasy>
             <Link href='/challenges/playground' passHref>
               <ButtonToChallenge>Resolver =</ButtonToChallenge>
             </Link>
-            <TextCard>Genetic Algorithms are a useful tool</TextCard>
+            <TextCard>Fizz Buzz</TextCard>
           </BoxCardRigthDown>
+          </ContainerBoxCards>
         </Container>
       </>
     );
