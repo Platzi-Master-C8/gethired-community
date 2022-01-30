@@ -1,8 +1,8 @@
-import React from 'react';
-import Link from 'next/link';
-import Logop from '../../../public/icons/LogoPlataforma1.png';
-import styled from '@emotion/styled';
-import Image from 'next/image';
+import React from 'react'
+import Link from 'next/link'
+import Logop from '../../../public/icons/LogoPlataforma1.png'
+import styled from '@emotion/styled'
+import Image from 'next/image'
 
 const Container = styled.div`
   display: flex;
@@ -61,4 +61,4 @@ const Footer = () => {
     )
   }
 
-export default Footer;
+export default Footer

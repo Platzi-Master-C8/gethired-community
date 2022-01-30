@@ -1,7 +1,6 @@
 import React from 'react';
 import CodeEditor from '../../../components/challenges/playground/codeEditor/codeEditor';
 import Header from '../../../components/security/header/Header';
-import Image from 'next/image';
 import styled from '@emotion/styled';
 import Footer from '../../../components/challenges/footer/Footer'
 
@@ -77,7 +76,7 @@ const PlayGround = () => {
         <ItemTitle2>Objetivos</ItemTitle2>
         <ItemParraf>{datos.objectives}</ItemParraf>
       </ItemInfo>
-      <Footer></Footer>
+      <Footer />
     </ContainerPG>
   );
 };
