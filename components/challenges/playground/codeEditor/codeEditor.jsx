@@ -7,6 +7,7 @@ import styled from '@emotion/styled';
 const ItemCodeView = styled.div`
   box-shadow: 3px 3px 3px #A779FF;
   grid-area: codeView;
+  height: 800px;
   & section {
     margin: 0;
   }
@@ -73,10 +74,10 @@ function CodeEditor () {
   return (
     <ItemCodeView>
         <Editor
-        height='700px'
+        height='800px'
         defaultLanguage='javascript'
         defaultValue={content}
-        theme='vs-dark'
+        theme='vs-light'
         onChange={(value) => setContent(value)}
         onMount={handleEditor}
       />

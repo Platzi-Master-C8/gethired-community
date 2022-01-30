@@ -3,6 +3,7 @@ import CodeEditor from '../../../components/challenges/playground/codeEditor/cod
 import Header from '../../../components/security/header/Header';
 import Image from 'next/image';
 import styled from '@emotion/styled';
+import Footer from '../../../components/challenges/footer/Footer'
 
 const ContainerPG = styled.div`
   overflow-y: hidden;
@@ -76,6 +77,7 @@ const PlayGround = () => {
         <ItemTitle2>Objetivos</ItemTitle2>
         <ItemParraf>{datos.objectives}</ItemParraf>
       </ItemInfo>
+      <Footer></Footer>
     </ContainerPG>
   );
 };
