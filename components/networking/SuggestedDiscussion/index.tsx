@@ -62,7 +62,7 @@ type DiscussionProps = {
     title: string,
     content: string,
     createdAt: string,
-    createdBy: string,
+    userId: string,
     is_active: boolean,
 }
 
@@ -92,7 +92,7 @@ function SuggestedDiscussion(props: DiscussionProps) {
                             margin: '10px 0'
                         }}>
                             <AccountCircleRounded className={classes.userIcon} />
-                            <Typography ml={1}>{props.createdBy}</Typography>
+                            <Typography ml={1}>{props.userId}</Typography>
                         </div>
                     </div>
                 </div>
