@@ -1,6 +1,7 @@
-import { CircularProgress, Typography } from "@mui/material";
-import { Box } from "@mui/system";
 import { ComponentProps, useEffect, useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/system/Box";
 import { findDiscussionLikes } from "../../../services/networking/forum-api";
 import { DiscussionLikeButton } from "../DiscussionLikeButton";
 

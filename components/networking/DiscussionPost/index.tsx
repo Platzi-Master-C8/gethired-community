@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
 import { makeStyles } from '@mui/styles';

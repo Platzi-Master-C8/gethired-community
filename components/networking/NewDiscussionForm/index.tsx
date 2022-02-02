@@ -1,10 +1,19 @@
 import React from "react";
-import { Accordion, AccordionDetails, AccordionSummary, Alert, Box, Container, Grid, Stack, Typography } from "@mui/material";
-import { TextField, Button } from "@mui/material";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import Alert from '@mui/material/Alert';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import { MUITextEditor } from '../MUITextEditor';
 import { SelectCategories } from "../SelectCategories";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { TextareaAutosize } from '@mui/base';
+import TextareaAutosize from '@mui/base/TextareaAutosize';
 import CreateIcon from '@mui/icons-material/Create';
 
 import { CreateDiscussionButton } from '../CreateDiscussionButton';

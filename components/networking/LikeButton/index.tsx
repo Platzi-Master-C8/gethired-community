@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
-import { FavoriteBorderRounded } from '@mui/icons-material';
-import { FavoriteRounded } from '@mui/icons-material';
-import { Button, ButtonProps } from '@mui/material';
+import FavoriteBorderRounded from '@mui/icons-material/FavoriteBorderRounded';
+import FavoriteRounded from '@mui/icons-material/FavoriteRounded';
+import Button, { ButtonProps } from '@mui/material/Button';
 import { makeStyles } from '@mui/styles';
 import LikeService from '../../../services/networking/like-service';
 

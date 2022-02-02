@@ -1,6 +1,5 @@
-import { Container } from '@mui/material';
-import { toNamespacedPath } from 'path/posix';
 import React from 'react';
+import Container from '@mui/material/Container';
 import { SuggestedDiscussion } from '../SuggestedDiscussion';
 
 type DiscussionProps = {
