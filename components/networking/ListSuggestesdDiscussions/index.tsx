@@ -10,7 +10,7 @@ type DiscussionProps = {
         content: string,
         createdAt: string,
         createdBy: string,
-        is_active: boolean
+        isActive: boolean
     }[];
     names: {
         id: string,
@@ -19,7 +19,6 @@ type DiscussionProps = {
 }
 
 function ListSuggestedDiscussions(props: DiscussionProps) {
-    
 
     return (
         <React.Fragment>
@@ -33,7 +32,7 @@ function ListSuggestedDiscussions(props: DiscussionProps) {
                             content={item.content}
                             createdAt={item.createdAt.slice(0, 10)}
                             createdBy={ props.names.find(element => element.id == item.createdBy).name }
-                            is_active={item.is_active}
+                            is_active={item.isActive}
                         />
                     );
                 })}

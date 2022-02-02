@@ -74,7 +74,9 @@ function SuggestedDiscussion(props: DiscussionProps) {
             <Card className={classes.card} raised={false} sx={{ marginBottom: '1rem', padding: '0' }} variant="outlined">
                 <div className={`${classes.row} ${classes.header}`} style={{ marginBottom: '0' }}>
                     <DiscussionLikeCounter
-                        isActive={props.is_active}
+                        isLiked={props.is_active}
+                        discussionId={props.id}
+                        userId={101} // TODO: Get the global user id
                         typographyProps={{
                             className: classes.discussionTitle,
                         }}

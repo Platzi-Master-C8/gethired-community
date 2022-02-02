@@ -1,6 +1,3 @@
-// Next.js Link with styling
-// https://github.com/mui-org/material-ui/blob/e6558bc2ccf47e8330ec1c35ec23d68d35bd8624/examples/nextjs-with-typescript/src/components/Link.tsx
-
 import * as React from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';

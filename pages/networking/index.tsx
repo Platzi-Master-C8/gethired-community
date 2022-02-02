@@ -11,7 +11,7 @@ import { SearchDiscussion } from '../../components/networking/SearchDiscussion';
 import { NewDiscussionForm } from '../../components/networking/NewDiscussionForm';
 
 
-import { getUserNames } from './helpers/userNames';
+import { getUserNames } from '../../utils/helpers/userNames';
 
 const useStyles = makeStyles({
   row: {
@@ -41,7 +41,7 @@ function Home() {
     fetch('https://get-hired-forum-dev.herokuapp.com/api/discussions')
       .then(response => response.json())
       .then(response => {
-        setData(response.slice(0, 7));
+        setData(response.rows.slice(0, 7));
       })
   }, []);
 
