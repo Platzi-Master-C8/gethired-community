@@ -10,10 +10,7 @@ const Container = styled.div`
   height: 100%;
   justify-content: space-between;
   align-items: center;
-`;
-
-const HeaderLogo = styled.div`
-  margin-left: 40px;
+  margin-left: 0 0 80px 80px;
 `;
 
 const GetHired = styled.div`
@@ -44,19 +41,11 @@ const Contact = styled.div`
 const Footer = () => {
   return (
     <Container>
-      <HeaderLogo>
-        <Link href='/' passHref>
-          <Image
-            src={Logop}
-            alt='Logo de la pagina'
-        />
-         </Link>
-       </ HeaderLogo>
-       <GetHired>© 2021 Get Hired</GetHired>
-       <AboutUs>About Us</AboutUs>
-       <Blog>Blog</Blog>
-       <Terms>Terms</Terms>
-       <Contact>Contact</Contact>
+      <GetHired>© 2021 Get Hired</GetHired>
+      <AboutUs>About Us</AboutUs>
+      <Blog>Blog</Blog>
+      <Terms>Terms</Terms>
+      <Contact>Contact</Contact>
     </Container>           
     )
   }
