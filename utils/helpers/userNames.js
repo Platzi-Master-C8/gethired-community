@@ -3,10 +3,10 @@
 const faker = require('faker');
 
 const getUserNames = (discussions) => {
-  var userNames = [];
+  let userNames = [];
   discussions.map((index) => {
     userNames.push({
-      id: index.created_by,
+      id: index.userId,
       name: faker.name.findName(),
     });
   });
