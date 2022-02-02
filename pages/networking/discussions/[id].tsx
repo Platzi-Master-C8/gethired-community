@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Container, Grid } from '@mui/material';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 import { DiscussionPost } from '../../../components/networking/DiscussionPost';
 import { DiscussionBreadCrumb } from '../../../components/networking/DiscussionBreadCrumb';
 import { makeStyles } from '@mui/styles';
 import { DiscussionLikeCounter } from '../../../components/networking/DiscussionLikeCounter';
-import { Box } from '@mui/system';
-import { Skeleton } from '@mui/material';
+import Box from '@mui/system/Box';
+import Skeleton from '@mui/material/Skeleton';
 import { FixedBottomNavigation } from '../../../components/networking/CommentsSystem';
 
 const useStyle = makeStyles({

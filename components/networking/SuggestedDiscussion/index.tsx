@@ -2,12 +2,15 @@ import React from 'react';
 
 import Link from '../../Link';
 
-import { Card, CardContent, Container, Typography } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 
-import { CommentRounded } from '@mui/icons-material';
-import { AccessTimeFilledRounded } from '@mui/icons-material';
-import { AccountCircleRounded } from '@mui/icons-material';
+import CommentRounded from '@mui/icons-material/CommentRounded';
+import AccessTimeFilledRounded from '@mui/icons-material/AccessTimeFilledRounded';
+import AccountCircleRounded from '@mui/icons-material/AccountCircleRounded';
 
 import { DiscussionLikeCounter } from '../DiscussionLikeCounter';
 
@@ -62,7 +65,7 @@ type DiscussionProps = {
     title: string,
     content: string,
     createdAt: string,
-    createdBy: string,
+    userId: string,
     is_active: boolean,
 }
 
@@ -94,7 +97,7 @@ function SuggestedDiscussion(props: DiscussionProps) {
                             margin: '10px 0'
                         }}>
                             <AccountCircleRounded className={classes.userIcon} />
-                            <Typography ml={1}>{props.createdBy}</Typography>
+                            <Typography ml={1}>{props.userId}</Typography>
                         </div>
                     </div>
                 </div>
