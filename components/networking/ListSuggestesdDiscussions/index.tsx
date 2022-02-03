@@ -9,7 +9,8 @@ type DiscussionProps = {
         content: string,
         createdAt: string,
         userId: string,
-        is_active: boolean
+        is_active: boolean,
+        likes: number,
     }[];
     names: {
         id: string,
@@ -33,6 +34,7 @@ function ListSuggestedDiscussions(props: DiscussionProps) {
                             createdAt={item.createdAt.slice(0, 10)}
                             userId={ props.names.find(element => element.id == item.userId).name }
                             is_active={item.is_active}
+                            likes={item.likes}
                         />
                     );
                 })}
