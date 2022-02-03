@@ -36,7 +36,7 @@ const useStyles = makeStyles({
 });
 
 function Home() {
-  const LIMIT_PAGINATION = 3;
+  const LIMIT_PAGINATION = 7;
   const api = `https://get-hired-forum-dev.herokuapp.com/api/discussions`;
   
   

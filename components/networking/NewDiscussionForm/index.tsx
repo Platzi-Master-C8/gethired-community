@@ -126,7 +126,7 @@ function NewDiscussionForm() {
                                     startIcon={<CreateIcon />}
                                     onClick={() => {
                                         const url = 'https://get-hired-forum-dev.herokuapp.com/api/discussions';
-                                        const data = { "title": title, "category": category, "content": content };
+                                        const data = { "title": title, "categoryId": category, "content": content, "userId": 1 };
                                         console.log(data);
                                         try {
                                             fetch(
