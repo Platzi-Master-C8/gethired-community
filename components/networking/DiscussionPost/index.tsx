@@ -17,9 +17,21 @@ type DiscussionProps = {
     created_by: string,
 }
 
+function splitByNewLine(str: string) {
+    if (str.indexOf('\r\n')) {
+        return str.split('\r\n');
+    } else if (str.indexOf('\r')) {
+        return str.split('\r');
+    } else {
+        return str.split('\n');
+    }
+}
+
 function DiscussionPost(props: DiscussionProps) {
 
     const classes = useStyle()
+
+    const paragraphs = splitByNewLine(props.content);
 
     return (
         <div>
@@ -28,9 +40,11 @@ function DiscussionPost(props: DiscussionProps) {
                     {props.title}
                 </ Typography>
                 <Box pt={2}>
-                    <Typography paragraph>
-                        {props.content}
-                    </Typography>
+                    {paragraphs.map((content, index) => (
+                        <Typography key={index} paragraph>
+                            {content}
+                        </Typography>
+                    ))}
                 </Box>
             </Box>
             <Box pl={1.5} sx={{ display: 'flex', alignItems: 'center' }}>
