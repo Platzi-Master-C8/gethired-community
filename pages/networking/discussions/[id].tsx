@@ -100,6 +100,11 @@ function Discussion() {
 
                 <FixedBottomNavigation />
             </Grid>
+            <style global jsx>{`
+                html {
+                    font-size: initial;
+                }
+            `}</style>
         </Container>
     );
 }
