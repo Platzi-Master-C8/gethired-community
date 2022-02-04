@@ -2,12 +2,15 @@ import React from 'react';
 
 import Link from '../../Link';
 
-import { Card, CardContent, Container, Typography } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 
-import { CommentRounded } from '@mui/icons-material';
-import { AccessTimeFilledRounded } from '@mui/icons-material';
-import { AccountCircleRounded } from '@mui/icons-material';
+import CommentRounded from '@mui/icons-material/CommentRounded';
+import AccessTimeFilledRounded from '@mui/icons-material/AccessTimeFilledRounded';
+import AccountCircleRounded from '@mui/icons-material/AccountCircleRounded';
 
 import { DiscussionLikeCounter } from '../DiscussionLikeCounter';
 
