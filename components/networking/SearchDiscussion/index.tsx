@@ -1,6 +1,7 @@
 import React from 'react';
-import { InputAdornment, TextField } from '@mui/material';
-import { SearchOutlined } from '@mui/icons-material';
+import InputAdornment from '@mui/material/InputAdornment';
+import TextField from '@mui/material/TextField';
+import SearchOutlined from '@mui/icons-material/SearchOutlined';
 import { makeStyles } from '@mui/styles';
 
 const useStyle = makeStyles({
@@ -25,7 +26,7 @@ function SearchDiscussion() {
           },
           endAdornment: (
             <InputAdornment position="end">
-              <SearchOutlined />
+              <SearchOutlined sx={{color: "#ae4eff"}} />
             </ InputAdornment>
           ),
         }}

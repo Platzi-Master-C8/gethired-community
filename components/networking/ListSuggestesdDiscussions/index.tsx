@@ -1,6 +1,5 @@
-import { Container } from '@mui/material';
-import { toNamespacedPath } from 'path/posix';
 import React from 'react';
+import Container from '@mui/material/Container';
 import { SuggestedDiscussion } from '../SuggestedDiscussion';
 
 type DiscussionProps = {
@@ -9,11 +8,11 @@ type DiscussionProps = {
         title: string,
         content: string,
         createdAt: string,
-        createdBy: number,
+        createdBy: string,
         isActive: boolean
     }[];
     names: {
-        id: number,
+        id: string,
         name: string
     }[];
 }
@@ -30,8 +29,8 @@ function ListSuggestedDiscussions(props: DiscussionProps) {
                             id={item.id}
                             title={item.title}
                             content={item.content}
-                            created_at={item.createdAt.slice(0, 10)}
-                            created_by={ props.names.find(element => element.id == item.createdBy).name }
+                            createdAt={item.createdAt.slice(0, 10)}
+                            createdBy={ props.names.find(element => element.id == item.createdBy).name }
                             is_active={item.isActive}
                         />
                     );
