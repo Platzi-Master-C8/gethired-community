@@ -12,8 +12,8 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { MUITextEditor } from '../MUITextEditor';
 import { SelectCategories } from "../SelectCategories";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import TextareaAutosize from '@mui/base/TextareaAutosize';
+import { ExpandMore, ExpandLess } from '@mui/icons-material';
+import { TextareaAutosize } from '@mui/base';
 import CreateIcon from '@mui/icons-material/Create';
 
 import { CreateDiscussionButton } from '../CreateDiscussionButton';
@@ -24,10 +24,18 @@ function NewDiscussionForm() {
     const [ category, setCategory ] = React.useState<Number>(1);
     const [ content, setContent ] = React.useState('');
     const [ newDiscussionSucceeded, setNewDiscussionSucceeded ] = React.useState<Boolean>(false);
+    const [ formToggle, setFormToggle ] = React.useState<Boolean>(false);
 
-  const handleChange =
+  /* const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false);
+    }; */
+
+    const onClickFormToggle = () => {
+        const form = document.getElementsByClassName("form");
+        /* formToggle ? form.style.display = "block" : form.style.display = "none"; */
+        setFormToggle(!formToggle);
+        console.log(formToggle);
     };
 
     return (
@@ -40,95 +48,87 @@ function NewDiscussionForm() {
             } 
             
             <form action="">
-                <Container fixed maxWidth="md" sx={{ padding: '0px' }}>
-                    
-                    <Accordion id="accordionForm" expanded={expanded === 'panel1'} onChange={handleChange('panel1')} sx={{  borderStyle: 'none', padding: '0px', margin: '0px'}} >
-                        
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            /* aria-controls="panel1a-content" */
-                            id="panel1a-header"
-                            sx={{ 
-                                height: '4rem',
-                                justifyContent: 'flex-end',
-                                
-                             }}
-                            >
-                            <Box 
+                <Container  sx={{ padding: '0px' }}>
+                    <Box 
                         sx={{
                             display: 'flex',
                             justifyContent: 'flex-end'
                         }}
                     >
                         <Button
-                            sx={{ margin: '1rem', background: 'linear-gradient(90deg,#ae4eff,#5f64ff)' }}
-                            
+                            sx={{ margin: '1rem', transition: '4s', background: 'linear-gradient(90deg,#ae4eff,#5f64ff)' }}
+                            onClick={onClickFormToggle}
+                            endIcon={ formToggle ? <ExpandLess fontSize="large" /> : <ExpandMore fontSize="large" /> }
                             variant="contained"
-                            startIcon={<CreateIcon />}
-                            /* onClick={() => {
-                                document.getElementById("accordionForm").style.display = "block";
-                                handleChange('panel1');
-                            }} */
                         >
                             New Discussion
                         </Button>
                     </Box>
-                        </AccordionSummary>
-                        <AccordionDetails >
-                            <Box
+                    <Box sx={{ 
+                        display: formToggle ? 'block' : 'none',
+                        border: 1,
+                        borderRadius: '5px',
+                        borderColor: 'grey.400',
+                        padding: '15px',
+                        overflow: 'hidden',
+                        transition: 'max-height 4s ease-out',
+                     }}>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                minHeight: '270px',
+                                marginTop: '10px'
+                                }}
+                        >
+                            <TextField 
+                                id="input-title" 
+                                value={title} 
+                                onChange={(e) => setTitle(e.target.value)} 
+                                label="Title" 
+                                variant="outlined" 
+                                sx={{ marginBottom: '25px', borderWidth: '2px' }} 
+                            />
+                            
+                            <Box 
                                 sx={{
                                     display: 'flex',
-                                    flexDirection: 'column',
-                                    minHeight: '270px',
-                                    marginTop: '10px'
-                                  }}
+                                    justifyContent: 'flex-end',
+                                    marginBottom: '25px'
+                                }}
                             >
-                                <TextField 
-                                    id="input-title" 
-                                    value={title} 
-                                    onChange={(e) => setTitle(e.target.value)} 
-                                    label="Title" 
-                                    variant="outlined" 
-                                    sx={{ marginBottom: '25px', borderWidth: '2px' }} 
-                                />
-                                
-                                <Box 
-                                    sx={{
-                                        display: 'flex',
-                                        justifyContent: 'flex-end',
-                                        marginBottom: '25px'
-                                    }}
-                                >
-                                    <SelectCategories />
-                                </Box>
-                                
-                                {/* <div>
-                                    <MUITextEditor />
-                                </div> */}
-                                <TextField
-                                    placeholder="Type the content of an discussion here..."
-                                    id="input-content"
-                                    fullWidth
-                                    value={content} 
-                                    onChange={(e) => setContent(e.target.value)}
-                                    multiline
-                                    rows={15}
-                                    sx={{ marginBottom: '25px' }}
-                                />
-                                <Box 
-                                    sx={{
-                                        display: 'flex',
-                                        justifyContent: 'flex-end', 
-                                        marginBottom: '25px'
-                                    }}
-                                >
-                                    <Button 
-                                        variant="contained"
-                                        sx={{ width: '250px', background: 'linear-gradient(90deg,#ae4eff,#5f64ff)' }}
-                                        onClick={() => {
-                                            const url = 'https://get-hired-forum-dev.herokuapp.com/api/discussions';
-                                            const data = { "title": title, "category": category, "content": content };
-                                            console.log(data);
+                                <SelectCategories />
+                            </Box>
+                            
+                            {/* <div>
+                                <MUITextEditor />
+                            </div> */}
+                            <TextField
+                                placeholder="Type the content of an discussion here..."
+                                id="input-content"
+                                fullWidth
+                                value={content} 
+                                onChange={(e) => setContent(e.target.value)}
+                                multiline
+                                rows={15}
+                                sx={{ marginBottom: '25px' }}
+                            />
+                            <Box 
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'flex-end', 
+                                    marginBottom: '25px'
+                                }}
+                            >
+                                <Button 
+                                    variant="contained"
+                                    sx={{ width: '220px', background: 'linear-gradient(90deg,#ae4eff,#5f64ff)' }}
+                                    startIcon={<CreateIcon />}
+                                    onClick={() => {
+                                        const url = 'https://get-hired-forum-dev.herokuapp.com/api/discussions';
+                                        const data = { "title": title, "categoryId": category, "content": content, "userId": 1 };
+                                        console.log(data);
+                                        try {
                                             fetch(
                                                 url,
                                                 {
@@ -150,17 +150,37 @@ function NewDiscussionForm() {
                                                     setNewDiscussionSucceeded(false);
                                                 }, 5000);
                                             });
-                                        }}
-                                    >
-                                        Create Discussion
-                                    </Button>
-                                </Box>
+                                        } catch (error){
+                                            alert('There was an error: ' + error);
+                                        }
+                                    }}
+                                >
+                                    Create Discussion
+                                </Button>
                             </Box>
+                        </Box>
+                    </Box>
+
+
+                    {/* <Accordion id="accordionForm" expanded={expanded === 'panel1'} onChange={handleChange('panel1')} sx={{  borderStyle: 'none', padding: '0px', margin: '0px'}} >
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            id="panel1a-header"
+                            sx={{ 
+                                height: '0rem',
+                                justifyContent: 'flex-end',
+                                
+                             }}
+                            >
+                            
+                        </AccordionSummary>
+                        <AccordionDetails >
+                            
                         </AccordionDetails>
-                    </Accordion>
+                    </Accordion> */}
                 </Container>
             </form>
-            <br />
+            <br /><br />
         </React.Fragment>
     );
 }

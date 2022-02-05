@@ -13,6 +13,7 @@ import { SearchDiscussion } from '../../components/networking/SearchDiscussion';
 import { NewDiscussionForm } from '../../components/networking/NewDiscussionForm';
 
 import { getUserNames } from '../../utils/helpers/userNames';
+import { callApi } from '../../utils/helpers/callApi';
 
 const useStyles = makeStyles({
   row: {
@@ -34,18 +35,28 @@ const useStyles = makeStyles({
 });
 
 function Home() {
-  const [data, setData] = useState([]);
+  const LIMIT_PAGINATION = 7;
+  const api = `https://get-hired-forum-dev.herokuapp.com/api/discussions`;
+  
+  
+  const [ discussions, setDiscussions ] = useState(0);  //Brings the number of discussions in the whole array with no pagination
+  const [ offSetPagination, setOffSetPagination ] = useState(0);
+  const [ requestUrl, setRequestUrl ] = useState(`${api}?limit=${LIMIT_PAGINATION}&offset=${offSetPagination}`);
+  const [ data, setData ] = useState([]);
+  
+  let names = [];
   const classes = useStyles();
-  var names = [];
 
   useEffect(() => {
-    fetch('https://get-hired-forum-dev.herokuapp.com/api/discussions')
-      .then(response => response.json())
-      .then(response => {
-        setData(response.rows.slice(0, 7));
-      })
-  }, []);
 
+    callApi(requestUrl)
+      .then((response) => {
+        setDiscussions(response.count);
+        setData(response.rows);
+      })
+    
+  }, [ requestUrl ]);
+  
   names = getUserNames(data);
 
   return (
@@ -59,6 +70,7 @@ function Home() {
         >
           Forum
         </Typography>
+=======
       </div>
       <NewDiscussionForm />
       {/* <CreateDiscussionButton /> */}
@@ -88,9 +100,14 @@ function Home() {
         Suggested discussions
       </Typography>
       <br /><br />
-      {data.length > 0 && <ListSuggestedDiscussions data={data} names={names} />}
+      { (data.length > 0 && names.length > 0) && <ListSuggestedDiscussions data={data} names={names} /> }
       <Stack spacing={2} justifyContent="center" alignItems="center">
-        <Pagination count={15} color="primary" />
+        { discussions > 0 && ( 
+            <Pagination count={ Math.ceil( discussions / LIMIT_PAGINATION) } color="primary" onChange={(event: React.ChangeEvent<unknown>, page: number) => {
+              setRequestUrl(`${api}?limit=${LIMIT_PAGINATION}&offset=${(page - 1) * LIMIT_PAGINATION}`)
+            }} />
+          )
+        }  
       </Stack>
       <style global jsx>{`
         html {

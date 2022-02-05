@@ -79,6 +79,7 @@ function Discussion() {
                                     <Box display="flex" flexDirection="row">
                                         <DiscussionLikeCounter
                                             isLiked={discussionData.isActive}
+                                            likes={0}
                                             discussionId={discussionId}
                                             userId={101} // TODO: Get the global user id
                                             boxProps={{

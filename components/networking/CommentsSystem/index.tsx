@@ -53,7 +53,7 @@ function FixedBottomNavigation() {
         {messages.map(({ primary, secondary, person }, index) => (
           <ListItem button key={index + person}>
             <ListItemAvatar>
-              <Avatar alt="Profile Picture" src={person} />
+              <Avatar alt="Profile Picture" />
             </ListItemAvatar>
             <ListItemText primary={primary} secondary={secondary} />
           </ListItem>

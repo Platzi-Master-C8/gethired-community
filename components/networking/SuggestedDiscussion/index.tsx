@@ -65,8 +65,9 @@ type DiscussionProps = {
     title: string,
     content: string,
     createdAt: string,
-    createdBy: string,
+    userId: string,
     is_active: boolean,
+    likes: number,
 }
 
 function SuggestedDiscussion(props: DiscussionProps) {
@@ -80,6 +81,7 @@ function SuggestedDiscussion(props: DiscussionProps) {
                         isLiked={props.is_active}
                         discussionId={props.id}
                         userId={101} // TODO: Get the global user id
+                        likes={props.likes}
                         typographyProps={{
                             className: classes.discussionTitle,
                         }}
@@ -97,7 +99,7 @@ function SuggestedDiscussion(props: DiscussionProps) {
                             margin: '10px 0'
                         }}>
                             <AccountCircleRounded className={classes.userIcon} />
-                            <Typography ml={1}>{props.createdBy}</Typography>
+                            <Typography ml={1}>{props.userId}</Typography>
                         </div>
                     </div>
                 </div>
