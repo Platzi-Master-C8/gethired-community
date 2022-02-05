@@ -1,7 +1,6 @@
 import React from 'react';
 import CodeEditor from '../../../components/challenges/playground/codeEditor/codeEditor';
 import Header from '../../../components/security/header/Header';
-import Image from 'next/image';
 import styled from '@emotion/styled';
 
 const ContainerPG = styled.div`
