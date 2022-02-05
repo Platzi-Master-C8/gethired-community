@@ -2,7 +2,6 @@ import React from 'react';
 import CodeEditor from '../../../components/challenges/playground/codeEditor/codeEditor';
 import Header from '../../../components/security/header/Header';
 import styled from '@emotion/styled';
-import Footer from '../../../components/challenges/footer/Footer'
 
 const ContainerPG = styled.div`
   overflow-y: hidden;
@@ -76,7 +75,6 @@ const PlayGround = () => {
         <ItemTitle2>Objetivos</ItemTitle2>
         <ItemParraf>{datos.objectives}</ItemParraf>
       </ItemInfo>
-      <Footer />
     </ContainerPG>
   );
 };
