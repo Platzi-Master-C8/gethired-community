@@ -1,5 +1,6 @@
 import React from 'react';
-import { MenuItem, TextField } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
+import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
 
 const useStyle = makeStyles({
@@ -21,13 +22,13 @@ function SelectCategories() {
     return (
         <React.Fragment>
             <TextField
-                id="outlined-select"
+                id="input-category"
                 select
                 label="Category"
                 value={category}
                 onChange={handleChange}
                 variant="outlined"
-                sx={{ m: 1, minWidth: 150, maxWidth: 250 }}
+                sx={{ minWidth: 250 }}
                 InputProps={{
                     classes: {
                         notchedOutline: classes.notchedOutline,

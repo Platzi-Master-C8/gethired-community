@@ -4,12 +4,11 @@ import styled from '@emotion/styled';
 
 export const SectionContainer = styled.div`
   display: flex;
-  justify-content: center;
   text-align: center;
-  gap: 5.5rem;
+  gap: 2.5rem;
   flex-wrap: wrap;
-  @media (max-width: 1250px) {
-    gap: 2.5rem;
+  @media (max-width: 1600px) {
+    justify-content: space-evenly;
   }
 `;
 

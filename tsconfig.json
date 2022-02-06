@@ -22,8 +22,10 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "components/networking/ListSuggestesdDiscussions/index.tsx"  ],
+    "**/*.tsx",
+    "components/networking/CreateDiscussionButton",
+    "components/networking/ListSuggestesdDiscussions/index.tsx"  
+  ],
   "exclude": [
     "node_modules"
   ]

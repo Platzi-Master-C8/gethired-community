@@ -8,12 +8,15 @@ export const Wrapper = styled.div`
   grid-area: graph;
   width: 100%;
   min-width: 55rem;
+  max-height: 60rem;
   align-self: center;
+  margin: 0 auto;
 `;
 
 export const Container = styled.div`
   width: 100%;
-  min-width: 55rem;
+  max-width: 75rem;
+  min-width: 58rem;
   padding-right: 3rem;
   @media (max-width: 1100px) {
     padding-right: 7rem;

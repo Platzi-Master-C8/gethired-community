@@ -3,8 +3,8 @@ import Image from 'next/image';
 import styled from '@emotion/styled';
 
 export const CardContainer = styled.div`
-	height: 12rem;
-	width: 40rem;
+  width: 25rem;
+	height: 8rem;
 	border-radius: .5rem;
 	display: flex;
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -32,7 +32,7 @@ export const CardContainer = styled.div`
 
 export const CardImg = styled(Image)`
   height: 100%;
-  width: 100px;
+  width: 100%;
   object-fit: cover;
   border-radius: .5rem 0 0 .5rem;
 `;
@@ -52,31 +52,32 @@ export const MainContent = styled.section`
 
 export const Title = styled.h3`
 /* opacity: 0.8; */
-  font-size: 2.4rem;
+  font-size: 1.5rem;
+  font-weight: bold;
   text-align: center;
 	color: black;
-  @media (max-width: 1250px) {
+  /* @media (max-width: 1250px) {
 	  font-size: 1.5rem;
   }
   @media (max-width: 1100px) {
     font-size: 1.5rem;
-  }
+  } */
 `;
 
 export const Description = styled.p`
   width: 100%;
   line-height: 2;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-align: center;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  @media (max-width: 1300px) {
+  /* @media (max-width: 1300px) {
 	  font-size: 1.5rem;
   }
   @media (max-width: 1250px) {
 	  font-size: 1.5rem;
-  }
+  } */
 `;
 
 
