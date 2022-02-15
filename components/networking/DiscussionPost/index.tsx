@@ -35,7 +35,7 @@ function DiscussionPost(props: DiscussionProps) {
     const paragraphs = splitByNewLine(props.content);
 
     return (
-        <div>
+        <Box display="flex" flexDirection="column" flexGrow={1}>
             <Box p={2}>
                 <Typography variant='h4' fontWeight='600' >
                     {props.title}
@@ -48,24 +48,22 @@ function DiscussionPost(props: DiscussionProps) {
                     ))}
                 </Box>
             </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Box mr={95} pl={1.5} sx={{ display: 'flex', alignItems: 'center' }}>
-
+            <Box display="flex" justifyContent="space-between">
+                <Box flexGrow="1" display="flex" alignItems="center">
                     <AccountCircleTwoToneIcon className={classes.userIcon} fontSize='large' />
 
-                    <Typography paragraph m={0} px={1}>
+                    <Typography paragraph>
                         {props.created_by}
                     </ Typography>
-                    <Typography paragraph m={0}>
+                    <Typography paragraph >
                         {props.created_at}
                     </ Typography>
-                </Box>  
-                <Box pr={1.5} sx={{ display: 'flex', alignContent: 'center'}}>
-                    <ReportButton />                    
-                </Box>              
+                </Box>
+                <Box flexShrink="1" display="flex" alignContent="center">
+                    <ReportButton />
+                </Box>
             </Box>
-        </div>
-
+        </Box>
     );
 }
 

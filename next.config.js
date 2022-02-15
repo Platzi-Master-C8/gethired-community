@@ -3,7 +3,8 @@ module.exports = {
     domains: [
       'res.cloudinary.com',
       'lh3.googleusercontent.com',
-      'via.placeholder.com'
+      'via.placeholder.com',
+      'avatars.githubusercontent.com',
     ]
   },
 
