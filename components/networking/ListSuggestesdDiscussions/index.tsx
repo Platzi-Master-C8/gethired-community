@@ -1,5 +1,6 @@
 import React from 'react';
 import Container from '@mui/material/Container';
+import Moment from 'moment';
 import { SuggestedDiscussion } from '../SuggestedDiscussion';
 
 type DiscussionProps = {
@@ -23,7 +24,8 @@ function ListSuggestedDiscussions(props: DiscussionProps) {
     return (
         <React.Fragment>
             <Container>
-                { console.log(props.names) }
+
+                
                 {(props.names.length > 0 && props.data.length > 0) && props.data.map((item) => {
                     return (
                         <SuggestedDiscussion
@@ -31,7 +33,7 @@ function ListSuggestedDiscussions(props: DiscussionProps) {
                             id={item.id}
                             title={item.title}
                             content={item.content}
-                            createdAt={item.createdAt.slice(0, 10)}
+                            createdAt={Moment(item.createdAt).fromNow()}
                             userId={ props.names.find(element => element.id == item.userId).name }
                             is_active={item.is_active}
                             likes={item.likes}

@@ -40,6 +40,7 @@ function Home() {
   
   
   const [ discussions, setDiscussions ] = useState(0);  //Brings the number of discussions in the whole array with no pagination
+  const [ categoryId, setCategoryId ] = React.useState();
   const [ offSetPagination, setOffSetPagination ] = useState(0);
   const [ requestUrl, setRequestUrl ] = useState(`${api}?limit=${LIMIT_PAGINATION}&offset=${offSetPagination}`);
   const [ data, setData ] = useState([]);
@@ -70,12 +71,8 @@ function Home() {
         >
           Forum
         </Typography>
-=======
       </div>
       <NewDiscussionForm />
-      {/* <CreateDiscussionButton /> */}
-
-      {/* <div className={classes.row}> */}
       <Grid container spacing={2}>
         <Grid item xs={12} md={8} sx={{
           display: 'flex',
@@ -87,10 +84,9 @@ function Home() {
           display: 'flex',
           justifyContent: 'flex-end'
         }}>
-          <SelectCategories />
+          <SelectCategories setCategoryId={setCategoryId} />
         </Grid>
       </Grid>
-      {/* </div> */}
       <br />
       <Typography
         className={classes.forum__discussions}

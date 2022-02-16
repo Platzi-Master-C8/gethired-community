@@ -1,41 +1,22 @@
 import React from "react";
-import Accordion from "@mui/material/Accordion";
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
-import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { MUITextEditor } from '../MUITextEditor';
 import { SelectCategories } from "../SelectCategories";
 import { ExpandMore, ExpandLess } from '@mui/icons-material';
-import { TextareaAutosize } from '@mui/base';
 import CreateIcon from '@mui/icons-material/Create';
 
-import { CreateDiscussionButton } from '../CreateDiscussionButton';
-
 function NewDiscussionForm() {
-    const [expanded, setExpanded] = React.useState<string | false>(false);
     const [ title, setTitle ] = React.useState('');
-    const [ category, setCategory ] = React.useState<Number>(1);
+    const [ categoryId, setCategoryId ] = React.useState();
     const [ content, setContent ] = React.useState('');
     const [ newDiscussionSucceeded, setNewDiscussionSucceeded ] = React.useState<Boolean>(false);
     const [ formToggle, setFormToggle ] = React.useState<Boolean>(false);
 
-  /* const handleChange =
-    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpanded(isExpanded ? panel : false);
-    }; */
-
     const onClickFormToggle = () => {
-        const form = document.getElementsByClassName("form");
-        /* formToggle ? form.style.display = "block" : form.style.display = "none"; */
         setFormToggle(!formToggle);
-        console.log(formToggle);
     };
 
     return (
@@ -97,12 +78,8 @@ function NewDiscussionForm() {
                                     marginBottom: '25px'
                                 }}
                             >
-                                <SelectCategories />
+                                <SelectCategories setCategoryId={setCategoryId} />
                             </Box>
-                            
-                            {/* <div>
-                                <MUITextEditor />
-                            </div> */}
                             <TextField
                                 placeholder="Type the content of an discussion here..."
                                 id="input-content"
@@ -126,9 +103,8 @@ function NewDiscussionForm() {
                                     startIcon={<CreateIcon />}
                                     onClick={() => {
                                         const url = 'https://get-hired-forum-dev.herokuapp.com/api/discussions';
-                                        const data = { "title": title, "categoryId": category, "content": content, "userId": 1 };
-                                        console.log(data);
-                                        try {
+                                        const data = { "title": title, "categoryId": categoryId, "content": content, "userId": 1 };
+                                        console.table(data);
                                             fetch(
                                                 url,
                                                 {
@@ -138,21 +114,17 @@ function NewDiscussionForm() {
                                                 }
                                             )
                                             .then(data => data.json())
-                                            .then((json) => {
-                                                console.log(JSON.stringify(json));
-                                            })
                                             .then(()=>{
                                                 setTitle('');
-                                                setContent('');
                                                 setContent('');
                                                 setNewDiscussionSucceeded(true);
                                                 setTimeout(() => {
                                                     setNewDiscussionSucceeded(false);
                                                 }, 5000);
-                                            });
-                                        } catch (error){
-                                            alert('There was an error: ' + error);
-                                        }
+                                            })
+                                            .catch ((error) => {
+                                                alert('There was an error: ' + error);
+                                            })
                                     }}
                                 >
                                     Create Discussion
@@ -160,24 +132,6 @@ function NewDiscussionForm() {
                             </Box>
                         </Box>
                     </Box>
-
-
-                    {/* <Accordion id="accordionForm" expanded={expanded === 'panel1'} onChange={handleChange('panel1')} sx={{  borderStyle: 'none', padding: '0px', margin: '0px'}} >
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            id="panel1a-header"
-                            sx={{ 
-                                height: '0rem',
-                                justifyContent: 'flex-end',
-                                
-                             }}
-                            >
-                            
-                        </AccordionSummary>
-                        <AccordionDetails >
-                            
-                        </AccordionDetails>
-                    </Accordion> */}
                 </Container>
             </form>
             <br /><br />
