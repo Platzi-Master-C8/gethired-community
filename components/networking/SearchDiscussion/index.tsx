@@ -7,34 +7,33 @@ import { makeStyles } from '@mui/styles';
 const useStyle = makeStyles({
   notchedOutline: {
     borderWidth: '2px',
-    borderColor: '#555bff !important',
+    borderColor: '#555bff !important'
   }
-})
+});
 
 function SearchDiscussion() {
-  const classes = useStyle()
+  const classes = useStyle();
   return (
     <React.Fragment>
-      <TextField fullWidth
+      <TextField
+        fullWidth
         id="text-search"
         label="Search for a discussion..."
         type="search"
         variant="outlined"
         InputProps={{
           classes: {
-            notchedOutline: classes.notchedOutline,
+            notchedOutline: classes.notchedOutline
           },
           endAdornment: (
             <InputAdornment position="end">
-              <SearchOutlined sx={{color: "#ae4eff"}} />
-            </ InputAdornment>
-          ),
+              <SearchOutlined sx={{ color: '#ae4eff' }} />
+            </InputAdornment>
+          )
         }}
-      >
-      </TextField>
+      ></TextField>
     </React.Fragment>
   );
 }
 
 export { SearchDiscussion };
-

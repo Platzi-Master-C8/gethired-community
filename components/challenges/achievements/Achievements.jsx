@@ -39,21 +39,17 @@ const Achievements = ({ goals }) => {
   if (goals) {
     return (
       <Wrapper>
-          <Container>
-            <Title>Achievements</Title>
-            <GoalsContainer>
-              {
-                (goals.length) === 0 ? <Alert /> : <SectionGoals goals={goals} />
-              }
-            </GoalsContainer>
-          </Container>
+        <Container>
+          <Title>Achievements</Title>
+          <GoalsContainer>
+            {goals.length === 0 ? <Alert /> : <SectionGoals goals={goals} />}
+          </GoalsContainer>
+        </Container>
       </Wrapper>
-    )
-  }
-  else {
+    );
+  } else {
     return null;
   }
-
-}
+};
 
 export default Achievements;

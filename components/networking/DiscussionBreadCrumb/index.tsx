@@ -7,31 +7,16 @@ import Stack from '@mui/material/Stack';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Box from '@mui/material/Box';
 
-
-
 function DiscussionBreadCrumb() {
-
-
   const breadcrumbs = [
     <nav key="home">
-      <Link
-        underline="hover"
-        key="1"
-        color='#ae4eff'
-        href="/networking"
-      >
+      <Link underline="hover" key="1" color="#ae4eff" href="/networking">
         Home
       </Link>
-    </nav>
-    ,
-    <Link
-      underline="hover"
-      key="2"
-      color='#ae4eff'
-      href="#"
-    >
+    </nav>,
+    <Link underline="hover" key="2" color="#ae4eff" href="#">
       Discussion
-    </Link>,
+    </Link>
   ];
   return (
     <Box pt={2}>
@@ -39,13 +24,12 @@ function DiscussionBreadCrumb() {
         <Breadcrumbs
           separator={<NavigateNextIcon fontSize="small" />}
           aria-label="breadcrumb"
-          color='#ae4eff'
+          color="#ae4eff"
         >
           {breadcrumbs}
         </Breadcrumbs>
       </Stack>
     </Box>
-
   );
 }
 

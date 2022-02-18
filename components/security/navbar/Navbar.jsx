@@ -10,58 +10,55 @@ import Link from 'next/link';
 import { useUser } from '@auth0/nextjs-auth0';
 
 const NavBar = () => {
+  const { user } = useUser();
 
-  const {user} = useUser();
-
-  if(user) {
-
+  if (user) {
     return (
       <div className={position.inavbar}>
         <aside className={styles.navBar}>
-
           <div className={styles.navBar_user}>
-
-            <Link  href='/' passHref>
+            <Link href="/" passHref>
               <div className={styles.navBar_user_name}>{user.name}</div>
             </Link>
             <div className={styles.avatar_profile}>
-            <Image layout="fixed"  src={Avatar} alt='' />
+              <Image layout="fixed" src={Avatar} alt="" />
             </div>
-
           </div>
 
           <div className={styles.navBar_menu}>
             <ul>
               <li>
-                <Link  href='/networking' passHref>
+                <Link href="/networking" passHref>
                   <div className={styles.navBar_menu_link}>
-                  <Image src={Forum} alt='' /><p className={styles.navBar_menu__text}>Forum</p>
-                    </div>
+                    <Image src={Forum} alt="" />
+                    <p className={styles.navBar_menu__text}>Forum</p>
+                  </div>
                 </Link>
               </li>
               <li>
-                <Link  href='/challenges/categories'  passHref>
+                <Link href="/challenges/categories" passHref>
                   <div className={styles.navBar_menu_link}>
-                    <Image src={Challenges} alt='' /><p className={styles.navBar_menu__text}>Challenges</p>
-                    </div>
+                    <Image src={Challenges} alt="" />
+                    <p className={styles.navBar_menu__text}>Challenges</p>
+                  </div>
                 </Link>
               </li>
               <li>
-                <Link  href='/challenges/profile' passHref>
+                <Link href="/challenges/profile" passHref>
                   <div className={styles.navBar_menu_link}>
-                    <Image src={Profile} alt='' /><p className={styles.navBar_menu__text}>Profile</p>
-                    </div>
-                  </Link>
+                    <Image src={Profile} alt="" />
+                    <p className={styles.navBar_menu__text}>Profile</p>
+                  </div>
+                </Link>
               </li>
             </ul>
           </div>
-
         </aside>
       </div>
-    )
-
-  } else {return null}
-
-}
+    );
+  } else {
+    return null;
+  }
+};
 
 export default NavBar;
