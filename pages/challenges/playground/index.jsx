@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import Coolicon from '../../../public/icons/coolicon.svg';
 import Image from 'next/image';
 import loadingIcon from '../../../public/icons/loading.png';
-import progressBar from '../../../public/icons/progressbar.png';
+/* import progressBar from '../../../public/icons/progressbar.png'; */
 import iconSucces from '../../../public/icons/successChallengeTest.png';
 import iconFail from '../../../public/icons/testFail.png';
 
@@ -300,11 +300,11 @@ const PlayGround = () => {
                   src={loadingIcon}
                   alt="Loading Icon"
                 ></Image>
-                <Image
+                {/* <Image
                   id="img-icon"
                   src={progressBar}
                   alt="Progress Bar"
-                ></Image>
+                ></Image> */}
                 Cargando ...
               </Loadign>
             )}
