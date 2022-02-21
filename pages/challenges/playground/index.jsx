@@ -208,6 +208,11 @@ const PlayGround = () => {
     confirmed: false
   });
 
+  fetch('http://54.210.111.183/api/v1/runner/on/163')
+    .then((res) => res.json())
+    .then((data) => (state.value = data.template));
+  console.log(state.value);
+
   const editorRef = useRef(null);
 
   function handleEditorDidMount(editor, monaco) {
@@ -279,11 +284,12 @@ const PlayGround = () => {
           height="90vh"
           width="100%"
           defaultLanguage="javascript"
-          defaultValue={state.value}
+          defaultValue={setState.value}
           theme="vs-dark"
           onMount={handleEditorDidMount}
           onChange={(value) => {
             onWrite(value);
+            console.log(state.value);
           }}
         />
         <ItemInfo>
@@ -312,6 +318,7 @@ const PlayGround = () => {
               <ItemButtonRun
                 onClick={() => {
                   onCheck();
+                  console.log(state.value);
                 }}
               >
                 Run Tests
