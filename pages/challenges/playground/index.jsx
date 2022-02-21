@@ -1,13 +1,11 @@
-import React, { useRef } from 'react';
-import Editor from '@monaco-editor/react';
-import Header from '../../../components/security/header/Header';
-import styled from '@emotion/styled';
-import Coolicon from '../../../public/icons/coolicon.svg';
-import Image from 'next/image';
-import loadingIcon from '../../../public/icons/loading.png';
-import progressBar from '../../../public/icons/progressbar.png';
-import iconSucces from '../../../public/icons/successChallengeTest.png';
-import iconFail from '../../../public/icons/testFail.png';
+import React, { useRef } from "react";
+import Editor from "@monaco-editor/react";
+import Header from "../../../components/security/header/Header";
+import styled from "@emotion/styled";
+import Coolicon from "../../../public/icons/coolicon.svg";
+import Image from "next/image";
+import loadingIcon from "../../../public/icons/loading.png";
+import iconFail from "../../../public/icons/testFail.png";
 
 const ContainerPG = styled.div`
   overflow-y: hidden;
@@ -17,8 +15,8 @@ const ContainerPG = styled.div`
   grid-template-rows: 60px 99%;
   grid-template-columns: 66% 34%;
   grid-template-areas:
-    ' header header'
-    ' codeView info';
+    " header header"
+    " codeView info";
 `;
 
 const ItemInfo = styled.div`
@@ -31,11 +29,9 @@ const ItemTitle = styled.div`
   height: 100px;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    90deg,
-    rgba(95, 100, 255, 0.7) 0%,
-    rgba(174, 78, 255, 0.85) 100%
-  );
+  background: linear-gradient(90deg,
+  rgba(95, 100, 255, 0.7) 0%,
+  rgba(174, 78, 255, 0.85) 100%);
   font-size: 34px;
   color: white;
 `;
@@ -62,18 +58,18 @@ const ItemParraf = styled.div`
 `;
 
 const datos = {
-  title: 'Reto # 1',
+  title: "Reto # 1",
   // eslint-disable-next-line prettier/prettier
   "instructions": "El ejercicio clasico e introductorio. Tan solo un Hola, Mundo!!. Hola ,Mundo! es el tradicional primer programa para acercarse al ambiente en un lenjuague de programación.",
   objectives:
-    "Crea una función que retorne una cadena de texto 'Hola mundo'. Corre el codigo y asegurate de que sea exitoso. Si tu solución es correcta estaràs listo para pasar al siguiente ejercicio y adentrarte en el maravilloso mundo de JavaScript.",
+    "Crea una función que retorne una cadena de texto \"Hola mundo\". Corre el codigo y asegurate de que sea exitoso. Si tu solución es correcta estaràs listo para pasar al siguiente ejercicio y adentrarte en el maravilloso mundo de JavaScript.",
   debug:
-    "When a test fails, a message is displayed describing what went wrong and for which input. You can also use the fact that any console output will be shown too. You can write to the console using:  'Console.log('Debug Message')'",
+    "When a test fails, a message is displayed describing what went wrong and for which input. You can also use the fact that any console output will be shown too. You can write to the console using:  \"Console.log(\"Debug Message\")\"",
   solved:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, .",
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\"s standard dummy text ever since the 1500s, .",
   error: {
-    errorMsj: 'Test Suite Failed to Run',
-    errorCode: 'Syntax Error'
+    errorMsj: "Test Suite Failed to Run",
+    errorCode: "Syntax Error"
   }
 };
 
@@ -81,6 +77,7 @@ const ItemCodeView = styled.div`
   height: 39%;
   box-shadow: 3px 3px 3px #a779ff;
   grid-area: codeView;
+
   & section {
     margin: 0;
   }
@@ -107,6 +104,7 @@ const ItemButtonRun = styled.div`
   font-size: 14px;
   font-weight: bold;
   padding-top: 3px;
+
   &:hover {
     color: white;
     background-color: #a779ff;
@@ -129,6 +127,7 @@ const ItemButtonSubmit = styled.div`
   border: 1px solid #a779ff;
   padding-top: 3px;
   margin: 0 30px;
+
   &:hover {
     color: #a779ff;
     background-color: white;
@@ -197,11 +196,11 @@ const FailTest = styled(SuccesTest)`
   border: 2px solid #9a0707;
 `;
 
-const ChallengeTrue = 'pasado';
+const ChallengeTrue = "pasado";
 
 const PlayGround = () => {
   const [state, setState] = React.useState({
-    value: '',
+    value: "",
     error: false,
     loading: false,
     deleted: false,
@@ -210,13 +209,31 @@ const PlayGround = () => {
 
   const editorRef = useRef(null);
 
-  function handleEditorDidMount(editor, monaco) {
+  function handleEditorDidMount (editor, monaco) {
     editorRef.current = editor;
+    fetch("http://54.210.111.183/api/v1/runner/on/163")
+    .then((data) => data.json())
+    .then((data) => {
+      editorRef.current.getModel().setValue(data.template);
+    });
   }
 
-  function handleEditorChange(value, event) {
-    console.log('here is the current model value:', value);
+  function handleEditorChange (value, event) {
+    console.log("here is the current model value:", value);
   }
+
+  const onSubmit = () => {
+    fetch("http://54.210.111.183/api/v1/runner/check/163",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          code: editorRef.current.getValue()
+        })
+      }).then(r => r.json()).then(data => {console.log(data);});
+  };
 
   const onWrite = (newValue) => {
     setState({
@@ -317,7 +334,7 @@ const PlayGround = () => {
                 Run Tests
                 <Image id="img-icon" src={Coolicon} alt="Run Challenge" />
               </ItemButtonRun>
-              <ItemButtonSubmit onClick={() => alert('Sending Challenge ...')}>
+              <ItemButtonSubmit onClick={onSubmit}>
                 Submit
               </ItemButtonSubmit>
             </ItemButton>
@@ -361,7 +378,7 @@ const PlayGround = () => {
               >
                 Regresar
               </ItemButtonRun>
-              <ItemButtonSubmit onClick={() => alert('Sending Challenge ...')}>
+              <ItemButtonSubmit onClick={onSubmit}>
                 Submit
               </ItemButtonSubmit>
             </ItemButton>
