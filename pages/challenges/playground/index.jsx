@@ -196,35 +196,33 @@ const FailTest = styled(SuccesTest)`
   border: 2px solid #9a0707;
 `;
 
-const ChallengeTrue = "pasado";
-
 const PlayGround = () => {
   const [state, setState] = React.useState({
-    value: "",
+    value: '',
     error: false,
     loading: false,
     deleted: false,
-    confirmed: false
+    confirmed: false,
+    success: ''
   });
 
   const editorRef = useRef(null);
 
-  function handleEditorDidMount (editor, monaco) {
+  function handleEditorDidMount(editor, monaco) {
     editorRef.current = editor;
-    fetch("http://54.210.111.183/api/v1/runner/on/163")
-    .then((data) => data.json())
-    .then((data) => {
-      editorRef.current.getModel().setValue(data.template);
-    });
+    fetch('http://54.210.111.183/api/v1/runner/on/163')
+      .then((data) => data.json())
+      .then((data) => {
+        editorRef.current.getModel().setValue(data.template);
+      });
   }
 
-  function handleEditorChange (value, event) {
-    console.log("here is the current model value:", value);
+  function handleEditorChange(value, event) {
+    console.log('here is the current model value:', value);
   }
 
   const onSubmit = () => {
-    fetch("http://54.210.111.183/api/v1/runner/check/163",
-      {
+    fetch('http://54.210.111.183/api/v1/runner/check/163', {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -232,8 +230,16 @@ const PlayGround = () => {
         body: JSON.stringify({
           code: editorRef.current.getValue()
         })
-      }).then(r => r.json()).then(data => {console.log(data);});
+      }).then(r => r.json()).then(data => onSucces(data.test_result.status));
   };
+
+  const onSucces = (data) => {
+    console.log(data)
+    setState({
+      ...state,
+      success: data
+    })
+  }
 
   const onWrite = (newValue) => {
     setState({
@@ -278,12 +284,14 @@ const PlayGround = () => {
   React.useEffect(() => {
     if (!!state.loading) {
       setTimeout(() => {
-        if (state.value === ChallengeTrue) {
+        if (state.success === 'failed') {
           onConfirmed();
+          console.log('onConfirmed');
         } else {
           onError();
+          console.log('onError');
         }
-      }, 3000);
+      }, 4000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.loading]);
@@ -317,11 +325,6 @@ const PlayGround = () => {
                   src={loadingIcon}
                   alt="Loading Icon"
                 ></Image>
-                <Image
-                  id="img-icon"
-                  src={progressBar}
-                  alt="Progress Bar"
-                ></Image>
                 Cargando ...
               </Loadign>
             )}
@@ -329,12 +332,13 @@ const PlayGround = () => {
               <ItemButtonRun
                 onClick={() => {
                   onCheck();
+                  onSubmit()
                 }}
               >
                 Run Tests
                 <Image id="img-icon" src={Coolicon} alt="Run Challenge" />
               </ItemButtonRun>
-              <ItemButtonSubmit onClick={onSubmit}>
+              <ItemButtonSubmit>
                 Submit
               </ItemButtonSubmit>
             </ItemButton>
