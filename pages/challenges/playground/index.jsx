@@ -1,11 +1,13 @@
-import React, { useRef } from "react";
-import Editor from "@monaco-editor/react";
-import Header from "../../../components/security/header/Header";
-import styled from "@emotion/styled";
-import Coolicon from "../../../public/icons/coolicon.svg";
-import Image from "next/image";
-import loadingIcon from "../../../public/icons/loading.png";
-import iconFail from "../../../public/icons/testFail.png";
+import React, { useRef } from 'react';
+import Editor from '@monaco-editor/react';
+import Header from '../../../components/security/header/Header';
+import styled from '@emotion/styled';
+import Coolicon from '../../../public/icons/coolicon.svg';
+import Image from 'next/image';
+import iconSuccess from '../../../public/icons/successChallengeTest.png';
+import iconFail from '../../../public/icons/testFail.png';
+import loadingBar from '../../../public/icons/progressbar.png';
+import Link from 'next/link';
 
 const ContainerPG = styled.div`
   overflow-y: hidden;
@@ -15,8 +17,8 @@ const ContainerPG = styled.div`
   grid-template-rows: 60px 99%;
   grid-template-columns: 66% 34%;
   grid-template-areas:
-    " header header"
-    " codeView info";
+    ' header header'
+    ' codeView info';
 `;
 
 const ItemInfo = styled.div`
@@ -29,9 +31,11 @@ const ItemTitle = styled.div`
   height: 100px;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(90deg,
-  rgba(95, 100, 255, 0.7) 0%,
-  rgba(174, 78, 255, 0.85) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(95, 100, 255, 0.7) 0%,
+    rgba(174, 78, 255, 0.85) 100%
+  );
   font-size: 34px;
   color: white;
 `;
@@ -58,18 +62,18 @@ const ItemParraf = styled.div`
 `;
 
 const datos = {
-  title: "Reto # 1",
+  title: 'Reto # 1',
   // eslint-disable-next-line prettier/prettier
-  "instructions": "El ejercicio clasico e introductorio. Tan solo un Hola, Mundo!!. Hola ,Mundo! es el tradicional primer programa para acercarse al ambiente en un lenjuague de programación.",
+  "instructions": "El ejercicio clasico e introductorio. Tan solo una suma de dos valores este tradicional primer programa para acercarse al ambiente en un lenjuague de programación.",
   objectives:
-    "Crea una función que retorne una cadena de texto \"Hola mundo\". Corre el codigo y asegurate de que sea exitoso. Si tu solución es correcta estaràs listo para pasar al siguiente ejercicio y adentrarte en el maravilloso mundo de JavaScript.",
+    'Crea una función que retorne la suma de dos variables.  Asegurate de que sea exitoso. Si tu solución es correcta estaràs listo para pasar al siguiente ejercicio y adentrarte en el maravilloso mundo de JavaScript.',
   debug:
-    "When a test fails, a message is displayed describing what went wrong and for which input. You can also use the fact that any console output will be shown too. You can write to the console using:  \"Console.log(\"Debug Message\")\"",
+    'When a test fails, a message is displayed describing what went wrong and for which input. You can also use the fact that any console output will be shown too. You can write to the console using:  "Console.log("Debug Message")"',
   solved:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\"s standard dummy text ever since the 1500s, .",
+    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s, .',
   error: {
-    errorMsj: "Test Suite Failed to Run",
-    errorCode: "Syntax Error"
+    errorMsj: 'Test Suite Failed to Run',
+    errorCode: 'Syntax Error'
   }
 };
 
@@ -136,7 +140,7 @@ const ItemButtonSubmit = styled.div`
   }
 `;
 const Loadign = styled.div`
-  height: 81%;
+  height: 89%;
   width: 34%;
   padding: 0 1rem;
   position: absolute;
@@ -154,8 +158,29 @@ const Loadign = styled.div`
   color: black;
 `;
 
+const LoadingImg = styled.div`
+  width: 70px;
+  height: 70px;
+  border: 10px solid #eee;
+  border-top: 10px solid #a779ff;
+  border-radius: 50%;
+  animation-name: girar;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  z-index: 2;
+  @keyframes girar {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+`;
+
 const SuccesConteiner = styled.div`
-  height: 80%;
+  height: 85%;
   width: 95%;
   margin: 0 auto;
   padding: 1rem;
@@ -189,12 +214,14 @@ const SuccesTest = styled.p`
   gap: 1rem;
 `;
 const FailContainer = styled(SuccesConteiner)`
-  border: 2px solid #9a0707;
+  border: 2px solid #f04925;
 `;
 
 const FailTest = styled(SuccesTest)`
-  border: 2px solid #9a0707;
+  border: 2px solid #f04925;
 `;
+
+const FailParraf = styled(SuccesParraf)``;
 
 const PlayGround = () => {
   const [state, setState] = React.useState({
@@ -203,7 +230,8 @@ const PlayGround = () => {
     loading: false,
     deleted: false,
     confirmed: false,
-    success: ''
+    success: '',
+    message: ''
   });
 
   const editorRef = useRef(null);
@@ -221,25 +249,42 @@ const PlayGround = () => {
     console.log('here is the current model value:', value);
   }
 
-  const onSubmit = () => {
+  const onTest = () => {
     fetch('http://54.210.111.183/api/v1/runner/check/163', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          code: editorRef.current.getValue()
-        })
-      }).then(r => r.json()).then(data => onSucces(data.test_result.status));
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        code: editorRef.current.getValue()
+      })
+    })
+      .then((r) => r.json())
+      .then((data) => onSucces(data));
   };
 
-  const onSucces = (data) => {
-    console.log(data)
+  const onSubmit = () => {
+    fetch('http://54.210.111.183/api/v1/runner/check/163', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        challengeId: 163,
+        userId: 'xxx',
+        code: 'Challenge success'
+      })
+    });
+  };
+
+  const onSucces = async (data) => {
+    console.log(data.test_result.tests[0].failure_messages[0]);
     setState({
       ...state,
-      success: data
-    })
-  }
+      success: data.test_result.status,
+      message: data.test_result.message
+    });
+  };
 
   const onWrite = (newValue) => {
     setState({
@@ -268,7 +313,8 @@ const PlayGround = () => {
     setState({
       ...state,
       confirmed: false,
-      error: false
+      error: false,
+      success: ''
     });
   };
 
@@ -282,20 +328,15 @@ const PlayGround = () => {
   };
 
   React.useEffect(() => {
-    if (!!state.loading) {
-      setTimeout(() => {
-        if (state.success === 'failed') {
-          onConfirmed();
-          console.log('onConfirmed');
-        } else {
-          onError();
-          console.log('onError');
-        }
-      }, 4000);
+    if (!state.loading) {
+      if (state.success === 'passed') {
+        onConfirmed();
+      } else if (state.success === 'failed') {
+        onError();
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.loading]);
-
+  }, [state.success]);
   if (!state.confirmed && !state.error) {
     return (
       <ContainerPG>
@@ -320,25 +361,28 @@ const PlayGround = () => {
           <ItemCodeView>
             {state.loading && (
               <Loadign>
-                <Image
-                  id="img-icon"
-                  src={loadingIcon}
-                  alt="Loading Icon"
-                ></Image>
-                Cargando ...
+                <LoadingImg />
+                <Image id="img-icon" src={loadingBar} alt="Run Challenge" />
+                Ejecutando los test ...
               </Loadign>
             )}
             <ItemButton>
               <ItemButtonRun
                 onClick={() => {
                   onCheck();
-                  onSubmit()
+                  onTest();
                 }}
               >
                 Run Tests
                 <Image id="img-icon" src={Coolicon} alt="Run Challenge" />
               </ItemButtonRun>
-              <ItemButtonSubmit>
+              <ItemButtonSubmit
+                onClick={() => {
+                  !state.confirmed
+                    ? alert('Completa el desafio primero')
+                    : undefined;
+                }}
+              >
                 Submit
               </ItemButtonSubmit>
             </ItemButton>
@@ -362,14 +406,15 @@ const PlayGround = () => {
         <ItemInfo>
           <SuccesConteiner>
             <SuccesTest>
-              <Image id="img-icon" src={iconSucces} alt="Loading Icon"></Image>5
-              Test pasados
+              <Image id="img-icon" src={iconSuccess} alt="Loading Icon"></Image>
+              5 Test pasados
             </SuccesTest>
             <SuccesDialogue>
               Parece que pasaste tu primer desafio
               <SuccesParraf>
                 Sigue adelante y no te rindas. aun queda mucho para llegar a la
-                cima, haz click sobre el boton submit para guardar tu progreso.
+                cima, haz click sobre el boton submit para guardar tu progreso y
+                regresar a la seccion de categorias.
               </SuccesParraf>
             </SuccesDialogue>
           </SuccesConteiner>
@@ -382,9 +427,17 @@ const PlayGround = () => {
               >
                 Regresar
               </ItemButtonRun>
-              <ItemButtonSubmit onClick={onSubmit}>
-                Submit
-              </ItemButtonSubmit>
+              <Link href="/challenges/categories" passHref>
+                <ItemButtonSubmit
+                  onClick={() => {
+                    !state.confirmed
+                      ? alert('Completa el desafio primero')
+                      : onSubmit();
+                  }}
+                >
+                  Submit
+                </ItemButtonSubmit>
+              </Link>
             </ItemButton>
           </ItemCodeView>
         </ItemInfo>
@@ -411,9 +464,8 @@ const PlayGround = () => {
             </FailTest>
             <SuccesDialogue>
               Encontramos unos errores en tu codigo
-              <SuccesParraf>
-                No te rindas, recuerda que que nunca hay que rendirse.
-              </SuccesParraf>
+              <FailParraf>{state.message}</FailParraf>
+              <FailParraf>No te rindas, de los errores se aprende.</FailParraf>
             </SuccesDialogue>
           </FailContainer>
           <ItemCodeView>

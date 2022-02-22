@@ -10,13 +10,14 @@ const Container = styled.div`
   height: 100vh;
   display: grid;
   grid-template-columns: 18% 41% 41%;
-  grid-template-rows: 76px 40% 8% 7% 43%;
+  grid-template-rows: 55px 40% 55%;
   grid-template-areas:
     ' header header header'
     ' navbar introduction introduction'
-    ' navbar buscador buscador'
-    ' navbar botones botones'
     ' navbar containerCards containerCards';
+  overflow-x: hidden;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
 `;
 const Introduction = styled.section`
   width: 80vw;
@@ -105,6 +106,7 @@ const InputButtonProgress = styled(InputButton)`
 
 const ContainerBoxCards = styled.div`
   grid-area: containerCards;
+  margin-top: 10rem;
   display: grid;
   grid-template-columns: 45% 45%;
   grid-template-rows: 50% 50%;
@@ -260,10 +262,10 @@ const Categories = () => {
               <Picture />
             </BoxImg>
           </Introduction>
-          <Input placeholder="Buscar" />
+          {/* <Input placeholder="Buscar" />
           <InputButton>Todos los ejercicios 45</InputButton>
           <InputButtonCompleted>Completados 5</InputButtonCompleted>
-          <InputButtonProgress>En progreso 2</InputButtonProgress>
+          <InputButtonProgress>En progreso 2</InputButtonProgress> */}
           <ContainerBoxCards>
             <BoxCard>
               <BoxImage />

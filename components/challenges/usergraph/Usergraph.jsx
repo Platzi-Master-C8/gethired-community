@@ -1,4 +1,5 @@
 import React from 'react';
+import Chart from 'chart.js/auto'; // !no borrar por que no funciona
 import { Bar } from 'react-chartjs-2';
 import styled from '@emotion/styled';
 
@@ -120,6 +121,7 @@ const UserGraph = ({ activity }) => {
               },
               scales: {
                 xAxes: {
+                  type: 'category',
                   grid: {
                     display: false
                   }
