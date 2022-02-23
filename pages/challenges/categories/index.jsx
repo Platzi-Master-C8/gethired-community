@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { useUser } from '@auth0/nextjs-auth0';
 import Header from '../../../components/security/header/Header';
 import Navbar from '../../../components/security/navbar/Navbar';
 import Link from 'next/link';
+import CategoryCard from '../../../components/challenges/categories/CategoryCard';
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  //height: 100vh; You were limiting the height of the container, that's why not all the content was vissible
   display: grid;
   grid-template-columns: 18% 41% 41%;
   grid-template-rows: 55px 40% 55%;
@@ -67,16 +68,20 @@ const Input = styled.input`
   border-radius: 5px;
   font-size: 2rem;
   padding-left: 1rem;
+
   &:focus {
     background-color: #555bff;
     color: white;
+
     &::placeholder {
       color: white;
     }
   }
+
   &::placeholder {
     color: black;
   }
+
   @media only screen and (max-width: 1024px) {
     width: 65%;
   }
@@ -90,6 +95,7 @@ const InputButton = styled.button`
   background-color: white;
   margin-left: 2rem;
   font-size: 1.4rem;
+
   &:hover {
     background-color: #555bff;
     color: white;
@@ -106,19 +112,17 @@ const InputButtonProgress = styled(InputButton)`
 
 const ContainerBoxCards = styled.div`
   grid-area: containerCards;
-  margin-top: 10rem;
   display: grid;
+  margin-top: 2rem;
   grid-template-columns: 45% 45%;
-  grid-template-rows: 50% 50%;
-  gap: 0 4rem;
-  justify-content: space-evenly;
-  width: 100%;
+  gap: 4rem 4rem;
+  place-items: center;
   min-height: 35rem;
-  @media only screen and (max-width: 1024px) {
+  @media only screen and (max-width: 640px) {
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 25% 25% 25% 25%;
-    gap: 2rem;
+    gap: 4rem;
     height: 50rem;
   }
 `;
@@ -140,9 +144,11 @@ const BoxCard = styled.div`
     ' img dificult botonCard'
     ' img texto texto';
   transition: transform 0.3s;
+
   &:hover {
     transform: scale(1.1);
   }
+
   @media only screen and (max-width: 1024px) {
     grid-row: 1/2;
     grid-column: 1/2;
@@ -228,6 +234,7 @@ const ButtonToChallenge = styled.button`
   background: linear-gradient(to right, #5f64ff, #ae4eff);
   color: white;
   transition: transform 0.5s;
+
   &:hover {
     transform: scale(1.1);
   }
@@ -243,12 +250,21 @@ const TextCard = styled.p`
 
 const Categories = () => {
   const { user } = useUser();
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    fetch('http://54.210.111.183/api/v1/challenges')
+    .then(res => res.json())
+    .then(data => {
+      setCategories(data.data);
+    });
+    console.log(categories);
+  }, []);
   if (user) {
     return (
       <>
         <Container>
-          <Navbar />
           <Header />
+          <Navbar />
           <Introduction>
             <TextBox>
               <Title>Categorias</Title>
@@ -267,42 +283,24 @@ const Categories = () => {
           <InputButtonCompleted>Completados 5</InputButtonCompleted>
           <InputButtonProgress>En progreso 2</InputButtonProgress> */}
           <ContainerBoxCards>
-            <BoxCard>
-              <BoxImage />
-              <TitleCard>Algoritmos</TitleCard>
-              <DificultButtonHard>Dificil</DificultButtonHard>
-              <Link href="/challenges/playground" passHref>
-                <ButtonToChallenge>Resolver =</ButtonToChallenge>
-              </Link>
-              <TextCard>La multiplicacion mas grande</TextCard>
-            </BoxCard>
-            <BoxCardLeft>
-              <BoxImage />
-              <TitleCard>Matematicas</TitleCard>
-              <DificultButtonMedium>Medio</DificultButtonMedium>
-              <Link href="/challenges/playground" passHref>
-                <ButtonToChallenge>Resolver =</ButtonToChallenge>
-              </Link>
-              <TextCard>Despejando variables</TextCard>
-            </BoxCardLeft>
-            <BoxCardRigth>
-              <BoxImage />
-              <TitleCard>Logica</TitleCard>
-              <DificultButtonHard>Dificil</DificultButtonHard>
-              <Link href="/challenges/playground" passHref>
-                <ButtonToChallenge>Resolver =</ButtonToChallenge>
-              </Link>
-              <TextCard>Manipulacion de arrays</TextCard>
-            </BoxCardRigth>
-            <BoxCardRigthDown>
-              <BoxImage />
-              <TitleCard>Algoritmos</TitleCard>
-              <DificultButtonEasy>Facil</DificultButtonEasy>
-              <Link href="/challenges/playground" passHref>
-                <ButtonToChallenge>Resolver =</ButtonToChallenge>
-              </Link>
-              <TextCard>Fizz Buzz</TextCard>
-            </BoxCardRigthDown>
+            {categories.map(category => (
+              <CategoryCard>
+                <BoxImage />
+                <TitleCard>{category.name}</TitleCard>
+                <DificultButtonHard>{category.difficulty[0].toUpperCase() + category.difficulty.slice(1)}</DificultButtonHard>
+                <Link href={{ pathname: `/challenges/playground/${category.id}` }} passHref>
+                  <ButtonToChallenge>Resolver</ButtonToChallenge>
+                </Link>
+                <TextCard>
+                  {
+                    category.description.length > 60 ?
+                      category.description.substring(0, 60) + '...' :
+                      category.description
+                  }
+                < /TextCard>
+              </CategoryCard>
+            ))}
+
           </ContainerBoxCards>
         </Container>
       </>

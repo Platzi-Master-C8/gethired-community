@@ -6,8 +6,8 @@ import Coolicon from '../../../public/icons/coolicon.svg';
 import Image from 'next/image';
 import iconSuccess from '../../../public/icons/successChallengeTest.png';
 import iconFail from '../../../public/icons/testFail.png';
-import loadingBar from '../../../public/icons/progressbar.png';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const ContainerPG = styled.div`
   overflow-y: hidden;
@@ -31,11 +31,9 @@ const ItemTitle = styled.div`
   height: 100px;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    90deg,
-    rgba(95, 100, 255, 0.7) 0%,
-    rgba(174, 78, 255, 0.85) 100%
-  );
+  background: linear-gradient(90deg,
+  rgba(95, 100, 255, 0.7) 0%,
+  rgba(174, 78, 255, 0.85) 100%);
   font-size: 34px;
   color: white;
 `;
@@ -64,7 +62,7 @@ const ItemParraf = styled.div`
 const datos = {
   title: 'Reto # 1',
   // eslint-disable-next-line prettier/prettier
-  "instructions": "El ejercicio clasico e introductorio. Tan solo una suma de dos valores este tradicional primer programa para acercarse al ambiente en un lenjuague de programación.",
+  'instructions': 'El ejercicio clasico e introductorio. Tan solo una suma de dos valores este tradicional primer programa para acercarse al ambiente en un lenjuague de programación.',
   objectives:
     'Crea una función que retorne la suma de dos variables.  Asegurate de que sea exitoso. Si tu solución es correcta estaràs listo para pasar al siguiente ejercicio y adentrarte en el maravilloso mundo de JavaScript.',
   debug:
@@ -233,24 +231,26 @@ const PlayGround = () => {
     success: '',
     message: ''
   });
-
+  const {
+    query: { id }
+  } = useRouter();
   const editorRef = useRef(null);
 
-  function handleEditorDidMount(editor, monaco) {
+  function handleEditorDidMount (editor, monaco) {
     editorRef.current = editor;
-    fetch('http://54.210.111.183/api/v1/runner/on/163')
-      .then((data) => data.json())
-      .then((data) => {
-        editorRef.current.getModel().setValue(data.template);
-      });
+    fetch(`http://54.210.111.183/api/v1/runner/on/${id}`)
+    .then((data) => data.json())
+    .then((data) => {
+      editorRef.current.getModel().setValue(data.template);
+    });
   }
 
-  function handleEditorChange(value, event) {
+  function handleEditorChange (value, event) {
     console.log('here is the current model value:', value);
   }
 
   const onTest = () => {
-    fetch('http://54.210.111.183/api/v1/runner/check/163', {
+    fetch(`http://54.210.111.183/api/v1/runner/check/${id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -259,12 +259,12 @@ const PlayGround = () => {
         code: editorRef.current.getValue()
       })
     })
-      .then((r) => r.json())
-      .then((data) => onSucces(data));
+    .then((r) => r.json())
+    .then((data) => onSucces(data));
   };
 
   const onSubmit = () => {
-    fetch('http://54.210.111.183/api/v1/runner/check/163', {
+    fetch(`http://54.210.111.183/api/v1/runner/check/${id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -342,11 +342,11 @@ const PlayGround = () => {
       <ContainerPG>
         <Header />
         <Editor
-          height="90vh"
-          width="100%"
-          defaultLanguage="javascript"
+          height='90vh'
+          width='100%'
+          defaultLanguage='javascript'
           defaultValue={state.value}
-          theme="vs-dark"
+          theme='vs-dark'
           onMount={handleEditorDidMount}
           onChange={(value) => {
             onWrite(value);
@@ -362,7 +362,7 @@ const PlayGround = () => {
             {state.loading && (
               <Loadign>
                 <LoadingImg />
-                <Image id="img-icon" src={loadingBar} alt="Run Challenge" />
+                <Image id='img-icon' src='' alt='Run Challenge' />
                 Ejecutando los test ...
               </Loadign>
             )}
@@ -374,7 +374,7 @@ const PlayGround = () => {
                 }}
               >
                 Run Tests
-                <Image id="img-icon" src={Coolicon} alt="Run Challenge" />
+                <Image id='img-icon' src={Coolicon} alt='Run Challenge' />
               </ItemButtonRun>
               <ItemButtonSubmit
                 onClick={() => {
@@ -395,18 +395,18 @@ const PlayGround = () => {
       <ContainerPG>
         <Header />
         <Editor
-          height="90vh"
-          width="100%"
-          defaultLanguage="javascript"
+          height='90vh'
+          width='100%'
+          defaultLanguage='javascript'
           defaultValue={state.value}
-          theme="vs-dark"
+          theme='vs-dark'
           onMount={handleEditorDidMount}
           onChange={handleEditorChange}
         />
         <ItemInfo>
           <SuccesConteiner>
             <SuccesTest>
-              <Image id="img-icon" src={iconSuccess} alt="Loading Icon"></Image>
+              <Image id='img-icon' src={iconSuccess} alt='Loading Icon'></Image>
               5 Test pasados
             </SuccesTest>
             <SuccesDialogue>
@@ -427,7 +427,7 @@ const PlayGround = () => {
               >
                 Regresar
               </ItemButtonRun>
-              <Link href="/challenges/categories" passHref>
+              <Link href='/challenges/categories' passHref>
                 <ItemButtonSubmit
                   onClick={() => {
                     !state.confirmed
@@ -448,18 +448,18 @@ const PlayGround = () => {
       <ContainerPG>
         <Header />
         <Editor
-          height="90vh"
-          width="100%"
-          defaultLanguage="javascript"
+          height='90vh'
+          width='100%'
+          defaultLanguage='javascript'
           defaultValue={state.value}
-          theme="vs-dark"
+          theme='vs-dark'
           onMount={handleEditorDidMount}
           onChange={handleEditorChange}
         />
         <ItemInfo>
           <FailContainer>
             <FailTest>
-              <Image id="img-icon" src={iconFail} alt="Loading Icon"></Image>0
+              <Image id='img-icon' src={iconFail} alt='Loading Icon'></Image>0
               Test pasados
             </FailTest>
             <SuccesDialogue>
