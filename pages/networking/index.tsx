@@ -40,23 +40,21 @@ function Home() {
   const LIMIT_PAGINATION = 7;
   const api = `https://get-hired-forum-dev.herokuapp.com/api/discussions`;
 
-
-  const [discussions, setDiscussions] = useState(0);  //Brings the number of discussions in the whole array with no pagination
+  const [discussions, setDiscussions] = useState(0); //Brings the number of discussions in the whole array with no pagination
   const [offSetPagination, setOffSetPagination] = useState(0);
-  const [requestUrl, setRequestUrl] = useState(`${api}?limit=${LIMIT_PAGINATION}&offset=${offSetPagination}`);
+  const [requestUrl, setRequestUrl] = useState(
+    `${api}?limit=${LIMIT_PAGINATION}&offset=${offSetPagination}`
+  );
   const [data, setData] = useState([]);
 
   let names = [];
   const classes = useStyles();
 
   useEffect(() => {
-
-    callApi(requestUrl)
-      .then((response) => {
-        setDiscussions(response.count);
-        setData(response.rows);
-      })
-
+    callApi(requestUrl).then((response) => {
+      setDiscussions(response.count);
+      setData(response.rows);
+    });
   }, [requestUrl]);
 
   names = getUserNames(data);
@@ -67,7 +65,7 @@ function Home() {
       <Navbar />
 
       <Container style={{ fontSize: '1em' }} fixed maxWidth="md">
-        <div className={classes.row} >
+        <div className={classes.row}>
           <Typography
             className={classes.forum__title}
             variant="h5"
@@ -82,16 +80,26 @@ function Home() {
 
         {/* <div className={classes.row}> */}
         <Grid container spacing={2}>
-          <Grid item xs={12} md={8} sx={{
-            display: 'flex',
-            justifyContent: 'flex-start'
-          }}>
+          <Grid
+            item
+            xs={12}
+            md={8}
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-start'
+            }}
+          >
             <SearchDiscussion />
           </Grid>
-          <Grid item xs={12} md={4} sx={{
-            display: 'flex',
-            justifyContent: 'flex-end'
-          }}>
+          <Grid
+            item
+            xs={12}
+            md={4}
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-end'
+            }}
+          >
             <SelectCategories />
           </Grid>
         </Grid>
@@ -104,21 +112,31 @@ function Home() {
         >
           Suggested discussions
         </Typography>
-        <br /><br />
-        {(data.length > 0 && names.length > 0) && <ListSuggestedDiscussions data={data} names={names} />}
+        <br />
+        <br />
+        {data.length > 0 && names.length > 0 && (
+          <ListSuggestedDiscussions data={data} names={names} />
+        )}
         <Stack spacing={2} justifyContent="center" alignItems="center">
           {discussions > 0 && (
-            <Pagination count={Math.ceil(discussions / LIMIT_PAGINATION)} color="primary" onChange={(event: React.ChangeEvent<unknown>, page: number) => {
-              setRequestUrl(`${api}?limit=${LIMIT_PAGINATION}&offset=${(page - 1) * LIMIT_PAGINATION}`)
-            }} />
-          )
-          }
+            <Pagination
+              count={Math.ceil(discussions / LIMIT_PAGINATION)}
+              color="primary"
+              onChange={(event: React.ChangeEvent<unknown>, page: number) => {
+                setRequestUrl(
+                  `${api}?limit=${LIMIT_PAGINATION}&offset=${
+                    (page - 1) * LIMIT_PAGINATION
+                  }`
+                );
+              }}
+            />
+          )}
         </Stack>
         <style global jsx>{`
-        html {
-          font-size: initial;
-        }
-      `}</style>
+          html {
+            font-size: initial;
+          }
+        `}</style>
       </Container>
     </>
   );
