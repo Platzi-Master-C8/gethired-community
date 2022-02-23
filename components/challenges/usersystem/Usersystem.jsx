@@ -16,16 +16,16 @@ export const SystemContainer = styled.div`
 `;
 
 export const PointsCircle = styled.div`
-   width: 20rem;
-   height: 20rem;
-   border-radius: 50%;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   border: 4rem solid #555BFF;
-   margin-bottom: .5rem;
- `;
+  width: 20rem;
+  height: 20rem;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 4rem solid #555bff;
+  margin-bottom: 0.5rem;
+`;
 
 export const RankCircle = styled(PointsCircle)``;
 
@@ -34,7 +34,6 @@ export const Text = styled.p`
   font-size: 2rem;
   padding: 1rem 0;
 `;
-
 
 const Usersystem = ({ data, ranks }) => {
   if (data && ranks) {
@@ -69,6 +68,5 @@ const Usersystem = ({ data, ranks }) => {
     );
   }
 };
-
 
 export default Usersystem;
