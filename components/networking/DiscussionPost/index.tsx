@@ -54,19 +54,37 @@ function DiscussionPost(props: DiscussionProps) {
             fontSize="large"
           />
 
-          <Typography paragraph m={0} px={1}>
-            {props.created_by}
-          </Typography>
-          <Typography paragraph m={0}>
-            {props.created_at}
-          </Typography>
+    return (
+        <Box display="flex" flexDirection="column" flexGrow={1}>
+            <Box p={2}>
+                <Typography variant='h4' fontWeight='600' >
+                    {props.title}
+                </ Typography>
+                <Box pt={2}>
+                    {paragraphs.map((content, index) => (
+                        <Typography key={index} paragraph>
+                            {content}
+                        </Typography>
+                    ))}
+                </Box>
+            </Box>
+            <Box display="flex" justifyContent="space-between">
+                <Box flexGrow="1" display="flex" alignItems="center">
+                    <AccountCircleTwoToneIcon className={classes.userIcon} fontSize='large' />
+
+                    <Typography paragraph>
+                        {props.created_by}
+                    </ Typography>
+                    <Typography paragraph >
+                        {props.created_at}
+                    </ Typography>
+                </Box>
+                <Box flexShrink="1" display="flex" alignContent="center">
+                    <ReportButton />
+                </Box>
+            </Box>
         </Box>
-        <Box pr={1.5} sx={{ display: 'flex', alignContent: 'center' }}>
-          <ReportButton />
-        </Box>
-      </Box>
-    </div>
-  );
+    );
 }
 
 export { DiscussionPost };

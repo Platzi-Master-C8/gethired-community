@@ -9,6 +9,8 @@ import { DiscussionLikeCounter } from '../../../components/networking/Discussion
 import Box from '@mui/system/Box';
 import Skeleton from '@mui/material/Skeleton';
 import { FixedBottomNavigation } from '../../../components/networking/CommentsSystem';
+import Header from '../../../components/security/header/Header';
+import Navbar from '../../../components/security/navbar/Navbar';
 
 const useStyle = makeStyles({
   likeButtonContainer: {
@@ -102,9 +104,69 @@ function Discussion() {
         html {
           font-size: initial;
         }
-      `}</style>
-    </Container>
-  );
+    }, [id])
+
+
+    return (
+        <>
+            <Header />
+            <Navbar />
+
+            <Container maxWidth="lg">
+                <Container>
+                    <Grid container justifyContent='center'>
+                        <Grid item sm={11} md={7} lg={11} xl={6}>
+                            {loading
+                                ?
+                                <div className={classes.Discussion_bread}>
+                                    <Skeleton variant='text' width={180} height={30} />
+                                </div>
+                                :
+                                <DiscussionBreadCrumb />
+                            }
+                        </Grid>
+                    </Grid>
+                </Container>
+                <Grid container justifyContent='center'>
+                    {
+                        loading
+                            ? (
+                                <div className={classes.Discussion_post}>
+                                    <Skeleton variant='rectangular' width={900} height={500} />
+                                </div>
+                            ) : (
+                                discussionData.content &&
+                                <Box sx={{ mx: 6 }} display="flex" flexDirection="row" justifyContent="center" flexGrow={1}>
+                                    <DiscussionLikeCounter
+                                        isLiked={discussionData.isActive}
+                                        likes={0}
+                                        discussionId={discussionId}
+                                        userId={101} // TODO: Get the global user id
+                                        boxProps={{
+                                            pt: '1em'
+                                        }}
+                                    />
+
+                                    <DiscussionPost
+                                        title={discussionData.title}
+                                        content={discussionData.content}
+                                        created_at={discussionData.createdAt.slice(0, 10)}
+                                        created_by={discussionData.createdBy}
+                                    />
+                                </Box>
+                            )
+                    }
+
+                    <FixedBottomNavigation />
+                </Grid>
+                <style global jsx>{`
+                html {
+                    font-size: initial;
+                }
+            `}</style>
+            </Container>
+        </>
+    );
 }
 
 export default Discussion;
