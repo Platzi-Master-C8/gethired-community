@@ -31,6 +31,7 @@ const Header = () => {
 
 		if(localStorage.getItem('access_token') && !user) {
 			try {
+				// Getting the user info from Auth0 directly
 				const userReq = await fetch(
 					`${auth0.domain}/userinfo`,
 					{
@@ -38,6 +39,22 @@ const Header = () => {
 					}
 				);
 				setUser(await userReq.json());
+
+				// Signup on our database - Return data is not used
+				fetch('https://ms-login.herokuapp.com/auth/sign_up', {
+					method: 'POST',
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem('access_token')}`
+					}
+				});
+
+				// Loging on our database - Return data is not used
+				fetch('https://ms-login.herokuapp.com/auth/sign_in', {
+					method: 'POST',
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem('access_token')}`
+					}
+				});
 			} catch(err) {
 				localStorage.removeItem('access_token');
 			}
