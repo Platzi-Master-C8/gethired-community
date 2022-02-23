@@ -6,7 +6,6 @@ import Coolicon from '../../../public/icons/coolicon.svg';
 import Image from 'next/image';
 import iconSuccess from '../../../public/icons/successChallengeTest.png';
 import iconFail from '../../../public/icons/testFail.png';
-import loadingBar from '../../../public/icons/progressbar.png';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -363,7 +362,7 @@ const PlayGround = () => {
             {state.loading && (
               <Loadign>
                 <LoadingImg />
-                <Image id='img-icon' src={loadingBar} alt='Run Challenge' />
+                <Image id='img-icon' src='' alt='Run Challenge' />
                 Ejecutando los test ...
               </Loadign>
             )}
