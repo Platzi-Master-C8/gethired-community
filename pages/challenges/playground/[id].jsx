@@ -12,7 +12,6 @@ import { useRouter } from 'next/router';
 const ContainerPG = styled.div`
   overflow-y: hidden;
   width: 100%;
-  height: 100%;
   display: grid;
   grid-template-rows: 60px 99%;
   grid-template-columns: 66% 34%;
@@ -282,7 +281,7 @@ const PlayGround = () => {
     setState({
       ...state,
       success: data.test_result.status,
-      message: data.test_result.message
+      message: data.test_result.status
     });
   };
 
@@ -362,7 +361,6 @@ const PlayGround = () => {
             {state.loading && (
               <Loadign>
                 <LoadingImg />
-                <Image id='img-icon' src='' alt='Run Challenge' />
                 Ejecutando los test ...
               </Loadign>
             )}
@@ -410,7 +408,7 @@ const PlayGround = () => {
               5 Test pasados
             </SuccesTest>
             <SuccesDialogue>
-              Parece que pasaste tu primer desafio
+              Felicidades pasaste el desafio
               <SuccesParraf>
                 Sigue adelante y no te rindas. aun queda mucho para llegar a la
                 cima, haz click sobre el boton submit para guardar tu progreso y

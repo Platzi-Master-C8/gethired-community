@@ -8,7 +8,7 @@ import CategoryCard from '../../../components/challenges/categories/CategoryCard
 
 const Container = styled.div`
   width: 100%;
-  //height: 100vh; You were limiting the height of the container, that's why not all the content was vissible
+  //height: auto; //You were limiting the height of the container, that's why not all the content was vissible
   display: grid;
   grid-template-columns: 18% 41% 41%;
   grid-template-rows: 55px 40% 55%;
@@ -16,9 +16,6 @@ const Container = styled.div`
     ' header header header'
     ' navbar introduction introduction'
     ' navbar containerCards containerCards';
-  overflow-x: hidden;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
 `;
 const Introduction = styled.section`
   width: 80vw;
