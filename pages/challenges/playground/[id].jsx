@@ -8,6 +8,7 @@ import iconSuccess from '../../../public/icons/successChallengeTest.png';
 import iconFail from '../../../public/icons/testFail.png';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useUser } from '@auth0/nextjs-auth0';
 
 const ContainerPG = styled.div`
   overflow-y: hidden;
@@ -30,9 +31,13 @@ const ItemTitle = styled.div`
   height: 100px;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(90deg,
-  rgba(95, 100, 255, 0.7) 0%,
-  rgba(174, 78, 255, 0.85) 100%);
+  //@formatter:off
+  background: linear-gradient(
+    90deg,
+    rgba(95, 100, 255, 0.7) 0%,
+    rgba(174, 78, 255, 0.85) 100%
+  );
+  //@formatter:on
   font-size: 34px;
   color: white;
 `;
@@ -47,7 +52,7 @@ const ItemTitle2 = styled.div`
   border-bottom: 2px solid #a779ff;
 `;
 
-const ItemParraf = styled.div`
+const ItemParagraph = styled.div`
   height: 100px;
   margin-top: 10px;
   padding-left: 10px;
@@ -61,7 +66,8 @@ const ItemParraf = styled.div`
 const datos = {
   title: 'Reto # 1',
   // eslint-disable-next-line prettier/prettier
-  'instructions': 'El ejercicio clasico e introductorio. Tan solo una suma de dos valores este tradicional primer programa para acercarse al ambiente en un lenjuague de programación.',
+  instructions:
+    'El ejercicio clasico e introductorio. Tan solo una suma de dos valores este tradicional primer programa para acercarse al ambiente en un lenjuague de programación.',
   objectives:
     'Crea una función que retorne la suma de dos variables.  Asegurate de que sea exitoso. Si tu solución es correcta estaràs listo para pasar al siguiente ejercicio y adentrarte en el maravilloso mundo de JavaScript.',
   debug:
@@ -136,7 +142,7 @@ const ItemButtonSubmit = styled.div`
     cursor: pointer;
   }
 `;
-const Loadign = styled.div`
+const Loading = styled.div`
   height: 89%;
   width: 34%;
   padding: 0 1rem;
@@ -176,7 +182,7 @@ const LoadingImg = styled.div`
   }
 `;
 
-const SuccesConteiner = styled.div`
+const SuccessContainer = styled.div`
   height: 85%;
   width: 95%;
   margin: 0 auto;
@@ -190,7 +196,7 @@ const SuccesConteiner = styled.div`
   color: black;
   border: 2px solid #a779ff;
 `;
-const SuccesDialogue = styled.div`
+const SuccessDialogue = styled.div`
   height: 50%;
   display: flex;
   flex-direction: column;
@@ -199,26 +205,26 @@ const SuccesDialogue = styled.div`
   justify-content: center;
   font-size: 3rem;
 `;
-const SuccesParraf = styled.p`
+const SuccessParagraph = styled.p`
   font-size: 1.5rem;
   text-align: justify;
 `;
-const SuccesTest = styled.p`
+const SuccessTest = styled.p`
   padding: 1rem 3rem;
   font-size: 2rem;
   border: 2px solid #0ac433;
   display: flex;
   gap: 1rem;
 `;
-const FailContainer = styled(SuccesConteiner)`
+const FailContainer = styled(SuccessContainer)`
   border: 2px solid #f04925;
 `;
 
-const FailTest = styled(SuccesTest)`
+const FailTest = styled(SuccessTest)`
   border: 2px solid #f04925;
 `;
 
-const FailParraf = styled(SuccesParraf)``;
+const FailParagraph = styled(SuccessParagraph)``;
 
 const PlayGround = () => {
   const [state, setState] = React.useState({
@@ -228,56 +234,70 @@ const PlayGround = () => {
     deleted: false,
     confirmed: false,
     success: '',
-    message: ''
+    message: '',
+    mounted: false
   });
+
   const {
     query: { id }
   } = useRouter();
+
   const editorRef = useRef(null);
+  const user = useUser();
+  React.useEffect(() => {
+    if (state.mounted) {
+      fetch(`http://54.210.111.183/api/v1/runner/on/node/${id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          user: user.user.sub
+        }
+      })
+        .then((data) => data.json())
+        .then((data) => {
+          editorRef.current.getModel().setValue(data.data.func_template);
+        });
+    }
+  }, [state.mounted]);
 
-  function handleEditorDidMount (editor, monaco) {
+  function handleEditorDidMount(editor, monaco) {
     editorRef.current = editor;
-    fetch(`http://54.210.111.183/api/v1/runner/on/${id}`)
-    .then((data) => data.json())
-    .then((data) => {
-      editorRef.current.getModel().setValue(data.template);
-    });
-  }
-
-  function handleEditorChange (value, event) {
-    console.log('here is the current model value:', value);
+    setState({ ...state, mounted: true });
   }
 
   const onTest = () => {
-    fetch(`http://54.210.111.183/api/v1/runner/check/${id}`, {
+    fetch(`http://54.210.111.183/api/v1/runner/check/node/${id}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        user: user.user.sub
       },
       body: JSON.stringify({
         code: editorRef.current.getValue()
       })
     })
-    .then((r) => r.json())
-    .then((data) => onSucces(data));
+      .then((r) => r.json())
+      .then((data) => onSuccess(data))
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const onSubmit = () => {
-    fetch(`http://54.210.111.183/api/v1/runner/check/${id}`, {
+    fetch(`http://54.210.111.183/api/v1/runner/submit/${id}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'multipart/form-data',
+        user: user.user.sub
       },
       body: JSON.stringify({
-        challengeId: 163,
-        userId: 'xxx',
-        code: 'Challenge success'
+        challengeId: id,
+        engine: 'node' //Hardcoded
       })
     });
   };
 
-  const onSucces = async (data) => {
-    console.log(data.test_result.tests[0].failure_messages[0]);
+  const onSuccess = async (data) => {
     setState({
       ...state,
       success: data.test_result.status,
@@ -341,28 +361,25 @@ const PlayGround = () => {
       <ContainerPG>
         <Header />
         <Editor
-          height='90vh'
-          width='100%'
-          defaultLanguage='javascript'
+          height="90vh"
+          width="100%"
+          defaultLanguage="javascript"
           defaultValue={state.value}
-          theme='vs-dark'
+          theme="vs-dark"
           onMount={handleEditorDidMount}
-          onChange={(value) => {
-            onWrite(value);
-          }}
         />
         <ItemInfo>
           <ItemTitle>{datos.title}</ItemTitle>
           <ItemTitle2>Instrucciones</ItemTitle2>
-          <ItemParraf>{datos.instructions}</ItemParraf>
+          <ItemParagraph>{datos.instructions}</ItemParagraph>
           <ItemTitle2>Objetivos</ItemTitle2>
-          <ItemParraf>{datos.objectives}</ItemParraf>
+          <ItemParagraph>{datos.objectives}</ItemParagraph>
           <ItemCodeView>
             {state.loading && (
-              <Loadign>
+              <Loading>
                 <LoadingImg />
                 Ejecutando los test ...
-              </Loadign>
+              </Loading>
             )}
             <ItemButton>
               <ItemButtonRun
@@ -372,7 +389,7 @@ const PlayGround = () => {
                 }}
               >
                 Run Tests
-                <Image id='img-icon' src={Coolicon} alt='Run Challenge' />
+                <Image id="img-icon" src={Coolicon} alt="Run Challenge" />
               </ItemButtonRun>
               <ItemButtonSubmit
                 onClick={() => {
@@ -393,29 +410,28 @@ const PlayGround = () => {
       <ContainerPG>
         <Header />
         <Editor
-          height='90vh'
-          width='100%'
-          defaultLanguage='javascript'
+          height="90vh"
+          width="100%"
+          defaultLanguage="javascript"
           defaultValue={state.value}
-          theme='vs-dark'
+          theme="vs-dark"
           onMount={handleEditorDidMount}
-          onChange={handleEditorChange}
         />
         <ItemInfo>
-          <SuccesConteiner>
-            <SuccesTest>
-              <Image id='img-icon' src={iconSuccess} alt='Loading Icon'></Image>
+          <SuccessContainer>
+            <SuccessTest>
+              <Image id="img-icon" src={iconSuccess} alt="Loading Icon"></Image>
               5 Test pasados
-            </SuccesTest>
-            <SuccesDialogue>
+            </SuccessTest>
+            <SuccessDialogue>
               Felicidades pasaste el desafio
-              <SuccesParraf>
+              <SuccessParagraph>
                 Sigue adelante y no te rindas. aun queda mucho para llegar a la
                 cima, haz click sobre el boton submit para guardar tu progreso y
                 regresar a la seccion de categorias.
-              </SuccesParraf>
-            </SuccesDialogue>
-          </SuccesConteiner>
+              </SuccessParagraph>
+            </SuccessDialogue>
+          </SuccessContainer>
           <ItemCodeView>
             <ItemButton>
               <ItemButtonRun
@@ -425,7 +441,7 @@ const PlayGround = () => {
               >
                 Regresar
               </ItemButtonRun>
-              <Link href='/challenges/categories' passHref>
+              <Link href="/challenges/categories" passHref>
                 <ItemButtonSubmit
                   onClick={() => {
                     !state.confirmed
@@ -446,25 +462,26 @@ const PlayGround = () => {
       <ContainerPG>
         <Header />
         <Editor
-          height='90vh'
-          width='100%'
-          defaultLanguage='javascript'
+          height="90vh"
+          width="100%"
+          defaultLanguage="javascript"
           defaultValue={state.value}
-          theme='vs-dark'
+          theme="vs-dark"
           onMount={handleEditorDidMount}
-          onChange={handleEditorChange}
         />
         <ItemInfo>
           <FailContainer>
             <FailTest>
-              <Image id='img-icon' src={iconFail} alt='Loading Icon'></Image>0
-              Test pasados
+              <Image id="img-icon" src={iconFail} alt="Loading Icon" />0 Test
+              pasados
             </FailTest>
-            <SuccesDialogue>
+            <SuccessDialogue>
               Encontramos unos errores en tu codigo
-              <FailParraf>{state.message}</FailParraf>
-              <FailParraf>No te rindas, de los errores se aprende.</FailParraf>
-            </SuccesDialogue>
+              <FailParagraph>{state.message}</FailParagraph>
+              <FailParagraph>
+                No te rindas, de los errores se aprende.
+              </FailParagraph>
+            </SuccessDialogue>
           </FailContainer>
           <ItemCodeView>
             <ItemButton>

@@ -250,10 +250,10 @@ const Categories = () => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     fetch('http://54.210.111.183/api/v1/challenges')
-    .then(res => res.json())
-    .then(data => {
-      setCategories(data.data);
-    });
+      .then((res) => res.json())
+      .then((data) => {
+        setCategories(data.data);
+      });
     console.log(categories);
   }, []);
   if (user) {
@@ -280,24 +280,27 @@ const Categories = () => {
           <InputButtonCompleted>Completados 5</InputButtonCompleted>
           <InputButtonProgress>En progreso 2</InputButtonProgress> */}
           <ContainerBoxCards>
-            {categories.map(category => (
+            {categories.map((category) => (
               <CategoryCard>
                 <BoxImage />
                 <TitleCard>{category.name}</TitleCard>
-                <DificultButtonHard>{category.difficulty[0].toUpperCase() + category.difficulty.slice(1)}</DificultButtonHard>
-                <Link href={{ pathname: `/challenges/playground/${category.id}` }} passHref>
+                <DificultButtonHard>
+                  {category.difficulty[0].toUpperCase() +
+                    category.difficulty.slice(1)}
+                </DificultButtonHard>
+                <Link
+                  href={{ pathname: `/challenges/playground/${category.id}` }}
+                  passHref
+                >
                   <ButtonToChallenge>Resolver</ButtonToChallenge>
                 </Link>
                 <TextCard>
-                  {
-                    category.description.length > 60 ?
-                      category.description.substring(0, 60) + '...' :
-                      category.description
-                  }
-                < /TextCard>
+                  {category.description.length > 60
+                    ? category.description.substring(0, 60) + '...'
+                    : category.description}
+                </TextCard>
               </CategoryCard>
             ))}
-
           </ContainerBoxCards>
         </Container>
       </>
