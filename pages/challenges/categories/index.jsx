@@ -8,7 +8,7 @@ import CategoryCard from '../../../components/challenges/categories/CategoryCard
 
 const Container = styled.div`
   width: 100%;
-  //height: auto; //You were limiting the height of the container, that's why not all the content was vissible
+  //height: auto; //You were limiting the height of the container, that's why not all the content was visible
   display: grid;
   grid-template-columns: 18% 41% 41%;
   grid-template-rows: 55px 40% 55%;
@@ -166,7 +166,7 @@ const BoxCardLeft = styled(BoxCard)`
     margin: 0 3rem 0 0;
   }
 `;
-const BoxCardRigth = styled(BoxCard)`
+const BoxCardRight = styled(BoxCard)`
   @media only screen and (max-width: 1024px) {
     grid-row: 4/5;
     grid-column: 1/2;
@@ -177,7 +177,7 @@ const BoxCardRigth = styled(BoxCard)`
     margin: 0 3rem 0 0;
   }
 `;
-const BoxCardRigthDown = styled(BoxCard)`
+const BoxCardRightDown = styled(BoxCard)`
   grid-column: 2/3;
   @media only screen and (max-width: 1024px) {
     grid-row: 3/4;
@@ -199,7 +199,7 @@ const TitleCard = styled.p`
   text-align: center;
 `;
 
-const DificultButtonHard = styled.p`
+const DifficultyButtonHard = styled.p`
   grid-area: dificult;
   width: 50%;
   margin: 0 0 0 1rem;
@@ -213,10 +213,10 @@ const DificultButtonHard = styled.p`
     padding: 0.8rem;
   }
 `;
-const DificultButtonMedium = styled(DificultButtonHard)`
+const DifficultButtonMedium = styled(DifficultyButtonHard)`
   background-image: linear-gradient(to right, #fba618, #ff5353);
 `;
-const DificultButtonEasy = styled(DificultButtonHard)`
+const DifficultButtonEasy = styled(DifficultyButtonHard)`
   background-image: linear-gradient(to right, #00ff38, #67ff4e);
 `;
 
@@ -254,8 +254,8 @@ const Categories = () => {
       .then((data) => {
         setCategories(data.data);
       });
-    console.log(categories);
   }, []);
+
   if (user) {
     return (
       <>
@@ -275,22 +275,19 @@ const Categories = () => {
               <Picture />
             </BoxImg>
           </Introduction>
-          {/* <Input placeholder="Buscar" />
-          <InputButton>Todos los ejercicios 45</InputButton>
-          <InputButtonCompleted>Completados 5</InputButtonCompleted>
-          <InputButtonProgress>En progreso 2</InputButtonProgress> */}
+
           <ContainerBoxCards>
             {categories.map((category) => (
-              <CategoryCard>
+              <CategoryCard key={category.name}>
                 <BoxImage />
                 <TitleCard>{category.name}</TitleCard>
-                <DificultButtonHard>
+                <DifficultyButtonHard>
                   {category.difficulty[0].toUpperCase() +
                     category.difficulty.slice(1)}
-                </DificultButtonHard>
+                </DifficultyButtonHard>
                 <Link
                   href={{ pathname: `/challenges/playground/${category.id}` }}
-                  passHref
+                  passHref={true}
                 >
                   <ButtonToChallenge>Resolver</ButtonToChallenge>
                 </Link>
