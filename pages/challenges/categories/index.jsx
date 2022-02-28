@@ -5,6 +5,7 @@ import Header from '../../../components/security/header/Header';
 import Navbar from '../../../components/security/navbar/Navbar';
 import Link from 'next/link';
 import CategoryCard from '../../../components/challenges/categories/CategoryCard';
+import fetchUser from '../../../utils/helpers/fetchUser';
 
 const Container = styled.div`
   width: 100%;
@@ -246,14 +247,18 @@ const TextCard = styled.p`
 `;
 
 const Categories = () => {
-  const { user } = useUser();
+  const [user, setUser] = useState(null);
   const [categories, setCategories] = useState([]);
   useEffect(() => {
+    fetchUser().then((user) => {
+      setUser(user);
+    });
+
     fetch('http://54.210.111.183/api/v1/challenges')
-      .then((res) => res.json())
-      .then((data) => {
-        setCategories(data.data);
-      });
+    .then((res) => res.json())
+    .then((data) => {
+      setCategories(data.data);
+    });
   }, []);
 
   if (user) {
