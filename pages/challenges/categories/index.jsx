@@ -202,13 +202,12 @@ const TitleCard = styled.p`
 
 const DifficultyButtonHard = styled.p`
   grid-area: dificult;
-  width: 50%;
+  width: 70%;
   margin: 0 0 0 1rem;
   font-size: 1.6rem;
-  padding-top: 1rem;
   background-image: linear-gradient(to right, #fb1818, #ff5353);
   color: white;
-  border-radius: 20px;
+  border-radius: 2px;
   text-align: center;
   @media only screen and (max-width: 1024px) {
     padding: 0.8rem;
@@ -223,7 +222,7 @@ const DifficultButtonEasy = styled(DifficultyButtonHard)`
 
 const ButtonToChallenge = styled.button`
   grid-area: botonCard;
-  width: 50%;
+  width: 70%;
   justify-self: flex-end;
   margin: 0 1rem 0 0;
   cursor: pointer;
