@@ -59,7 +59,7 @@ const Header = () => {
 				localStorage.removeItem('access_token');
 			}
 		}
-	});
+	},[]);//Deps weren't set, so this was being run multiple times, we just need to run this when load
 
 	if (user) {
 		return (
