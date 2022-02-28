@@ -27,13 +27,13 @@ import iconSuccess from '../../../public/icons/successChallengeTest.png';
 import iconFail from '../../../public/icons/testFail.png';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useUser } from '@auth0/nextjs-auth0';
+import fetchUser from '../../../utils/helpers/fetchUser';
 
 const PlayGround = () => {
   const {
     query: { id }
   } = useRouter();
-
+  const [user, setUser] = React.useState(null);
   const [state, setState] = React.useState({
     value: '',
     error: false,
@@ -45,25 +45,29 @@ const PlayGround = () => {
     challenge: ''
   });
   const editorRef = useRef(null);
-  const user = useUser();
+
   React.useEffect(() => {
     if (state.mounted) {
-      fetch(`http://54.210.111.183/api/v1/runner/on/node/${id}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          user: user.user.sub
-        }
-      })
+      fetchUser().then((userData) => {
+        setUser(userData);
+        fetch(`http://54.210.111.183/api/v1/runner/on/node/${id}`, {
+
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            user: userData.sub
+          }
+        })
         .then((data) => data.json())
         .then((data) => {
           setState({ ...state, challenge: data.data });
           editorRef.current.getModel().setValue(data.data.func_template);
         });
+      });
     }
   }, [state.mounted]);
 
-  function handleEditorDidMount(editor, monaco) {
+  function handleEditorDidMount (editor, monaco) {
     editorRef.current = editor;
     setState({ ...state, mounted: true });
   }
@@ -73,31 +77,31 @@ const PlayGround = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        user: user.user.sub
+        user: user.sub
       },
       body: JSON.stringify({
         code: editorRef.current.getValue()
       })
     })
-      .then((r) => r.json())
-      .then((data) => onSuccess(data))
-      .catch((err) => {
-        console.log(err);
-      });
+    .then((r) => r.json())
+    .then((data) => onSuccess(data))
+    .catch((err) => {
+      console.log(err);
+    });
   };
 
   const onSubmit = () => {
-    fetch(`http://54.210.111.183/api/v1/runner/submit/${id}`, {
+    fetch(`http://54.210.111.183/api/v1/runner/submit`, {
       method: 'POST',
       headers: {
         'Content-Type': 'multipart/form-data',
-        user: user.user.sub
+        user: user.sub
       },
       body: JSON.stringify({
         challengeId: id,
         engine: 'node' //Hardcoded
       })
-    });
+    }).then(data => data.json()).then(r => console.log(r));
   };
 
   const onSuccess = async (data) => {
@@ -179,7 +183,7 @@ const PlayGround = () => {
               }}
             >
               Run Tests
-              <Image id="img-icon" src={Coolicon} alt="Run Challenge" />
+              <Image id='img-icon' src={Coolicon} alt='Run Challenge' />
             </ItemButtonRun>
             <ItemButtonSubmit
               onClick={() => {
@@ -200,7 +204,7 @@ const PlayGround = () => {
     <React.Fragment>
       <FailContainer>
         <FailTest>
-          <Image id="img-icon" src={iconFail} alt="Loading Icon" />0 Test
+          <Image id='img-icon' src={iconFail} alt='Loading Icon' />0 Test
           pasados
         </FailTest>
         <SuccessDialogue>
@@ -228,7 +232,7 @@ const PlayGround = () => {
     <React.Fragment>
       <SuccessContainer>
         <SuccessTest>
-          <Image id="img-icon" src={iconSuccess} alt="Loading Icon"></Image>5
+          <Image id='img-icon' src={iconSuccess} alt='Loading Icon'></Image>5
           Test pasados
         </SuccessTest>
         <SuccessDialogue>
@@ -249,14 +253,9 @@ const PlayGround = () => {
           >
             Regresar
           </ItemButtonRun>
-          <Link href="/challenges/categories" passHref>
+          <Link href='/challenges/categories' passHref>
             <ItemButtonSubmit
-              onClick={() => {
-                !state.confirmed
-                  ? alert('Completa el desafio primero')
-                  : onSubmit();
-              }}
-            >
+              onClick={onSubmit}>
               Submit
             </ItemButtonSubmit>
           </Link>
@@ -269,11 +268,11 @@ const PlayGround = () => {
     <ContainerPG>
       <Header />
       <Editor
-        height="90vh"
-        width="100%"
-        defaultLanguage="javascript"
+        height='90vh'
+        width='100%'
+        defaultLanguage='javascript'
         defaultValue={state.value}
-        theme="vs-dark"
+        theme='vs-dark'
         onMount={handleEditorDidMount}
       />
       <ItemInfo>
