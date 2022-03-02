@@ -167,7 +167,9 @@ export const SuccessContainer = styled.div`
   text-align: center;
   font-size: 2rem;
   color: black;
-  border: 2px solid #a779ff;
+  border: thin solid #008060;
+  background-color: rgb(0, 128, 96, 0.1);
+  border-radius: 5px;
 `;
 export const SuccessDialogue = styled.div`
   height: 50%;
@@ -181,21 +183,31 @@ export const SuccessDialogue = styled.div`
 export const SuccessParagraph = styled.p`
   font-size: 1.5rem;
   text-align: justify;
+  line-height: 2;
+  color: #00664d;
 `;
 export const SuccessTest = styled.p`
   padding: 1rem 3rem;
   font-size: 2rem;
-  border: 2px solid #0ac433;
+  border: thin solid #008060;
+  font-weight: 600;
   display: flex;
+  align-items: center;
   gap: 1rem;
+  border-radius: 5px;
 `;
 export const FailContainer = styled(SuccessContainer)`
-  border: 2px solid #f04925;
+  border: thin solid #f04925;
+  background-color: rgb(240, 73, 37, 0.05);
 `;
 
 export const FailTest = styled(SuccessTest)`
-  border: 2px solid #f04925;
+  border: thin solid #f04925;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 `;
 
-export const FailParagraph = styled(SuccessParagraph)``;
-
+export const FailParagraph = styled(SuccessParagraph)`
+  color: #702211;
+`;
