@@ -19,7 +19,6 @@ const LandingPage = () => {
       </>
     );
   } else {
-    console.log(user);
     return (
       <>
         <Header />
