@@ -11,17 +11,10 @@ let auth0 = {
   domain: 'https://gethired.us.auth0.com',
   response_type: 'token',
   client_id: '9IKIwhKs44cPB0VceKTaVHZnXRSd2zUJ',
-  redirect_uri: ''
+  redirect_uri: process.env.NODE_ENV === 'development' ? 'http://localhost:3000/' : 'https://gethired-community-c8.vercel.app/'//Use environment variables later
 };
 const Header = () => {
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      auth0.redirect_uri = window.location.href;
-    }
-
-  }, []);
   const user = useContext(UserProvider);
-
   if (user) {
     return (
       <div className={position.iheader}>
