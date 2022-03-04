@@ -6,9 +6,8 @@ import Achievements from '../../../components/challenges/achievements/Achievemen
 import styled from '@emotion/styled';
 import { useUser } from '@auth0/nextjs-auth0';
 import Navbar from '../../../components/security/navbar/Navbar';
-import fetch from 'isomorphic-fetch';
-import { useEffect, useState } from 'react';
-import fetchUser from '../../../utils/helpers/fetchUser';
+import { useContext, useEffect, useState } from 'react';
+import UserProvider from '../../../Providers/UserProvider';
 
 export const Container = styled.div`
   width: 100%;
@@ -25,21 +24,23 @@ export const Container = styled.div`
 
 const Profile = () => {
   const [challenger, setChallenger] = useState(null);
-  useEffect(() => {
-    const setUser = async () => {
-      const user = await fetchUser();
-      console.log(user);
-      const challenger = await fetch('http://54.210.111.183/api/v1/profile', {
-        method: 'GET',
-        headers: {
-          user: user.sub
-        }
-      }).then((res) => res.json());
-      setChallenger(challenger.data);
-    };
+  const user = useContext(UserProvider);
 
-    setUser();
-  }, []);
+  useEffect(() => {
+    if (user) {
+      const getChallenger = async () => {
+        const res = await fetch('http://54.210.111.183/api/v1/profile', {
+          method: 'GET',
+          headers: {
+            user: user.sub
+          }
+        });
+        const data = await res.json();
+        setChallenger(data.data);
+      };
+      getChallenger().catch(err => console.log(err));//Fallback
+    }
+  }, [user]);
 
   if (challenger) {
     return (
@@ -52,9 +53,8 @@ const Profile = () => {
         <UserGraph activity={challenger.activity} />
       </Container>
     );
-  } else {
-    return 'loading perro';
   }
+  return 'Loading...';
 };
 
 export default Profile;

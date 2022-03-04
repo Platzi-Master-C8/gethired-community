@@ -18,7 +18,7 @@ import {
   ItemTitle2,
   ItemParagraph
 } from '../../../components/challenges/playground/styledComponents';
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import Editor from '@monaco-editor/react';
 import Header from '../../../components/security/header/Header';
 import Coolicon from '../../../public/icons/coolicon.svg';
@@ -27,13 +27,14 @@ import iconSuccess from '../../../public/icons/successChallengeTest.png';
 import iconFail from '../../../public/icons/testFail.png';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import fetchUser from '../../../utils/helpers/fetchUser';
+import UserProvider from '../../../Providers/UserProvider';
 
 const PlayGround = () => {
+
+  const user = useContext(UserProvider);
   const {
     query: { id }
   } = useRouter();
-  const [user, setUser] = React.useState(null);
   const [state, setState] = React.useState({
     value: '',
     error: false,
@@ -47,22 +48,18 @@ const PlayGround = () => {
   const editorRef = useRef(null);
 
   React.useEffect(() => {
-    if (state.mounted) {
-      fetchUser().then((userData) => {
-        setUser(userData);
-        fetch(`http://54.210.111.183/api/v1/runner/on/node/${id}`, {
-
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            user: userData.sub
-          }
-        })
-        .then((data) => data.json())
-        .then((data) => {
-          setState({ ...state, challenge: data.data });
-          editorRef.current.getModel().setValue(data.data.func_template);
-        });
+    if (state.mounted && user) {
+      fetch(`http://54.210.111.183/api/v1/runner/on/node/${id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          user: user.sub
+        }
+      })
+      .then((data) => data.json())
+      .then((data) => {
+        setState({ ...state, challenge: data.data });
+        editorRef.current.getModel().setValue(data.data.func_template);
       });
     }
   }, [state.mounted]);

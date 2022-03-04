@@ -20,7 +20,7 @@ const SectionGoals = ({ goals }) => {
           title={goal.name}
           img={goal.badge}
           description={goal.description}
-          completed={true}
+          completed={goal.is_complete}
           key={index}
         />
       ))}

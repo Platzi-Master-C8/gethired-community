@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
-import { useUser } from '@auth0/nextjs-auth0';
+import { UserContext } from '@auth0/nextjs-auth0';
 import Header from '../../../components/security/header/Header';
 import Navbar from '../../../components/security/navbar/Navbar';
 import Link from 'next/link';
 import CategoryCard from '../../../components/challenges/categories/CategoryCard';
-import fetchUser from '../../../utils/helpers/fetchUser';
 
 const Container = styled.div`
   width: 100%;
@@ -246,22 +245,19 @@ const TextCard = styled.p`
   font-size: 2.2rem;
 `;
 
-const Categories = () => {
-  const [user, setUser] = useState(null);
-  const [categories, setCategories] = useState([]);
-  useEffect(() => {
-    fetchUser().then((user) => {
-      setUser(user);
-    });
+export const getServerSideProps = async () => {
+  let categories;
+  const serverData = await fetch('http://54.210.111.183/api/v1/challenges');
+  const parsedData = await serverData.json();
+  categories = parsedData.data;
+  return {
+    props: { categories }
+  };
+};
 
-    fetch('http://54.210.111.183/api/v1/challenges')
-    .then((res) => res.json())
-    .then((data) => {
-      setCategories(data.data);
-    });
-  }, []);
+const Categories = ({ categories }) => {
 
-  if (user) {
+  if (categories) {
     return (
       <>
         <Container>
