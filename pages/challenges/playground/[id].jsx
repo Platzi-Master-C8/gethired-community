@@ -1,22 +1,22 @@
 import {
-  ItemCodeView,
+  ContainerPG,
+  FailContainer,
+  FailParagraph,
+  FailTest,
   ItemButton,
   ItemButtonRun,
   ItemButtonSubmit,
+  ItemCodeView,
+  ItemInfo,
+  ItemParagraph,
+  ItemTitle,
+  ItemTitle2,
   Loading,
   LoadingImg,
   SuccessContainer,
   SuccessDialogue,
   SuccessParagraph,
-  SuccessTest,
-  FailContainer,
-  FailTest,
-  FailParagraph,
-  ContainerPG,
-  ItemInfo,
-  ItemTitle,
-  ItemTitle2,
-  ItemParagraph
+  SuccessTest
 } from '../../../components/challenges/playground/styledComponents';
 import React, { useContext, useRef } from 'react';
 import Editor from '@monaco-editor/react';
@@ -25,9 +25,9 @@ import Coolicon from '../../../public/icons/coolicon.svg';
 import Image from 'next/image';
 import iconSuccess from '../../../public/icons/successChallengeTest.png';
 import iconFail from '../../../public/icons/testFail.png';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import UserProvider from '../../../Providers/UserProvider';
+import Link from 'next/link';
 
 const PlayGround = () => {
 
@@ -88,17 +88,23 @@ const PlayGround = () => {
   };
 
   const onSubmit = () => {
-    fetch(`http://54.210.111.183/api/v1/runner/submit`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        user: user.sub
-      },
-      body: JSON.stringify({
-        challengeId: id,
-        engine: 'node' //Hardcoded
-      })
-    }).then(data => data.json()).then(r => console.log(r));
+    const fetcher = async () => {
+      const data = await fetch(`http://54.210.111.183/api/v1/runner/submit`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          user: user.sub
+        },
+        body: JSON.stringify({
+          challengeId: id,
+          engine: 'node' //Hardcoded
+        })
+      }).catch((err) => {
+        console.log(err);
+      });
+    };
+    fetcher();
+
   };
 
   const onSuccess = async (data) => {
