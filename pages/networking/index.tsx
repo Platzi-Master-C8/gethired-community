@@ -12,7 +12,6 @@ import { ListSuggestedDiscussions } from '../../components/networking/ListSugges
 import { SearchDiscussion } from '../../components/networking/SearchDiscussion';
 import { NewDiscussionForm } from '../../components/networking/NewDiscussionForm';
 
-import { getUserNames } from '../../utils/helpers/userNames';
 import { callApi } from '../../utils/helpers/callApi';
 
 const useStyles = makeStyles({
@@ -40,12 +39,11 @@ function Home() {
   
   
   const [ discussions, setDiscussions ] = useState(0);  //Brings the number of discussions in the whole array with no pagination
-  const [ categoryId, setCategoryId ] = React.useState();
+  const [ categoryId, setCategoryId ] = useState();
   const [ offSetPagination, setOffSetPagination ] = useState(0);
   const [ requestUrl, setRequestUrl ] = useState(`${api}?limit=${LIMIT_PAGINATION}&offset=${offSetPagination}`);
   const [ data, setData ] = useState([]);
   
-  let names = [];
   const classes = useStyles();
 
   useEffect(() => {
@@ -54,11 +52,10 @@ function Home() {
       .then((response) => {
         setDiscussions(response.count);
         setData(response.rows);
-      })
+        
+      });
     
   }, [ requestUrl ]);
-  
-  names = getUserNames(data);
 
   return (
     <Container style={{ fontSize: '1em' }} fixed maxWidth="md">
@@ -96,7 +93,7 @@ function Home() {
         Suggested discussions
       </Typography>
       <br /><br />
-      { (data.length > 0 && names.length > 0) && <ListSuggestedDiscussions data={data} names={names} /> }
+      { (data.length > 0) && <ListSuggestedDiscussions data={data} /> }
       <Stack spacing={2} justifyContent="center" alignItems="center">
         { discussions > 0 && ( 
             <Pagination count={ Math.ceil( discussions / LIMIT_PAGINATION) } color="primary" onChange={(event: React.ChangeEvent<unknown>, page: number) => {

@@ -104,11 +104,13 @@ function NewDiscussionForm() {
                                     onClick={() => {
                                         const url = 'https://get-hired-forum-dev.herokuapp.com/api/discussions';
                                         const data = { "title": title, "categoryId": categoryId, "content": content, "userId": 1 };
-                                        console.table(data);
+                                        
                                             fetch(
                                                 url,
                                                 {
-                                                    headers: { "Content-Type": "application/json" },
+                                                    headers: { 
+                                                        "Content-Type": "application/json",
+                                                    },
                                                     body: JSON.stringify(data),
                                                     method: "POST"
                                                 }

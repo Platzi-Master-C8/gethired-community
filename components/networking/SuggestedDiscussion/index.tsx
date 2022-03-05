@@ -14,6 +14,8 @@ import AccountCircleRounded from '@mui/icons-material/AccountCircleRounded';
 
 import { DiscussionLikeCounter } from '../DiscussionLikeCounter';
 
+import { getUserName } from '../../../utils/helpers/userName';
+
 const useStyles = makeStyles({
     row: {
         display: 'flex',
@@ -75,6 +77,7 @@ function SuggestedDiscussion(props: DiscussionProps) {
 
     return (
         <React.Fragment>
+            {console.log(props)}
             <Card className={classes.card} raised={false} sx={{ marginBottom: '1rem', padding: '0' }} variant="outlined">
                 <div className={`${classes.row} ${classes.header}`} style={{ marginBottom: '0' }}>
                     <DiscussionLikeCounter
@@ -99,7 +102,8 @@ function SuggestedDiscussion(props: DiscussionProps) {
                             margin: '10px 0'
                         }}>
                             <AccountCircleRounded className={classes.userIcon} />
-                            <Typography ml={1}>{props.userId}</Typography>
+                            {console.log(getUserName())}
+                            <Typography ml={1}>{getUserName()}</Typography>
                         </div>
                     </div>
                 </div>

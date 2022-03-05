@@ -13,20 +13,15 @@ type DiscussionProps = {
         is_active: boolean,
         likes: number,
     }[];
-    names: {
-        id: string,
-        name: string
-    }[];
 }
 
 function ListSuggestedDiscussions(props: DiscussionProps) {
-
+    
     return (
         <React.Fragment>
             <Container>
-
-                
-                {(props.names.length > 0 && props.data.length > 0) && props.data.map((item) => {
+                {console.log('Entré')}
+                {(props.data.length > 0) && props.data.map((item) => {
                     return (
                         <SuggestedDiscussion
                             key={item.id}
@@ -34,7 +29,7 @@ function ListSuggestedDiscussions(props: DiscussionProps) {
                             title={item.title}
                             content={item.content}
                             createdAt={Moment(item.createdAt).fromNow()}
-                            userId={ props.names.find(element => element.id == item.userId).name }
+                            userId={item.userId}
                             is_active={item.is_active}
                             likes={item.likes}
                         />
