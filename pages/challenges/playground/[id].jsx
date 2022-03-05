@@ -1,39 +1,40 @@
 import {
-  ItemCodeView,
+  ContainerPG,
+  FailContainer,
+  FailParagraph,
+  FailTest,
   ItemButton,
   ItemButtonRun,
   ItemButtonSubmit,
+  ItemCodeView,
+  ItemInfo,
+  ItemParagraph,
+  ItemTitle,
+  ItemTitle2,
   Loading,
   LoadingImg,
   SuccessContainer,
   SuccessDialogue,
   SuccessParagraph,
-  SuccessTest,
-  FailContainer,
-  FailTest,
-  FailParagraph,
-  ContainerPG,
-  ItemInfo,
-  ItemTitle,
-  ItemTitle2,
-  ItemParagraph
+  SuccessTest
 } from '../../../components/challenges/playground/styledComponents';
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import Editor from '@monaco-editor/react';
 import Header from '../../../components/security/header/Header';
 import Coolicon from '../../../public/icons/coolicon.svg';
 import Image from 'next/image';
 import iconSuccess from '../../../public/icons/successChallengeTest.png';
 import iconFail from '../../../public/icons/testFail.png';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import fetchUser from '../../../utils/helpers/fetchUser';
+import UserProvider from '../../../Providers/UserProvider';
+import Link from 'next/link';
 
 const PlayGround = () => {
+
+  const user = useContext(UserProvider);
   const {
     query: { id }
   } = useRouter();
-  const [user, setUser] = React.useState(null);
   const [state, setState] = React.useState({
     value: '',
     error: false,
@@ -47,22 +48,18 @@ const PlayGround = () => {
   const editorRef = useRef(null);
 
   React.useEffect(() => {
-    if (state.mounted) {
-      fetchUser().then((userData) => {
-        setUser(userData);
-        fetch(`http://54.210.111.183/api/v1/runner/on/node/${id}`, {
-
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            user: userData.sub
-          }
-        })
-        .then((data) => data.json())
-        .then((data) => {
-          setState({ ...state, challenge: data.data });
-          editorRef.current.getModel().setValue(data.data.func_template);
-        });
+    if (state.mounted && user) {
+      fetch(`http://54.210.111.183/api/v1/runner/on/node/${id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          user: user.sub
+        }
+      })
+      .then((data) => data.json())
+      .then((data) => {
+        setState({ ...state, challenge: data.data });
+        editorRef.current.getModel().setValue(data.data.func_template);
       });
     }
   }, [state.mounted]);
@@ -91,17 +88,23 @@ const PlayGround = () => {
   };
 
   const onSubmit = () => {
-    fetch(`http://54.210.111.183/api/v1/runner/submit`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        user: user.sub
-      },
-      body: JSON.stringify({
-        challengeId: id,
-        engine: 'node' //Hardcoded
-      })
-    }).then(data => data.json()).then(r => console.log(r));
+    const fetcher = async () => {
+      const data = await fetch(`http://54.210.111.183/api/v1/runner/submit`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          user: user.sub
+        },
+        body: JSON.stringify({
+          challengeId: id,
+          engine: 'node' //Hardcoded
+        })
+      }).catch((err) => {
+        console.log(err);
+      });
+    };
+    fetcher();
+
   };
 
   const onSuccess = async (data) => {
