@@ -13,9 +13,17 @@ import Header from '../../../components/security/header/Header';
 import Navbar from '../../../components/security/navbar/Navbar';
 
 import moment from 'moment';
-import { Button, TextField } from '@mui/material';
+import {
+  Alert,
+  Button,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  TextField
+} from '@mui/material';
 import CreateIcon from '@mui/icons-material/Create';
 import { ExpandMore, ExpandLess } from '@mui/icons-material';
+import { ReportButton } from '../../../components/security/ReportButton';
 
 const useStyle = makeStyles({
   likeButtonContainer: {
@@ -52,15 +60,16 @@ function Discussion() {
   const [title, setTitle] = React.useState('');
   const [category, setCategory] = React.useState<Number>(1);
   const [content, setContent] = React.useState('');
-  const [newDiscussionSucceeded, setNewDiscussionSucceeded] =
+  const [newCommentSucceeded, setNewCommentSucceeded] =
     React.useState<Boolean>(false);
   const [formToggle, setFormToggle] = React.useState<Boolean>(false);
+
+  const [commentType, setCommentType] = React.useState<Number>(1);
 
   const onClickFormToggle = () => {
     const form = document.getElementsByClassName('form');
     /* formToggle ? form.style.display = "block" : form.style.display = "none"; */
     setFormToggle(!formToggle);
-    console.log(formToggle);
   };
 
   useEffect(() => {
@@ -128,16 +137,20 @@ function Discussion() {
           )}
           <Container sx={{ padding: '0px', width: 'inherit' }}>
             <Box
+              flexShrink="1"
+              alignContent="center"
+              height={'2.5rem'}
               sx={{
                 display: 'flex',
-                justifyContent: 'flex-end'
+                justifyContent: 'flex-end',
+                margin: '1rem 0'
               }}
             >
+              <ReportButton />
               <Button
                 sx={{
-                  margin: '1rem',
-                  transition: '4s',
-                  background: 'linear-gradient(90deg,#ae4eff,#5f64ff)'
+                  background: 'linear-gradient(90deg,#ae4eff,#5f64ff)',
+                  marginLeft: '1rem'
                 }}
                 onClick={onClickFormToggle}
                 endIcon={
@@ -149,20 +162,25 @@ function Discussion() {
                 }
                 variant="contained"
               >
-                New Discussion
+                New Comment
               </Button>
             </Box>
+            {newCommentSucceeded && (
+              <div>
+                <Alert severity="success">
+                  Your comment has been published
+                </Alert>
+                <br />
+              </div>
+            )}
             <Box
               sx={{
                 display: formToggle ? 'block' : 'none',
-                margin: '0 auto',
+                width: 'inherit',
                 border: 1,
                 borderRadius: '5px',
-                borderColor: 'grey.400',
-                padding: '15px',
-                overflow: 'hidden',
-                transition: 'max-height 4s ease-out',
-                maxWidth: '50rem'
+                borderColor: '#C4C4C4',
+                padding: '15px'
               }}
             >
               <Box
@@ -174,47 +192,78 @@ function Discussion() {
                 }}
               >
                 <TextField
-                  id="input-title"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  label="Title"
-                  variant="outlined"
-                  sx={{ marginBottom: '25px', borderWidth: '2px' }}
-                />
-                <TextField
-                  placeholder="Type the content of an discussion here..."
+                  placeholder={`Type the content of your ${
+                    commentType == 1 ? 'contribution' : 'question'
+                  }  here...`}
                   id="input-content"
                   fullWidth
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                   multiline
                   rows={7}
-                  sx={{ marginBottom: '25px' }}
+                  sx={{ marginBottom: '20px' }}
                 />
                 <Box
                   sx={{
                     display: 'flex',
-                    justifyContent: 'flex-end',
-                    marginBottom: '25px'
+                    justifyContent: 'space-between',
+                    height: '2.5rem'
                   }}
                 >
+                  <RadioGroup
+                    /* sx={{
+                      display: 'flex',
+                      marginRight: '3rem'
+                    }} */
+                    onChange={(event) => {
+                      event.target.value == 'contribution'
+                        ? setCommentType(1)
+                        : setCommentType(2);
+                    }}
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    defaultValue="contribution"
+                    name="radio-buttons-group"
+                  >
+                    <Container
+                      style={{
+                        width: 'auto',
+                        margin: '0',
+                        padding: '0',
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-start'
+                      }}
+                    >
+                      <FormControlLabel
+                        value="contribution"
+                        control={<Radio />}
+                        label="Contribution"
+                      />
+                      <FormControlLabel
+                        value="question"
+                        control={<Radio />}
+                        label="Question"
+                      />
+                    </Container>
+                  </RadioGroup>
                   <Button
                     variant="contained"
                     sx={{
-                      width: '220px',
+                      width: 'auto',
                       background: 'linear-gradient(90deg,#ae4eff,#5f64ff)'
                     }}
                     startIcon={<CreateIcon />}
                     onClick={() => {
                       const url =
-                        'https://get-hired-forum-dev.herokuapp.com/api/discussions';
+                        'https://get-hired-forum-dev.herokuapp.com/api/contributions';
+
                       const data = {
-                        title: title,
-                        categoryId: category,
                         content: content,
-                        userId: 1
+                        userId: 1,
+                        contributionTypeId: commentType,
+                        discussionId: discussionId
                       };
-                      console.log(data);
                       try {
                         fetch(url, {
                           headers: { 'Content-Type': 'application/json' },
@@ -222,16 +271,13 @@ function Discussion() {
                           method: 'POST'
                         })
                           .then((data) => data.json())
-                          .then((json) => {
-                            console.log(JSON.stringify(json));
-                          })
                           .then(() => {
                             setTitle('');
                             setContent('');
                             setContent('');
-                            setNewDiscussionSucceeded(true);
+                            setNewCommentSucceeded(true);
                             setTimeout(() => {
-                              setNewDiscussionSucceeded(false);
+                              setNewCommentSucceeded(false);
                             }, 5000);
                           });
                       } catch (error) {
@@ -239,14 +285,17 @@ function Discussion() {
                       }
                     }}
                   >
-                    Create Discussion
+                    Create {commentType == 1 ? 'CONTRIBUTION' : 'QUESTION'}
                   </Button>
                 </Box>
               </Box>
             </Box>
           </Container>
           {discussionId && (
-            <FixedBottomNavigation discussionId={discussionId} />
+            <FixedBottomNavigation
+              discussionId={discussionId}
+              newCommentSucceeded={newCommentSucceeded}
+            />
           )}
         </Grid>
         <style global jsx>{`

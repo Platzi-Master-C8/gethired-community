@@ -14,32 +14,29 @@ import Avatar from '@mui/material/Avatar';
 import { callApi } from '../../../utils/helpers/callApi';
 import { Typography } from '@mui/material';
 
-function FixedBottomNavigation({ discussionId }) {
+function FixedBottomNavigation({ discussionId, newCommentSucceeded }) {
   const api = `https://get-hired-forum-dev.herokuapp.com/api/contributions/${discussionId}/`;
 
   const requestUrl = api;
   const [value, setValue] = React.useState(0);
   const [commentsToggle, setCommentsToggle] = React.useState(true);
   const ref = React.useRef<HTMLDivElement>(null);
-  //const [messages, setMessages] = React.useState(() => refreshMessages());
 
   const [comments, setComments] = React.useState<any>([]);
   const [questions, setQuestions] = React.useState<any>([]);
 
   React.useEffect(() => {
     (ref.current as HTMLDivElement).ownerDocument.body.scrollTop = 0;
-    //setMessages(refreshMessages());
   }, [value]);
 
   React.useEffect(() => {
-    console.log(requestUrl);
     callApi(requestUrl + 'comments').then((response) => {
       setComments(response);
     });
     callApi(requestUrl + 'questions').then((response) => {
       setQuestions(response);
     });
-  }, []);
+  }, [newCommentSucceeded]);
 
   return (
     <Box sx={{ width: 'inherit', m: 3 }} ref={ref}>
@@ -49,7 +46,6 @@ function FixedBottomNavigation({ discussionId }) {
           value={value}
           onChange={(event, newValue) => {
             setValue(newValue);
-            console.log(value);
           }}
           sx={{
             display: 'flex',
@@ -70,36 +66,46 @@ function FixedBottomNavigation({ discussionId }) {
         </BottomNavigation>
       </Paper>
       <List>
+        {/* <ListItem key={8}>
+          <ListItemAvatar>
+            <Avatar alt="Profile Picture" />
+          </ListItemAvatar>
+          <ListItemText primary={'Gethired user'} secondary={'dss'} />
+        </ListItem> */}
         {commentsToggle ? (
           comments.length > 0 ? (
-            comments.map((comment) => {
+            comments.map((comment) => (
               <ListItem key={comment.id}>
                 <ListItemAvatar>
                   <Avatar alt="Profile Picture" />
                 </ListItemAvatar>
                 <ListItemText
-                  primary={'Gethired user'}
-                  secondary={'This is a comment'}
+                  primary={'Gethired user ' + comment.userId}
+                  secondary={comment.content}
                 />
-              </ListItem>;
-            })
+              </ListItem>
+            ))
           ) : (
-            <Typography variant="h6" align="center" margin={3}>No comments yet :(</Typography>
+            <Typography variant="h6" align="center" margin={3}>
+              No comments yet :(
+            </Typography>
           )
         ) : questions.length > 0 ? (
-          questions.map((question) => {
+          questions.map((question) => (
             <ListItem key={question.id}>
               <ListItemAvatar>
                 <Avatar alt="Profile Picture" />
               </ListItemAvatar>
               <ListItemText
-                primary={'Gethired user'}
-                secondary={'This is a comment'}
+                primary={'Gethired user ' + question.userId}
+                secondary={question.content}
               />
-            </ListItem>;
-          })
+            </ListItem>
+          ))
         ) : (
-          <Typography variant="h6" align="center" margin={3}>No questions yet :(</Typography>
+          <Typography variant="h6" align="center" margin={3}>
+            No questions yet :(
+          </Typography>
         )}
       </List>
     </Box>

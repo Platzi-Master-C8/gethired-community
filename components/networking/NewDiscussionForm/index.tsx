@@ -36,19 +36,18 @@ function NewDiscussionForm() {
     const form = document.getElementsByClassName('form');
     /* formToggle ? form.style.display = "block" : form.style.display = "none"; */
     setFormToggle(!formToggle);
-    console.log(formToggle);
   };
 
   return (
     <React.Fragment>
-      {newDiscussionSucceeded ? (
+      {newDiscussionSucceeded && (
         <div>
           <Alert severity="success">
             Thee creation of the discussion was successful
           </Alert>
           <br />
         </div>
-      ) : null}
+      )}
 
       <form action="">
         <Container sx={{ padding: '0px' }}>
@@ -61,7 +60,6 @@ function NewDiscussionForm() {
             <Button
               sx={{
                 margin: '1rem',
-                transition: '4s',
                 background: 'linear-gradient(90deg,#ae4eff,#5f64ff)'
               }}
               onClick={onClickFormToggle}
@@ -151,7 +149,6 @@ function NewDiscussionForm() {
                       content: content,
                       userId: 1
                     };
-                    console.log(data);
                     try {
                       fetch(url, {
                         headers: { 'Content-Type': 'application/json' },
@@ -159,9 +156,6 @@ function NewDiscussionForm() {
                         method: 'POST'
                       })
                         .then((data) => data.json())
-                        .then((json) => {
-                          console.log(JSON.stringify(json));
-                        })
                         .then(() => {
                           setTitle('');
                           setContent('');

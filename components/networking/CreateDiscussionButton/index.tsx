@@ -6,7 +6,6 @@ import { makeStyles } from '@mui/styles';
 const useStyle = makeStyles({
     discussionButton: {
         background: 'linear-gradient(90deg,#ae4eff,#5f64ff)',
-
     }
 })
 

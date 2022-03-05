@@ -57,9 +57,7 @@ function DiscussionPost(props: DiscussionProps) {
           <Typography paragraph>{props.created_by}</Typography>
           <Typography paragraph>{props.created_at}</Typography>
         </Box>
-        <Box flexShrink="1" display="flex" alignContent="center">
-          <ReportButton />
-        </Box>
+        
       </Box>
     </Box>
   );

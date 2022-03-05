@@ -23,7 +23,6 @@ function ListSuggestedDiscussions(props: DiscussionProps) {
     return (
         <React.Fragment>
             <Container>
-                { console.log(props.names) }
                 {(props.names.length > 0 && props.data.length > 0) && props.data.map((item) => {
                     return (
                         <SuggestedDiscussion
