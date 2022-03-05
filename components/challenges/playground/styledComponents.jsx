@@ -66,7 +66,7 @@ export const ItemCodeView = styled.div`
 export const ItemButton = styled.div`
   display: flex;
   width: 100%;
-  padding: 3.5rem 0 1rem 0;
+  padding: 1rem 0 0 0;
   justify-content: center;
   align-items: center;
 `;
@@ -83,7 +83,6 @@ export const ItemButtonRun = styled.div`
   border: 1px solid #a779ff;
   font-size: 14px;
   font-weight: bold;
-  padding-top: 3px;
 
   &:hover {
     color: white;
