@@ -46,7 +46,7 @@ function Home() {
     `${api}?limit=${LIMIT_PAGINATION}&offset=${offSetPagination}`
   );
   const [data, setData] = useState([]);
-  const [selectingCategory, setSelectingCategory] = useState([]);
+  /* const [selectingCategory, setSelectingCategory] = useState(); */
 
   const classes = useStyles();
 
@@ -65,9 +65,8 @@ function Home() {
     <>
       <Header />
       <Navbar />
-
       <Container style={{ fontSize: '1em' }} fixed maxWidth="md">
-        <div className={classes.row}>
+        {/* <div className={classes.row}>
           <Typography
             className={classes.forum__title}
             variant="h5"
@@ -76,11 +75,8 @@ function Home() {
           >
             Forum
           </Typography>
-        </div>
+        </div> */}
         <NewDiscussionForm />
-        {/* <CreateDiscussionButton /> */}
-
-        {/* <div className={classes.row}> */}
         <Grid container spacing={2}>
           <Grid
             item
@@ -102,10 +98,9 @@ function Home() {
               justifyContent: 'flex-end'
             }}
           >
-            <SelectCategories />
+            <SelectCategories setCategoryId={setCategoryId} />
           </Grid>
         </Grid>
-        {/* </div> */}
         <br />
         <Typography
           className={classes.forum__discussions}
@@ -114,66 +109,31 @@ function Home() {
         >
           Suggested discussions
         </Typography>
+        <br />
+        <br />
+        {data.length > 0 && <ListSuggestedDiscussions data={data} />}
+        <Stack spacing={2} justifyContent="center" alignItems="center">
+          {discussions > 0 && (
+            <Pagination
+              count={Math.ceil(discussions / LIMIT_PAGINATION)}
+              color="primary"
+              onChange={(event: React.ChangeEvent<unknown>, page: number) => {
+                setRequestUrl(
+                  `${api}?limit=${LIMIT_PAGINATION}&offset=${
+                    (page - 1) * LIMIT_PAGINATION
+                  }`
+                );
+              }}
+            />
+          )}
+        </Stack>
+        <style global jsx>{`
+          html {
+            font-size: initial;
+          }
+        `}</style>
       </Container>
-      <NewDiscussionForm />
-      <Grid container spacing={2}>
-        <Grid
-          item
-          xs={12}
-          md={8}
-          sx={{
-            display: 'flex',
-            justifyContent: 'flex-start'
-          }}
-        >
-          <SearchDiscussion />
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={4}
-          sx={{
-            display: 'flex',
-            justifyContent: 'flex-end'
-          }}
-        >
-          <SelectCategories
-            setCategoryId={setCategoryId}
-            setSelectingCategory={setSelectingCategory}
-          />
-        </Grid>
-      </Grid>
-      <br />
-      <Typography
-        className={classes.forum__discussions}
-        variant="h6"
-        component="h2"
-      >
-        Suggested discussions
-      </Typography>
-      <br />
-      <br />
-      {data.length > 0 && <ListSuggestedDiscussions data={data} />}
-      <Stack spacing={2} justifyContent="center" alignItems="center">
-        {discussions > 0 && (
-          <Pagination
-            count={Math.ceil(discussions / LIMIT_PAGINATION)}
-            color="primary"
-            onChange={(event: React.ChangeEvent<unknown>, page: number) => {
-              setRequestUrl(
-                `${api}?limit=${LIMIT_PAGINATION}&offset=${
-                  (page - 1) * LIMIT_PAGINATION
-                }`
-              );
-            }}
-          />
-        )}
-      </Stack>
-      <style global jsx>{`
-        html {
-          font-size: initial;
-        }
-      `}</style>
+      );
     </>
   );
 }

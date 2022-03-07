@@ -55,12 +55,12 @@ function FixedBottomNavigation({ discussionId, newCommentSucceeded }) {
         >
           <BottomNavigationAction
             onClick={() => setCommentsToggle(true)}
-            label="Contributions"
+            label={'Contributions (' + comments.length + ')'}
             icon={<ForumIcon />}
           />
           <BottomNavigationAction
             onClick={() => setCommentsToggle(false)}
-            label="Questions"
+            label={'Questions (' + questions.length + ')'}
             icon={<QuestionMarkIcon />}
           />
         </BottomNavigation>

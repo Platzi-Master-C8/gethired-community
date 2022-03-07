@@ -42,7 +42,6 @@ function NewDiscussionForm() {
             <Button
               sx={{
                 margin: '1rem',
-                transition: '4s',
                 background: 'linear-gradient(90deg,#ae4eff,#5f64ff)'
               }}
               onClick={onClickFormToggle}
@@ -65,8 +64,7 @@ function NewDiscussionForm() {
               borderRadius: '5px',
               borderColor: 'grey.400',
               padding: '15px',
-              overflow: 'hidden',
-              transition: 'max-height 4s ease-out'
+              overflow: 'hidden'
             }}
           >
             <Box

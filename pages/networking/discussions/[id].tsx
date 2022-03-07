@@ -46,13 +46,7 @@ function Discussion() {
     query: { id }
   } = useRouter();
 
-  const [discussionData, setDiscussionData] = useState({
-    title: '',
-    content: '',
-    createdAt: '',
-    createdBy: '',
-    isActive: false
-  });
+  const [discussionData, setDiscussionData] = useState([]);
 
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = React.useState<string | false>(false);
@@ -87,9 +81,14 @@ function Discussion() {
     <>
       <Header />
       <Navbar />
-      <Container maxWidth="lg">
+      <Container
+        sx={{
+          position: 'absolute',
+          right: '180px'
+        }}
+      >
         <Container>
-          <Grid container justifyContent="center">
+          <Grid container justifyContent="start" sx={{ marginLeft: '3rem' }}>
             <Grid item sm={11} md={7} lg={11} xl={6}>
               {loading ? (
                 <div className={classes.Discussion_bread}>
@@ -107,7 +106,7 @@ function Discussion() {
               <Skeleton variant="rectangular" width={900} height={500} />
             </div>
           ) : (
-            discussionData.content && (
+            discussionData.length > 0 && (
               <Box
                 sx={{ mx: 6 }}
                 display="flex"
@@ -267,7 +266,11 @@ function Discussion() {
                       };
                       try {
                         fetch(url, {
-                          headers: { 'Content-Type': 'application/json' },
+                          headers: {
+                            'Content-Type': 'application/json',
+                            Authorization:
+                              'Bearer ' + localStorage.getItem('access_token')
+                          },
                           body: JSON.stringify(data),
                           method: 'POST'
                         })
