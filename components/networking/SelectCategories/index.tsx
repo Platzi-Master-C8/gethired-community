@@ -11,7 +11,12 @@ const useStyle = makeStyles({
     }
 })
 
-function SelectCategories({setCategoryId}) {
+interface CategoriesProps {
+    setCategoryId?: any,
+    setSelectingCategory?: any
+}
+
+function SelectCategories({setCategoryId, setSelectingCategory}: CategoriesProps) {
     const ENDPOINT_CATEGORIES = 'https://get-hired-forum-dev.herokuapp.com/api/categories';
     const classes = useStyle();
 
@@ -25,10 +30,10 @@ function SelectCategories({setCategoryId}) {
             setCategoryId(categoryId);
         }
         setCategorySelected(category);
+        setSelectingCategory(categorySelected);
     };
 
     useEffect(() => {
-
         callApi(ENDPOINT_CATEGORIES)
           .then((response) => {
             setCategories(response);

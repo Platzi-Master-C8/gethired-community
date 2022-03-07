@@ -9,6 +9,8 @@ import { DiscussionLikeCounter } from '../../../components/networking/Discussion
 import Box from '@mui/system/Box';
 import Skeleton from '@mui/material/Skeleton';
 import { FixedBottomNavigation } from '../../../components/networking/CommentsSystem';
+import { callApi } from '../../../utils/helpers/callApi';
+import Moment from 'moment';
 
 const useStyle = makeStyles({
     likeButtonContainer: {
@@ -40,13 +42,9 @@ function Discussion() {
 
     useEffect(() => {
         if (id) {
-            fetch(`https://get-hired-forum-dev.herokuapp.com/api/discussions/${id}`,
-                
-            )
-                .then(response => response.json())
+            callApi(`https://get-hired-forum-dev.herokuapp.com/api/discussions/${id}`)
                 .then(discussion => {
                     setDiscussionData(discussion);
-                    console.log(discussionData);
                     setLoading(false)
                 });
         }
@@ -80,23 +78,26 @@ function Discussion() {
                             <Grid item xl={12} sx={{ 
                                 width: 'inherit'
                              }}>
-                                {discussionData.content &&
+                                {discussionData &&
+                                    
                                     <Box display="flex" flexDirection="row" >
                                         <DiscussionLikeCounter
-                                            isLiked={discussionData.isActive}
-                                            likesCount={0}
+                                            isLiked={discussionData[0].isActive}
+                                            likesCount={discussionData[0].likesCount}
                                             discussionId={discussionId}
-                                            userId={101} // TODO: Get the global user id
+                                            userId={discussionData[0].userId} // TODO: Get the global user id
                                             boxProps={{
                                                 pt: '1em'
                                             }}
                                         />
 
                                         <DiscussionPost
-                                            title={discussionData.title}
-                                            content={discussionData.content}
-                                            created_at={discussionData.createdAt.slice(0, 10)}
-                                            created_by={discussionData.createdBy}
+                                            title={discussionData[0].title}
+                                            content={discussionData[0].content}
+                                            createdAt={discussionData[0].createdAt}
+                                            userId={discussionData[0].userId}
+                                            userFullName={discussionData[0].userFullName}
+                                            category={discussionData[0].category}
                                         />
                                     </Box>
                                 }

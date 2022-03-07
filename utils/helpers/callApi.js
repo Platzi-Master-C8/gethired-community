@@ -1,5 +1,10 @@
 const callApi = (apiUrl) =>
-  fetch(apiUrl)
+  fetch(apiUrl, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+    },
+  })
     .then((response) => {
       if (response.ok) {
         return response.json();

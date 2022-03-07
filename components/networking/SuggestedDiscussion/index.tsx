@@ -80,7 +80,6 @@ function SuggestedDiscussion(props: DiscussionProps) {
 
     return (
         <React.Fragment>
-            {console.log(props)}
             <Card className={classes.card} raised={false} sx={{ marginBottom: '1rem', padding: '0' }} variant="outlined">
                 <div className={`${classes.row} ${classes.header}`} style={{ marginBottom: '0' }}>
                     <DiscussionLikeCounter

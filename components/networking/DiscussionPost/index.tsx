@@ -16,12 +16,13 @@ const useStyle = makeStyles({
     }
 })
 
-type DiscussionProps = {
+/* type DiscussionProps = {
     title: string,
     content: string,
-    created_at: string,
-    created_by: string,
-}
+    createdAt: string,
+    userId: string,
+    userFullName: string
+} */
 
 function splitByNewLine(str: string) {
     if (str.indexOf('\r\n')) {
@@ -33,17 +34,16 @@ function splitByNewLine(str: string) {
     }
 }
 
-function DiscussionPost(props: DiscussionProps) {
-
+function DiscussionPost({title, content, createdAt, category, userId, userFullName}) {
     const classes = useStyle()
 
-    const paragraphs = splitByNewLine(props.content);
+    const paragraphs = splitByNewLine(content);
 
     return (
         <div>
             <Box p={2}>
                 <Typography variant='h4' fontWeight='600' >
-                    {props.title}
+                    {title}
                 </ Typography>
                 <Box pt={2}>
                     {paragraphs.map((content, index) => (
@@ -58,12 +58,24 @@ function DiscussionPost(props: DiscussionProps) {
                 <Typography paragraph m={1} sx={{ 
                     marginRight: '1rem'
                  }}>
-                    {getUserName()}
+                    {userFullName}
                 </ Typography>
                 <AccessTimeFilledRounded className={classes.icon} />
-                <Typography paragraph m={1}>
-                    {Moment(props.created_at).fromNow()}
+                <Typography paragraph m={1} sx={{ 
+                    marginRight: '1rem'
+                 }}>
+                    {Moment(createdAt).fromNow()}
                 </ Typography>
+                <div style={{
+                    backgroundColor: '#AE4EFF',
+                    borderRadius: '3px',
+                    color: 'white',
+                    alignContent: 'center',
+                    width: 'auto',
+                    padding: '2px 3px'
+                }}>
+                    {category}
+                </div>
             </Box>
         </div>
 
