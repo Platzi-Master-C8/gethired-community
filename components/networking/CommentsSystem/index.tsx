@@ -11,27 +11,35 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import Avatar from '@mui/material/Avatar';
 
-function refreshMessages(): MessageExample[] {
-  const getRandomInt = (max: number) => Math.floor(Math.random() * Math.floor(max));
+import { callApi } from '../../../utils/helpers/callApi';
+import { Typography } from '@mui/material';
 
-  return Array.from(new Array(10)).map(
-    () => messageExamples[getRandomInt(messageExamples.length)],
-  );
-}
+function FixedBottomNavigation({ discussionId, newCommentSucceeded }) {
+  const api = `https://get-hired-forum-dev.herokuapp.com/api/contributions/${discussionId}/`;
 
-function FixedBottomNavigation() {
+  const requestUrl = api;
   const [value, setValue] = React.useState(0);
+  const [commentsToggle, setCommentsToggle] = React.useState(true);
   const ref = React.useRef<HTMLDivElement>(null);
-  const [messages, setMessages] = React.useState(() => refreshMessages());
+
+  const [comments, setComments] = React.useState<any>([]);
+  const [questions, setQuestions] = React.useState<any>([]);
 
   React.useEffect(() => {
     (ref.current as HTMLDivElement).ownerDocument.body.scrollTop = 0;
-    setMessages(refreshMessages());
-  }, [value, setMessages]);
+  }, [value]);
+
+  React.useEffect(() => {
+    callApi(requestUrl + 'comments').then((response) => {
+      setComments(response);
+    });
+    callApi(requestUrl + 'questions').then((response) => {
+      setQuestions(response);
+    });
+  }, [newCommentSucceeded]);
 
   return (
-    <Box sx={{ pb: 7, m: 6 }} ref={ref}>
-      
+    <Box sx={{ width: 'inherit', m: 3 }} ref={ref}>
       <Paper sx={{ bottom: 0, left: 0, right: 0 }} elevation={3}>
         <BottomNavigation
           showLabels
@@ -39,77 +47,69 @@ function FixedBottomNavigation() {
           onChange={(event, newValue) => {
             setValue(newValue);
           }}
-          sx={{ 
+          sx={{
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-around'
-           }}
+          }}
         >
-          <BottomNavigationAction label="Contributions" icon={<ForumIcon />} />
-          <BottomNavigationAction label="Questions" icon={<QuestionMarkIcon />} />
+          <BottomNavigationAction
+            onClick={() => setCommentsToggle(true)}
+            label="Contributions"
+            icon={<ForumIcon />}
+          />
+          <BottomNavigationAction
+            onClick={() => setCommentsToggle(false)}
+            label="Questions"
+            icon={<QuestionMarkIcon />}
+          />
         </BottomNavigation>
       </Paper>
       <List>
-        {messages.map(({ primary, secondary, person }, index) => (
-          <ListItem button key={index + person}>
-            <ListItemAvatar>
-              <Avatar alt="Profile Picture" />
-            </ListItemAvatar>
-            <ListItemText primary={primary} secondary={secondary} />
-          </ListItem>
-        ))}
+        {/* <ListItem key={8}>
+          <ListItemAvatar>
+            <Avatar alt="Profile Picture" />
+          </ListItemAvatar>
+          <ListItemText primary={'Gethired user'} secondary={'dss'} />
+        </ListItem> */}
+        {commentsToggle ? (
+          comments.length > 0 ? (
+            comments.map((comment) => (
+              <ListItem key={comment.id}>
+                <ListItemAvatar>
+                  <Avatar alt="Profile Picture" />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={'Gethired user ' + comment.userId}
+                  secondary={comment.content}
+                />
+              </ListItem>
+            ))
+          ) : (
+            <Typography variant="h6" align="center" margin={3}>
+              No comments yet :(
+            </Typography>
+          )
+        ) : questions.length > 0 ? (
+          questions.map((question) => (
+            <ListItem key={question.id}>
+              <ListItemAvatar>
+                <Avatar alt="Profile Picture" />
+              </ListItemAvatar>
+              <ListItemText
+                primary={'Gethired user ' + question.userId}
+                secondary={question.content}
+              />
+            </ListItem>
+          ))
+        ) : (
+          <Typography variant="h6" align="center" margin={3}>
+            No questions yet :(
+          </Typography>
+        )}
       </List>
-      
     </Box>
   );
 }
-
-interface MessageExample {
-  primary: string;
-  secondary: string;
-  person: string;
-}
-
-const messageExamples: readonly MessageExample[] = [
-  {
-    primary: 'Brunch this week?',
-    secondary: "I'll be in the neighbourhood this week. Let's grab a bite to eat",
-    person: '/static/images/avatar/5.jpg',
-  },
-  {
-    primary: 'Birthday Gift',
-    secondary: `Do you have a suggestion for a good present for John on his work
-      anniversary. I am really confused & would love your thoughts on it.`,
-    person: '/static/images/avatar/1.jpg',
-  },
-  {
-    primary: 'Recipe to try',
-    secondary: 'I am try out this new BBQ recipe, I think this might be amazing',
-    person: '/static/images/avatar/2.jpg',
-  },
-  {
-    primary: 'Yes!',
-    secondary: 'I have the tickets to the ReactConf for this year.',
-    person: '/static/images/avatar/3.jpg',
-  },
-  {
-    primary: "Doctor's Appointment",
-    secondary: 'My appointment for the doctor was rescheduled for next Saturday.',
-    person: '/static/images/avatar/4.jpg',
-  },
-  {
-    primary: 'Discussion',
-    secondary: `Menus that are generated by the bottom app bar (such as a bottom
-      navigation drawer or overflow menu) open as bottom sheets at a higher elevation
-      than the bar.`,
-    person: '/static/images/avatar/5.jpg',
-  },
-  {
-    primary: 'Summer BBQ',
-    secondary: `Who wants to have a cookout this weekend? I just got some furniture
-      for my backyard and would love to fire up the grill.`,
-    person: '/static/images/avatar/1.jpg',
-  },
-];
 
 export { FixedBottomNavigation };
