@@ -39,10 +39,12 @@ function Home() {
   
   
   const [ discussions, setDiscussions ] = useState(0);  //Brings the number of discussions in the whole array with no pagination
-  const [ categoryId, setCategoryId ] = useState();
+  const [ categoryId, setCategoryId ] = useState<number>();
   const [ offSetPagination, setOffSetPagination ] = useState(0);
   const [ requestUrl, setRequestUrl ] = useState(`${api}?limit=${LIMIT_PAGINATION}&offset=${offSetPagination}`);
   const [ data, setData ] = useState([]);
+  const [ selectingCategory, setSelectingCategory ] = useState([]);
+
   
   const classes = useStyles();
 
@@ -56,6 +58,10 @@ function Home() {
       });
     
   }, [ requestUrl ]);
+
+  useEffect(() => {
+    /* console.log(selectingCategory); */
+  }, [ selectingCategory ]);
 
   return (
     <Container style={{ fontSize: '1em' }} fixed maxWidth="md">
@@ -81,7 +87,7 @@ function Home() {
           display: 'flex',
           justifyContent: 'flex-end'
         }}>
-          <SelectCategories setCategoryId={setCategoryId} />
+          <SelectCategories setCategoryId={setCategoryId} setSelectingCategory={setSelectingCategory} />
         </Grid>
       </Grid>
       <br />
