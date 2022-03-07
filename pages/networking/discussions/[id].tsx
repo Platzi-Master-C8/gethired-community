@@ -40,7 +40,9 @@ function Discussion() {
 
     useEffect(() => {
         if (id) {
-            fetch(`https://get-hired-forum-dev.herokuapp.com/api/discussions/${id}`)
+            fetch(`https://get-hired-forum-dev.herokuapp.com/api/discussions/${id}`,
+                
+            )
                 .then(response => response.json())
                 .then(discussion => {
                     setDiscussionData(discussion);
