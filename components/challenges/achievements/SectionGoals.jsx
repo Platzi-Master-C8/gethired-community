@@ -12,23 +12,20 @@ export const SectionContainer = styled.div`
   }
 `;
 
-
 const SectionGoals = ({ goals }) => {
   return (
-      <SectionContainer>
-        {
-          goals.map((goal, index) => (
-          <Card
-            title={goal.name}
-            img={goal.badge}
-            description={goal.description}
-            completed={true}
-            key={index}
-          />
-          ))
-        }
-      </SectionContainer>
+    <SectionContainer>
+      {goals.map((goal, index) => (
+        <Card
+          title={goal.name}
+          img={goal.badge}
+          description={goal.description}
+          completed={goal.is_complete}
+          key={index}
+        />
+      ))}
+    </SectionContainer>
   );
-}
+};
 
 export default SectionGoals;

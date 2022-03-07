@@ -5,7 +5,6 @@ import doneLogo from '../../../public/icons//done.svg';
 import streakLogo from '../../../public/icons/streak.svg';
 import styled from '@emotion/styled';
 
-
 export const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -26,23 +25,27 @@ export const FeatureBox = styled.div`
 `;
 
 export const RankButton = styled.p`
-  background: linear-gradient(90deg, rgba(95, 100, 255, 0.7) 0%, rgba(174, 78, 255, 0.85) 100%);;
+  background: linear-gradient(
+    90deg,
+    rgba(95, 100, 255, 0.7) 0%,
+    rgba(174, 78, 255, 0.85) 100%
+  );
   border-radius: 1rem;
-  color: #FFFFFF;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 1.2rem;
-  height:  3rem;
+  height: 3rem;
   width: 10rem;
   text-align: center;
-  padding-top: .6rem;
+  padding-top: 0.6rem;
 `;
 
 export const DoneButton = styled(RankButton)`
-  background: linear-gradient(90deg, #A2A5EE 0%, #585EFF 100%);;
+  background: linear-gradient(90deg, #a2a5ee 0%, #585eff 100%); ;
 `;
 
-export const StreakButton = styled(RankButton)`
-`;
+export const StreakButton = styled(RankButton)``;
 
 export const RankValue = styled.p`
   color: rgba(174, 78, 255, 0.85);
@@ -53,41 +56,36 @@ export const RankValue = styled.p`
 `;
 
 export const DoneValue = styled(RankValue)`
-  color: #555BFF;
+  color: #555bff;
 `;
 
 export const StreakValue = styled(RankValue)`
-color: #555BFF;
+  color: #555bff;
 `;
 
-
-
 const StreakAndRank = ({ ranks, challenges }) => {
-
   if (ranks && challenges) {
     return (
       <Container>
-
         <FeatureBox>
-          <Image width={30} height={30}  src={rankLogo} alt="ranks" />
+          <Image width={30} height={30} src={rankLogo} alt="ranks" />
           <RankValue>{ranks ? ranks.next.name : []}</RankValue>
           <RankButton>Rank</RankButton>
         </FeatureBox>
 
         <FeatureBox>
-          <Image width={30} height={30}  src={doneLogo} alt="ranks" />
+          <Image width={30} height={30} src={doneLogo} alt="ranks" />
           <DoneValue>{challenges ? challenges.completed : []}</DoneValue>
           <DoneButton>Done</DoneButton>
         </FeatureBox>
 
         <FeatureBox>
-          <Image width={30} height={30}  src={streakLogo} alt="ranks" />
+          <Image width={30} height={30} src={streakLogo} alt="ranks" />
           <StreakValue>{challenges ? challenges.streak : []}</StreakValue>
           <StreakButton>Current Streak</StreakButton>
         </FeatureBox>
-
       </Container>
-    )
+    );
   } else {
     return null;
   }

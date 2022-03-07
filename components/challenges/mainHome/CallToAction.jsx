@@ -1,7 +1,7 @@
-import React from 'react'
-import Laptop from "../../../public/icons/laptop.png";
-import JavaScript from "../../../public/icons/JavaScript.png";
-import Clock from "../../../public/icons/clock.png";
+import React from 'react';
+import Laptop from '../../../public/icons/laptop.png';
+import JavaScript from '../../../public/icons/JavaScript.png';
+import Clock from '../../../public/icons/clock.png';
 import Image from 'next/image';
 import styled from '@emotion/styled';
 
@@ -13,7 +13,7 @@ const ContainerCards = styled.div`
   align-self: center;
   align-items: center;
   /* width: 90%; */
-`
+`;
 const Card = styled.div`
   display: flex;
   justify-content: space-between;
@@ -23,17 +23,17 @@ const Card = styled.div`
   font-size: 4rem;
   color: rgba(0, 0, 0, 0.63);
   margin: 30px 0;
-`
+`;
 const CardText = styled.p`
   background-color: white;
   font-size: 2rem;
-  padding-top: 10px
-`
+  padding-top: 10px;
+`;
 export const CallToAction = ({ styles }) => {
   return (
     <ContainerCards>
       <Card>
-        <CardText >Learn Online Whenever You Want</CardText>
+        <CardText>Learn Online Whenever You Want</CardText>
         <Image src={Laptop} alt="laptop image" />
       </Card>
       <Card>
@@ -45,5 +45,5 @@ export const CallToAction = ({ styles }) => {
         <Image src={Clock} alt="laptop image" />
       </Card>
     </ContainerCards>
-  )
-}
+  );
+};
