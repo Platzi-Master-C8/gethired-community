@@ -15,23 +15,17 @@ const CardContainer = styled.div`
   grid-template-rows: 30% 25% 45%;
   grid-template-areas:
     ' img title title'
-    ' img dificult botonCard'
-    ' img texto texto';
+    ' img difficult buttonCard'
+    ' img text text';
   transition: transform 0.3s;
 
   &:hover {
     transform: scale(1.1);
   }
-
-
-
 `;
 
 const CategoryCard = ({ children }) => {
-  return (
-    <CardContainer>
-      {children}
-    </CardContainer>);
+  return <CardContainer>{children}</CardContainer>;
 };
 
 export default CategoryCard;

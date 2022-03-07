@@ -10,11 +10,9 @@ export const ContainerPG = styled.div`
     ' header header'
     ' codeView info';
 `;
-
 export const ItemInfo = styled.div`
   grid-area: info;
 `;
-
 export const ItemTitle = styled.div`
   display: flex;
   width: 100%;
@@ -31,7 +29,6 @@ export const ItemTitle = styled.div`
   font-size: 34px;
   color: white;
 `;
-
 export const ItemTitle2 = styled.div`
   display: flex;
   width: 100%;
@@ -41,7 +38,6 @@ export const ItemTitle2 = styled.div`
   font-size: 21px;
   border-bottom: 2px solid #a779ff;
 `;
-
 export const ItemParagraph = styled.div`
   height: 100px;
   margin-top: 10px;
@@ -52,7 +48,6 @@ export const ItemParagraph = styled.div`
   margin-bottom: 25px;
   line-height: 25px;
 `;
-
 export const ItemCodeView = styled.div`
   height: 39%;
   box-shadow: 3px 3px 3px #a779ff;
@@ -62,7 +57,6 @@ export const ItemCodeView = styled.div`
     margin: 0;
   }
 `;
-
 export const ItemButton = styled.div`
   display: flex;
   width: 100%;
@@ -70,7 +64,6 @@ export const ItemButton = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
 export const ItemButtonRun = styled.div`
   height: 35px;
   width: 131px;
@@ -91,7 +84,6 @@ export const ItemButtonRun = styled.div`
     cursor: pointer;
   }
 `;
-
 export const ItemButtonSubmit = styled.div`
   height: 35px;
   width: 82px;
@@ -132,19 +124,18 @@ export const Loading = styled.div`
   font-size: 2rem;
   color: black;
 `;
-
 export const LoadingImg = styled.div`
   width: 70px;
   height: 70px;
   border: 10px solid #eee;
   border-top: 10px solid #a779ff;
   border-radius: 50%;
-  animation-name: girar;
+  animation-name: rotate;
   animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
   z-index: 2;
-  @keyframes girar {
+  @keyframes rotate {
     from {
       transform: rotate(0deg);
     }
@@ -153,7 +144,6 @@ export const LoadingImg = styled.div`
     }
   }
 `;
-
 export const SuccessContainer = styled.div`
   height: 85%;
   width: 95%;
@@ -206,7 +196,6 @@ export const FailTest = styled(SuccessTest)`
   justify-content: space-around;
   align-items: center;
 `;
-
 export const FailParagraph = styled(SuccessParagraph)`
   color: #702211;
 `;

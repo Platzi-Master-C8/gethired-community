@@ -12,9 +12,8 @@ export const Container = styled.div`
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  grid-area: minicards;
+  grid-area: miniCards;
 `;
-
 export const FeatureBox = styled.div`
   width: 12rem;
   height: 10rem;
@@ -23,7 +22,6 @@ export const FeatureBox = styled.div`
   align-items: center;
   justify-items: center;
 `;
-
 export const RankButton = styled.p`
   background: linear-gradient(
     90deg,
@@ -40,13 +38,10 @@ export const RankButton = styled.p`
   text-align: center;
   padding-top: 0.6rem;
 `;
-
 export const DoneButton = styled(RankButton)`
   background: linear-gradient(90deg, #a2a5ee 0%, #585eff 100%); ;
 `;
-
 export const StreakButton = styled(RankButton)``;
-
 export const RankValue = styled.p`
   color: rgba(174, 78, 255, 0.85);
   text-align: center;
@@ -54,11 +49,9 @@ export const RankValue = styled.p`
   font-size: 1.3rem;
   font-weight: 600;
 `;
-
 export const DoneValue = styled(RankValue)`
   color: #555bff;
 `;
-
 export const StreakValue = styled(RankValue)`
   color: #555bff;
 `;

@@ -1,7 +1,7 @@
-import Usersystem from '../../../components/challenges/usersystem/Usersystem';
+import UserSystem from '../../../components/challenges/userSystem/UserSystem';
 import Header from '../../../components/security/header/Header';
 import StreakAndRank from '../../../components/challenges/StreakAndRank/StreakAndRank';
-import UserGraph from '../../../components/challenges/usergraph/Usergraph';
+import UserGraph from '../../../components/challenges/userGraph/UserGraph';
 import Achievements from '../../../components/challenges/achievements/Achievements';
 import styled from '@emotion/styled';
 import { useUser } from '@auth0/nextjs-auth0';
@@ -17,8 +17,8 @@ export const Container = styled.div`
   grid-template-rows: 5.5rem 12% 33% 30%;
   grid-template-areas:
     ' header header header'
-    ' navbar minicards systemp'
-    ' navbar achievements systemp'
+    ' navbar miniCards sysTemp'
+    ' navbar achievements sysTemp'
     ' navbar graph .';
 `;
 
@@ -38,7 +38,7 @@ const Profile = () => {
         const data = await res.json();
         setChallenger(data.data);
       };
-      getChallenger().catch(err => console.log(err));//Fallback
+      getChallenger().catch((err) => console.log(err)); //Fallback
     }
   }, [user]);
 
@@ -47,8 +47,11 @@ const Profile = () => {
       <Container>
         <Header />
         <Navbar />
-        <StreakAndRank ranks={challenger.ranks} challenges={challenger.challenges} />
-        <Usersystem data={challenger} ranks={challenger.ranks} />
+        <StreakAndRank
+          ranks={challenger.ranks}
+          challenges={challenger.challenges}
+        />
+        <UserSystem data={challenger} ranks={challenger.ranks} />
         <Achievements goals={challenger.achievements} />
         <UserGraph activity={challenger.activity} />
       </Container>
