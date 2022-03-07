@@ -9,7 +9,7 @@ interface DiscussionLikeCounterProps {
   isLiked: boolean;
   discussionId: number;
   userId: number;
-  likes: number;
+  likesCount: number;
   boxProps?: Partial<ComponentProps<typeof Box>>;
   buttonProps?: Partial<ComponentProps<typeof DiscussionLikeButton>>;
   typographyProps?: Partial<ComponentProps<typeof Typography>>;
@@ -18,22 +18,17 @@ interface DiscussionLikeCounterProps {
 function DiscussionLikeCounter({
   discussionId,
   userId,
-  likes,
+  likesCount,
   boxProps,
   buttonProps,
   typographyProps,
 }: DiscussionLikeCounterProps): JSX.Element {
   // TODO: Make a request to fetch post's likes
-  const [likeCount, setLikeCount] = useState<number>(likes);
+  const [likeCount, setLikeCount] = useState<number>(likesCount);
   const [isLiked, setIsLiked] = useState<boolean>(null);
 
   const loadDiscussionLikes = async () => {
-    /* const likes = await findDiscussionLikes({
-      discussionId,
-      groupBy: 'discussionId'
-    }); */
-    /* setLikeCount(likes.length > 0 ? likes[0].currentdiscussionLikes : 0); */
-    setLikeCount(likes);
+    setLikeCount(likesCount);
 
     const hasLiked = await findDiscussionLikes({
       discussionId,

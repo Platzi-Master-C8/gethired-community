@@ -44,6 +44,7 @@ function Discussion() {
                 .then(response => response.json())
                 .then(discussion => {
                     setDiscussionData(discussion);
+                    console.log(discussionData);
                     setLoading(false)
                 });
         }
@@ -74,12 +75,14 @@ function Discussion() {
                                 <Skeleton variant='rectangular' width={900} height={500} />
                             </div>
                         ) : (
-                            <Grid item xl={12}>
+                            <Grid item xl={12} sx={{ 
+                                width: 'inherit'
+                             }}>
                                 {discussionData.content &&
-                                    <Box display="flex" flexDirection="row">
+                                    <Box display="flex" flexDirection="row" >
                                         <DiscussionLikeCounter
                                             isLiked={discussionData.isActive}
-                                            likes={0}
+                                            likesCount={0}
                                             discussionId={discussionId}
                                             userId={101} // TODO: Get the global user id
                                             boxProps={{

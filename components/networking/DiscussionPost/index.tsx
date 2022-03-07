@@ -2,6 +2,7 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
+import AccessTimeFilledRounded from '@mui/icons-material/AccessTimeFilledRounded';
 
 import Moment from 'moment';
 
@@ -10,7 +11,7 @@ import { makeStyles } from '@mui/styles';
 import { getUserName } from '../../../utils/helpers/userName';
 
 const useStyle = makeStyles({
-    userIcon: {
+    icon: {
         color: '#ae4eff'
     }
 })
@@ -53,21 +54,16 @@ function DiscussionPost(props: DiscussionProps) {
                 </Box>
             </Box>
             <Box pl={1.5} sx={{ display: 'flex', alignItems: 'center' }}>
-
-                <AccountCircleTwoToneIcon className={classes.userIcon} fontSize='large' />
-                {/* <div style={{ 
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignContent: 'flex-start',
-                    marginLeft: '1rem'
-                 }}> */}
-                <Typography paragraph m={1}>
+                <AccountCircleTwoToneIcon className={classes.icon} />
+                <Typography paragraph m={1} sx={{ 
+                    marginRight: '1rem'
+                 }}>
                     {getUserName()}
                 </ Typography>
-                <Typography paragraph m={2}>
+                <AccessTimeFilledRounded className={classes.icon} />
+                <Typography paragraph m={1}>
                     {Moment(props.created_at).fromNow()}
                 </ Typography>
-                {/* </div> */}
             </Box>
         </div>
 

@@ -67,9 +67,12 @@ type DiscussionProps = {
     title: string,
     content: string,
     createdAt: string,
-    userId: string,
+    userId: number,
     is_active: boolean,
-    likes: number,
+    likesCount: number,
+    userFullName: string,
+    contributionsCount: number,
+    category: string
 }
 
 function SuggestedDiscussion(props: DiscussionProps) {
@@ -83,8 +86,8 @@ function SuggestedDiscussion(props: DiscussionProps) {
                     <DiscussionLikeCounter
                         isLiked={props.is_active}
                         discussionId={props.id}
-                        userId={101} // TODO: Get the global user id
-                        likes={props.likes}
+                        userId={props.userId} // TODO: Get the global user userId
+                        likesCount={props.likesCount}
                         typographyProps={{
                             className: classes.discussionTitle,
                         }}
@@ -102,8 +105,7 @@ function SuggestedDiscussion(props: DiscussionProps) {
                             margin: '10px 0'
                         }}>
                             <AccountCircleRounded className={classes.userIcon} />
-                            {console.log(getUserName())}
-                            <Typography ml={1}>{getUserName()}</Typography>
+                            <Typography ml={1}>{props.userFullName}</Typography>
                         </div>
                     </div>
                 </div>
@@ -116,11 +118,21 @@ function SuggestedDiscussion(props: DiscussionProps) {
                     <Container className={classes.row} style={{ paddingBottom: 0, marginBottom: 0 }}>
                         <div className={classes.row} style={{ margin: 0, marginRight: '15px' }}>
                             <CommentRounded className={classes.postDetails} />
-                            <Typography ml={1}>5</Typography>
+                            <Typography ml={1}>{props.contributionsCount}</Typography>
                         </div>
-                        <div className={classes.row} style={{ margin: 0 }}>
+                        <div className={classes.row} style={{ margin: 0, marginRight: '15px' }}>
                             <AccessTimeFilledRounded className={classes.postDetails} />
                             <Typography ml={1}>{props.createdAt}</Typography>
+                        </div>
+                        <div style={{
+                            backgroundColor: '#AE4EFF',
+                            borderRadius: '3px',
+                            color: 'white',
+                            alignContent: 'center',
+                            width: 'auto',
+                            padding: '2px 3px'
+                        }}>
+                            {props.category}
                         </div>
                     </Container>
                 </CardContent>
