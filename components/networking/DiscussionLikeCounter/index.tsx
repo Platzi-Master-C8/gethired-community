@@ -1,15 +1,15 @@
-import { ComponentProps, useEffect, useState } from "react";
-import CircularProgress from "@mui/material/CircularProgress";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/system/Box";
-import { findDiscussionLikes } from "../../../services/networking/forum-api";
-import { DiscussionLikeButton } from "../DiscussionLikeButton";
+import { ComponentProps, useEffect, useState } from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/system/Box';
+import { findDiscussionLikes } from '../../../services/networking/forum-api';
+import { DiscussionLikeButton } from '../DiscussionLikeButton';
 
 interface DiscussionLikeCounterProps {
   isLiked: boolean;
   discussionId: number;
   userId: number;
-  likes: number;
+  likesCount: number;
   boxProps?: Partial<ComponentProps<typeof Box>>;
   buttonProps?: Partial<ComponentProps<typeof DiscussionLikeButton>>;
   typographyProps?: Partial<ComponentProps<typeof Typography>>;
@@ -18,29 +18,24 @@ interface DiscussionLikeCounterProps {
 function DiscussionLikeCounter({
   discussionId,
   userId,
-  likes,
+  likesCount,
   boxProps,
   buttonProps,
-  typographyProps,
+  typographyProps
 }: DiscussionLikeCounterProps): JSX.Element {
   // TODO: Make a request to fetch post's likes
-  const [likeCount, setLikeCount] = useState<number>(likes);
+  const [likeCount, setLikeCount] = useState<number>(likesCount);
   const [isLiked, setIsLiked] = useState<boolean>(null);
 
   const loadDiscussionLikes = async () => {
-    /* const likes = await findDiscussionLikes({
-      discussionId,
-      groupBy: 'discussionId'
-    }); */
-    /* setLikeCount(likes.length > 0 ? likes[0].currentdiscussionLikes : 0); */
-    setLikeCount(likes);
+    setLikeCount(likesCount);
 
     const hasLiked = await findDiscussionLikes({
       discussionId,
-      userId,
+      userId
     });
     setIsLiked(hasLiked.length > 0 ? hasLiked[0].isActive : false);
-  }
+  };
 
   useEffect(() => {
     loadDiscussionLikes();
@@ -69,10 +64,7 @@ function DiscussionLikeCounter({
         userId={userId}
         {...buttonProps}
       />
-      <Typography
-        align="center"
-        {...typographyProps}
-      >
+      <Typography align="center" {...typographyProps}>
         {likeCount ?? <CircularProgress />}
       </Typography>
     </Box>

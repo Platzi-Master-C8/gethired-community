@@ -35,6 +35,7 @@ export function insertDiscussion(object: InsertDiscussionRequest) {
     mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
+      "Authorization": 'Bearer ' + localStorage.getItem('access_token'),
     },
     body: JSON.stringify(object),
   });
@@ -75,6 +76,7 @@ export function toggleDiscussionLike(object: ToggleLikeRequest) {
     mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
+      "Authorization": 'Bearer ' + localStorage.getItem('access_token'),
     },
     body: JSON.stringify(object),
   });
