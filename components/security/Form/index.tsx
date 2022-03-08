@@ -106,7 +106,7 @@ function Form({children}){
     const [sendInfo, setSendInfo] = useState(false);
 
     const onSend = () =>{
-        setMensaje(mensaje + 'Enviando...');    
+        setMensaje(mensaje + 'Sending...');    
     }
 
     const onClicking = () => {
@@ -121,7 +121,7 @@ function Form({children}){
   
         <form className={classes.formulario}>
             <div className={classes.encabezadoModal}>
-                <label className={classes.Encabezado}>Elige un motivo para denunciar esta publicación</label>
+                <label className={classes.Encabezado}>Let Us Know What's Going On</label>
                 {children}
             </div>
 
@@ -133,55 +133,55 @@ function Form({children}){
                 
                 <div className={classes.container}>
                     <input type='radio' id='radio1' className={classes.radios} name='modal' onClick={() => onClicking()}></input>
-                    <label htmlFor='radio1' className={classes.labels}>Es contenido no deseado</label>
+                    <label htmlFor='radio1' className={classes.labels}>Unwanted content</label>
 
                     <input type='radio' id='radio2' className={classes.radios} name='modal' onClick={() => onClicking()}></input>
-                    <label htmlFor='radio2' className={classes.labels}>Es inapropiado</label>
+                    <label htmlFor='radio2' className={classes.labels}>Posting inappropriate things</label>
 
                     <input type='radio' id='radio3' className={classes.radios} name='modal' onClick={() => onClicking()}></input>
-                    <label htmlFor='radio3' className={classes.labels}>Cuenta falsa</label>
+                    <label htmlFor='radio3' className={classes.labels}>Fake account</label>
 
                     <input type='radio' id='radio4' className={classes.radios} name='modal' onClick={() => onClicking()}></input>
-                    <label htmlFor='radio4' className={classes.labels}>Nombre falso</label>
+                    <label htmlFor='radio4' className={classes.labels}>Fake name</label>
 
                     <input type='radio' id='radio5' className={classes.radios} name='modal' onClick={() => onClicking()}></input>
-                    <label htmlFor='radio5' className={classes.labels}>Acoso o bullying</label>
+                    <label htmlFor='radio5' className={classes.labels}>Harassment or bullying</label>
 
                     <input type='radio' id='radio6' className={classes.radios} name='modal' onClick={() => onClicking()}></input>
-                    <label htmlFor='radio6' className={classes.labels}>Noticias o anuncios falsos</label>
+                    <label htmlFor='radio6' className={classes.labels}>Fake news or scams</label>
 
                     <input type='radio' id='radio7' className={classes.radios} name='modal' onClick={() => onClicking()}></input>
-                    <label htmlFor='radio7' className={classes.labels}>Publicación duplicada</label>
+                    <label htmlFor='radio7' className={classes.labels}>Duplicate</label>
 
                     <input type='radio' id='radio8' className={classes.radios} name='modal' onClick={() => onClicking()}></input>
-                    <label htmlFor='radio8' className={classes.labels}>Insultos</label>
+                    <label htmlFor='radio8' className={classes.labels}>Attaks individual or group</label>
 
                     <input type='radio' id='radio9' className={classes.radios} name='modal' onClick={() => onClicking()}></input>
-                    <label htmlFor='radio9' className={classes.labels}>Es molesta o de mal gusto</label>
+                    <label htmlFor='radio9' className={classes.labels}>Annoying or distasteful</label>
 
                     <input type='radio' id='radio10' className={classes.radios} name='modal' onClick={() => onClicking()}></input>
-                    <label htmlFor='radio10' className={classes.labels}>Va en contra de mis ideales</label>
+                    <label htmlFor='radio10' className={classes.labels}>It goes against my ideals</label>
 
                     <input type='radio' id='radio11' className={classes.radios} name='modal' onClick={() => onClicking()}></input>
-                    <label htmlFor='radio11' className={classes.labels}>Se hizo pasar como administrador</label>
+                    <label htmlFor='radio11' className={classes.labels}>Pretending to be an administrator</label>
 
                     <input type='radio' id='radio12' className={classes.radios} name='modal' onClick={() => onClicking()}></input>
-                    <label htmlFor='radio12' className={classes.labels}>Muchos nombres de usuario</label>
+                    <label htmlFor='radio12' className={classes.labels}>Many usernames</label>
 
                     <input type='radio' id='radio13' className={classes.radios} name='modal' onClick={() => onClicking()}></input>
-                    <label htmlFor='radio13' className={classes.labels}>Incitación al odio</label>
+                    <label htmlFor='radio13' className={classes.labels}>Hate speech</label>
 
                     <input type='radio' id='radio14' className={classes.radios} name='modal' onClick={() => onClicking()}></input>
                     <label htmlFor='radio14' className={classes.labels}>Spam</label>
 
                     <input type='radio' id='radio15' className={classes.radios} name='modal' onClick={() => onClicking()}></input>
-                    <label htmlFor='radio15' className={classes.labels}>Se hizo pasar como otro miembro</label>
+                    <label htmlFor='radio15' className={classes.labels}>Pretending to be someone</label>
 
                     <input type='radio' id='radio16' className={classes.radios} name='modal' onClick={() => onClicking()}></input>
-                    <label htmlFor='radio16' className={classes.labels}>Foro incorrecto</label>
+                    <label htmlFor='radio16' className={classes.labels}>Wrong forum</label>
 
                     <input type='radio' id='radio17' className={classes.radios} name='modal' onClick={() => onClicking()}></input>
-                    <label htmlFor='radio17' className={classes.labels}>Publicó información personal de otro miembro</label>     
+                    <label htmlFor='radio17' className={classes.labels}>Posting another member private information</label>     
                 </div>
 
                 <hr style={{width: '100%'}}/>
@@ -189,14 +189,14 @@ function Form({children}){
                 {!!sendInfo && (
                     
                     <Button variant="contained" disabled={false} className={classes.sendButtonActive} type='submit' onClick={() => onSend()}>
-                        Enviar
+                        Send
                     </Button>
 
                 )}
                 {!sendInfo && (
 
                     <Button variant="outlined"  disabled className={classes.sendButtonInactive} type='submit' onClick={() => onSend()}>
-                    Enviar
+                        Send
                     </Button>
 
                 )}
