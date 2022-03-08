@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Logop from '../../../public/icons/LogoPlataforma1.png';
+import LogoP from '../../../public/icons/LogoPlataforma1.png';
 import { useUser } from '@auth0/nextjs-auth0';
 import styled from '@emotion/styled';
 import Image from 'next/image';
@@ -62,7 +62,7 @@ const Header = () => {
         <HeaderHome>
           <HeaderLogo>
             <Link href="/" passHref>
-              <Image src={Logop} alt="Logo de la pagina" />
+              <Image src={LogoP} alt="Page logo" />
             </Link>
           </HeaderLogo>
 

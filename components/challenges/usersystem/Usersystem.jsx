@@ -2,10 +2,9 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 export const Wrapper = styled.div`
-  grid-area: systemp;
+  grid-area: sysTemp;
   justify-self: center;
 `;
-
 export const SystemContainer = styled.div`
   width: 25rem;
   height: 60rem;
@@ -14,7 +13,6 @@ export const SystemContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
 export const PointsCircle = styled.div`
   width: 20rem;
   height: 20rem;
@@ -26,16 +24,14 @@ export const PointsCircle = styled.div`
   border: 4rem solid #555bff;
   margin-bottom: 0.5rem;
 `;
-
 export const RankCircle = styled(PointsCircle)``;
-
 export const Text = styled.p`
   background-color: white;
   font-size: 2rem;
   padding: 1rem 0;
 `;
 
-const Usersystem = ({ data, ranks }) => {
+const UserSystem = ({ data, ranks }) => {
   if (data && ranks) {
     return (
       <Wrapper>
@@ -69,4 +65,4 @@ const Usersystem = ({ data, ranks }) => {
   }
 };
 
-export default Usersystem;
+export default UserSystem;

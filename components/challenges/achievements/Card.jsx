@@ -29,14 +29,12 @@ export const CardContainer = styled.div`
     width: 20rem;
   }
 `;
-
 export const CardImg = styled(Image)`
   height: 100%;
   width: 100%;
   object-fit: cover;
   border-radius: 0.5rem 0 0 0.5rem;
 `;
-
 export const MainContent = styled.section`
   width: 35rem;
   padding: 0.5rem 0.8rem;
@@ -49,7 +47,6 @@ export const MainContent = styled.section`
     height: 8rem;
   }
 `;
-
 export const Title = styled.h3`
   /* opacity: 0.8; */
   font-size: 1.5rem;
@@ -63,7 +60,6 @@ export const Title = styled.h3`
     font-size: 1.5rem;
   } */
 `;
-
 export const Description = styled.p`
   width: 100%;
   line-height: 2;

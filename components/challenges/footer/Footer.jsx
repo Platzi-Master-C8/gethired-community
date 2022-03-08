@@ -1,8 +1,8 @@
-import React from "react";
-import Link from "next/link";
-import Logop from "../../../public/icons/LogoPlataforma1.png";
-import styled from "@emotion/styled";
-import Image from "next/image";
+import React from 'react';
+import Link from 'next/link';
+import LogoP from '../../../public/icons/LogoPlataforma1.png';
+import styled from '@emotion/styled';
+import Image from 'next/image';
 
 const Container = styled.div`
   display: flex;
@@ -39,7 +39,8 @@ const Contact = styled.div`
 `;
 
 const Footer = () => {
-  return (<Container>
+  return (
+    <Container>
       <GetHired> ©2021 Get Hired </GetHired>
       <AboutUs> About Us </AboutUs>
       <Blog> Blog </Blog>

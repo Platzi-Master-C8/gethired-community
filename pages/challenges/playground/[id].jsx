@@ -30,7 +30,6 @@ import UserProvider from '../../../Providers/UserProvider';
 import Link from 'next/link';
 
 const PlayGround = () => {
-
   const user = useContext(UserProvider);
   const {
     query: { id }
@@ -56,15 +55,15 @@ const PlayGround = () => {
           user: user.sub
         }
       })
-      .then((data) => data.json())
-      .then((data) => {
-        setState({ ...state, challenge: data.data });
-        editorRef.current.getModel().setValue(data.data.func_template);
-      });
+        .then((data) => data.json())
+        .then((data) => {
+          setState({ ...state, challenge: data.data });
+          editorRef.current.getModel().setValue(data.data.func_template);
+        });
     }
   }, [state.mounted]);
 
-  function handleEditorDidMount (editor, monaco) {
+  function handleEditorDidMount(editor, monaco) {
     editorRef.current = editor;
     setState({ ...state, mounted: true });
   }
@@ -80,11 +79,11 @@ const PlayGround = () => {
         code: editorRef.current.getValue()
       })
     })
-    .then((r) => r.json())
-    .then((data) => onSuccess(data))
-    .catch((err) => {
-      console.log(err);
-    });
+      .then((r) => r.json())
+      .then((data) => onSuccess(data))
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const onSubmit = () => {
@@ -104,7 +103,6 @@ const PlayGround = () => {
       });
     };
     fetcher();
-
   };
 
   const onSuccess = async (data) => {
@@ -163,11 +161,11 @@ const PlayGround = () => {
     <React.Fragment>
       <ItemInfo>
         <ItemTitle>{state.challenge.name ?? 'Loading...'}</ItemTitle>
-        <ItemTitle2>Instrucciones</ItemTitle2>
+        <ItemTitle2>Instructions</ItemTitle2>
         <ItemParagraph>
           {state.challenge.description ?? 'Loading...'}
         </ItemParagraph>
-        <ItemTitle2>Objetivos</ItemTitle2>
+        <ItemTitle2>Goals</ItemTitle2>
         <ItemParagraph>
           {state.challenge.objectives ?? 'Loading...'}
         </ItemParagraph>
@@ -175,7 +173,7 @@ const PlayGround = () => {
           {state.loading && (
             <Loading>
               <LoadingImg />
-              Ejecutando los test ...
+              Running the tests...
             </Loading>
           )}
           <ItemButton>
@@ -186,12 +184,12 @@ const PlayGround = () => {
               }}
             >
               Run Tests
-              <Image id='img-icon' src={Coolicon} alt='Run Challenge' />
+              <Image id="img-icon" src={Coolicon} alt="Run Challenge" />
             </ItemButtonRun>
             <ItemButtonSubmit
               onClick={() => {
                 !state.confirmed
-                  ? alert('Completa el desafío primero')
+                  ? alert('Complete the challenge first.')
                   : onSubmit();
               }}
             >
@@ -207,14 +205,14 @@ const PlayGround = () => {
     <React.Fragment>
       <FailContainer>
         <FailTest>
-          <Image id='img-icon' src={iconFail} alt='Loading Icon' />0 Test
-          pasados
+          <Image id="img-icon" src={iconFail} alt="Loading Icon" />0 Test
+          completed
         </FailTest>
         <SuccessDialogue>
-          Encontramos unos errores en tu codigo
+          We found some errors in your code.
           <FailParagraph>{state.message}</FailParagraph>
           <FailParagraph>
-            No te rindas, de los errores se aprende.
+            Do not give up, you can learn from your mistakes.
           </FailParagraph>
         </SuccessDialogue>
       </FailContainer>
@@ -224,7 +222,7 @@ const PlayGround = () => {
             onReset();
           }}
         >
-          Regresar
+          Go back
         </ItemButtonRun>
       </ItemButton>
       ;
@@ -235,15 +233,15 @@ const PlayGround = () => {
     <React.Fragment>
       <SuccessContainer>
         <SuccessTest>
-          <Image id='img-icon' src={iconSuccess} alt='Loading Icon'></Image>5
-          Test pasados
+          <Image id="img-icon" src={iconSuccess} alt="Loading Icon"></Image>5
+          Completed tests.
         </SuccessTest>
         <SuccessDialogue>
-          Felicidades pasaste el desafio
+          Congratulations you passed the challenge.
           <SuccessParagraph>
-            Sigue adelante y no te rindas. aun queda mucho para llegar a la
-            cima, haz click sobre el boton submit para guardar tu progreso y
-            regresar a la seccion de categorias.
+            Keep going and do not give up. There is still a long way to go to
+            reach the top, click on the submit button to save your progress and
+            return to the categories section.
           </SuccessParagraph>
         </SuccessDialogue>
       </SuccessContainer>
@@ -254,13 +252,10 @@ const PlayGround = () => {
               onReset();
             }}
           >
-            Regresar
+            Go back
           </ItemButtonRun>
-          <Link href='/challenges/categories' passHref>
-            <ItemButtonSubmit
-              onClick={onSubmit}>
-              Submit
-            </ItemButtonSubmit>
+          <Link href="/challenges/categories" passHref>
+            <ItemButtonSubmit onClick={onSubmit}>Submit</ItemButtonSubmit>
           </Link>
         </ItemButton>
       </ItemCodeView>
@@ -271,11 +266,11 @@ const PlayGround = () => {
     <ContainerPG>
       <Header />
       <Editor
-        height='90vh'
-        width='100%'
-        defaultLanguage='javascript'
+        height="90vh"
+        width="100%"
+        defaultLanguage="javascript"
         defaultValue={state.value}
-        theme='vs-dark'
+        theme="vs-dark"
         onMount={handleEditorDidMount}
       />
       <ItemInfo>

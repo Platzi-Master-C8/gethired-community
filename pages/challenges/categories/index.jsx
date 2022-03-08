@@ -106,7 +106,6 @@ const InputButtonProgress = styled(InputButton)`
   position: relative;
   left: 36rem;
 `;
-
 const ContainerBoxCards = styled.div`
   grid-area: containerCards;
   display: grid;
@@ -123,7 +122,6 @@ const ContainerBoxCards = styled.div`
     height: 50rem;
   }
 `;
-
 const BoxCard = styled.div`
   border-radius: 8px;
   background-color: #ffffff;
@@ -138,8 +136,8 @@ const BoxCard = styled.div`
   grid-template-rows: 30% 25% 45%;
   grid-template-areas:
     ' img title title'
-    ' img dificult botonCard'
-    ' img texto texto';
+    ' img difficult buttonCard'
+    ' img text text';
   transition: transform 0.3s;
 
   &:hover {
@@ -192,15 +190,13 @@ const BoxImage = styled(Picture)`
   border-radius: 5px;
   grid-area: img;
 `;
-
 const TitleCard = styled.p`
   grid-area: title;
   font-size: 2.5rem;
   text-align: center;
 `;
-
 const DifficultyButtonHard = styled.p`
-  grid-area: dificult;
+  grid-area: difficult;
   width: 70%;
   margin: 0 0 0 1rem;
   font-size: 1.6rem;
@@ -218,9 +214,8 @@ const DifficultButtonMedium = styled(DifficultyButtonHard)`
 const DifficultButtonEasy = styled(DifficultyButtonHard)`
   background-image: linear-gradient(to right, #00ff38, #67ff4e);
 `;
-
 const ButtonToChallenge = styled.button`
-  grid-area: botonCard;
+  grid-area: buttonCard;
   width: 70%;
   justify-self: flex-end;
   margin: 0 1rem 0 0;
@@ -235,10 +230,9 @@ const ButtonToChallenge = styled.button`
     transform: scale(1.1);
   }
 `;
-
 const TextCard = styled.p`
   position: relative;
-  grid-area: texto;
+  grid-area: text;
   text-align: center;
   padding-top: 1rem;
   font-size: 2.2rem;
@@ -255,7 +249,6 @@ export const getServerSideProps = async () => {
 };
 
 const Categories = ({ categories }) => {
-
   if (categories) {
     return (
       <>
@@ -264,11 +257,10 @@ const Categories = ({ categories }) => {
           <Navbar />
           <Introduction>
             <TextBox>
-              <Title>Categorias</Title>
+              <Title>Categories</Title>
               <Paragraph>
-                Hola usuario, en esta vista podras ver todos los retos que hay
-                para poner a prueba tus habilidades, elige uno por su dificultad
-                y a completarlos todos.
+                Hello user, in this view you can see all the challenges to test
+                your skills, choose one by its difficulty and complete them all.
               </Paragraph>
             </TextBox>
             <BoxImg>

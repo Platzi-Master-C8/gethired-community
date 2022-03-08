@@ -89,7 +89,7 @@ const NavBar = () => {
               <NavbarMenuItem>
                 <Link href="/challenges/categories" passHref>
                   <NavbarMenuLink>
-                    <Image src={Challenges} alt="challange" />
+                    <Image src={Challenges} alt="challenge" />
                     <NavbarMenuText>Challenges</NavbarMenuText>
                   </NavbarMenuLink>
                 </Link>

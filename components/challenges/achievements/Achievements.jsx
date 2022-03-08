@@ -9,7 +9,6 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
 export const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -17,7 +16,6 @@ export const Container = styled.div`
   max-width: 90rem;
   margin-top: 5rem;
 `;
-
 export const Title = styled.h1`
   display: inline-block;
   justify-self: center;
@@ -30,7 +28,6 @@ export const Title = styled.h1`
   background-color: #5f64ff;
   background-image: linear-gradient(90deg, #5f64ff 0%, #ae4eff 100%);
 `;
-
 export const GoalsContainer = styled.div`
   margin: 20px auto;
 `;
