@@ -4,7 +4,6 @@ import StreakAndRank from '../../../components/challenges/StreakAndRank/StreakAn
 import UserGraph from '../../../components/challenges/usergraph/Usergraph';
 import Achievements from '../../../components/challenges/achievements/Achievements';
 import styled from '@emotion/styled';
-import { useUser } from '@auth0/nextjs-auth0';
 import Navbar from '../../../components/security/navbar/Navbar';
 import { useContext, useEffect, useState } from 'react';
 import UserProvider from '../../../Providers/UserProvider';
@@ -32,7 +31,7 @@ const Profile = () => {
         const res = await fetch('https://www.uthsocial.com/api/v1/profile', {
           method: 'GET',
           headers: {
-            user: user.sub
+            user: user.user.sub
           }
         });
         const data = await res.json();

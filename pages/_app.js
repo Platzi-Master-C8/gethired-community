@@ -9,7 +9,7 @@ let auth0 = {
   redirect_uri: ''
 };
 
-function MyApp({ Component, pageProps }) {
+function MyApp ({ Component, pageProps }) {
   let [user, setUser] = React.useState(null);
   React.useEffect(async () => {
     // auth0.redirect_uri = window.location.origin;
@@ -33,7 +33,6 @@ function MyApp({ Component, pageProps }) {
           }
         );
         const userData = await userReq.json();
-        setUser(userData);
         // console.log(userData);
         // console.log(await userReq.json());
         // Signup on our database - Return data is not used
@@ -52,10 +51,7 @@ function MyApp({ Component, pageProps }) {
           }
         });
         const signData = await signReq.json();
-
-        console.log({ signData })
-
-        setUser({ ...user, id: signData.id });
+        setUser({ user: userData, id: signData.id });
       } catch (err) {
         console.log(err);
         localStorage.removeItem('access_token');
