@@ -4,7 +4,7 @@ import { UserContext } from '@auth0/nextjs-auth0';
 import Header from '../../../components/security/header/Header';
 import Navbar from '../../../components/security/navbar/Navbar';
 import Link from 'next/link';
-import CategoryCard from '../../../components/challenges/categories/CategoryCard';
+import CategoryCard from '../../../components/challenges/CategoryCard';
 
 const Container = styled.div`
   width: 100%;
