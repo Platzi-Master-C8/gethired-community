@@ -1,7 +1,7 @@
-import UserSystem from '../../../components/challenges/userSystem/UserSystem';
+import UserSystem from '../../../components/challenges/usersystem/Usersystem';
 import Header from '../../../components/security/header/Header';
 import StreakAndRank from '../../../components/challenges/StreakAndRank/StreakAndRank';
-import UserGraph from '../../../components/challenges/userGraph/UserGraph';
+import UserGraph from '../../../components/challenges/usergraph/Usergraph';
 import Achievements from '../../../components/challenges/achievements/Achievements';
 import styled from '@emotion/styled';
 import { useUser } from '@auth0/nextjs-auth0';
