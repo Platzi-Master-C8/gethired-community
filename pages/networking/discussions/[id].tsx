@@ -115,10 +115,8 @@ function Discussion() {
                 flexGrow={1}
               >
                 <DiscussionLikeCounter
-                  isLiked={discussionData[0].isActive}
                   likesCount={discussionData[0].likesCount}
                   discussionId={discussionId}
-                  userId={discussionData[0].userId} // TODO: Get the global user id
                   boxProps={{
                     pt: '1em'
                   }}
