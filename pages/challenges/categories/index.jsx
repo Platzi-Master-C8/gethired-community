@@ -246,7 +246,7 @@ const TextCard = styled.p`
 
 export const getServerSideProps = async () => {
   let categories;
-  const serverData = await fetch('http://54.210.111.183/api/v1/challenges');
+  const serverData = await fetch('https://www.uthsocial.com/api/v1/challenges');
   const parsedData = await serverData.json();
   categories = parsedData.data;
   return {
