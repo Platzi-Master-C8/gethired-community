@@ -35,9 +35,9 @@ export function insertDiscussion(object: InsertDiscussionRequest) {
     mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
-      "Authorization": 'Bearer ' + localStorage.getItem('access_token'),
+      Authorization: 'Bearer ' + localStorage.getItem('access_token')
     },
-    body: JSON.stringify(object),
+    body: JSON.stringify(object)
   });
 }
 
@@ -49,7 +49,6 @@ export function updateDiscussion(object: UpdateDiscussionRequest) {
 }
 
 export interface LikeRequest extends Pick<LikeModel, 'discussionId'> {
-  user_id: number;
   userId: number;
   groupBy: keyof Omit<LikeRequest, 'groupBy'>;
 }
@@ -63,9 +62,19 @@ export function findAllDiscussionsLikes() {
 export type FindLikeRequest = Partial<LikeRequest>;
 
 export function findDiscussionLikes(filter: FindLikeRequest) {
-  return fetchJSON<LikeResponse[]>(`${FORUM_URL}/api/likes/discussions?${
-    new URLSearchParams(filter as Record<string, string>).toString()
-  }`);
+  return fetchJSON<LikeResponse | LikeResponse[]>(
+    `${FORUM_URL}/api/likes/discussions?${new URLSearchParams(
+      filter as Record<string, string>
+    ).toString()}`,
+    {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('access_token')
+      }
+    }
+  );
 }
 
 export type ToggleLikeRequest = Omit<LikeRequest, 'groupBy'>;
@@ -76,8 +85,8 @@ export function toggleDiscussionLike(object: ToggleLikeRequest) {
     mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
-      "Authorization": 'Bearer ' + localStorage.getItem('access_token'),
+      Authorization: 'Bearer ' + localStorage.getItem('access_token')
     },
-    body: JSON.stringify(object),
+    body: JSON.stringify(object)
   });
 }

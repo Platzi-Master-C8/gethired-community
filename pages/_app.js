@@ -9,7 +9,7 @@ let auth0 = {
   redirect_uri: ''
 };
 
-function MyApp ({ Component, pageProps }) {
+function MyApp({ Component, pageProps }) {
   let [user, setUser] = React.useState(null);
   React.useEffect(async () => {
     // auth0.redirect_uri = window.location.origin;
@@ -45,12 +45,17 @@ function MyApp ({ Component, pageProps }) {
         });
 
         // Loging on our database - Return data is not used
-        fetch('https://ms-login.herokuapp.com/auth/sign_in', {
+        const signReq = await fetch('https://ms-login.herokuapp.com/auth/sign_in', {
           method: 'POST',
           headers: {
             Authorization: `Bearer ${localStorage.getItem('access_token')}`
           }
         });
+        const signData = await signReq.json();
+
+        console.log({ signData })
+
+        setUser({ ...user, id: signData.id });
       } catch (err) {
         console.log(err);
         localStorage.removeItem('access_token');

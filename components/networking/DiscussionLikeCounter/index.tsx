@@ -1,14 +1,13 @@
-import { ComponentProps, useEffect, useState } from 'react';
+import { ComponentProps, useEffect, useState, useContext } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/system/Box';
 import { findDiscussionLikes } from '../../../services/networking/forum-api';
 import { DiscussionLikeButton } from '../DiscussionLikeButton';
+import UserProvider from '../../../Providers/UserProvider';
 
 interface DiscussionLikeCounterProps {
-  isLiked: boolean;
   discussionId: number;
-  userId: number;
   likesCount: number;
   boxProps?: Partial<ComponentProps<typeof Box>>;
   buttonProps?: Partial<ComponentProps<typeof DiscussionLikeButton>>;
@@ -17,30 +16,35 @@ interface DiscussionLikeCounterProps {
 
 function DiscussionLikeCounter({
   discussionId,
-  userId,
   likesCount,
   boxProps,
   buttonProps,
   typographyProps
 }: DiscussionLikeCounterProps): JSX.Element {
-  // TODO: Make a request to fetch post's likes
-  const [likeCount, setLikeCount] = useState<number>(likesCount);
+  const user = useContext(UserProvider);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [likeCount, setLikeCount] = useState<number>(Number(likesCount));
   const [isLiked, setIsLiked] = useState<boolean>(null);
 
   const loadDiscussionLikes = async () => {
-    setLikeCount(likesCount);
-
-    const hasLiked = await findDiscussionLikes({
-      discussionId,
-      userId
-    });
-    setIsLiked(hasLiked.length > 0 ? hasLiked[0].isActive : false);
+    setLikeCount(Number(likesCount));
+    const userId = user.id;
+    const hasLiked = await findDiscussionLikes({ discussionId, userId });
+    setIsLiked(
+      Array.isArray(hasLiked)
+        ? hasLiked.find((like) => like.userId === userId)?.isActive
+        : hasLiked.isActive
+    );
+    setIsLoading(false);
   };
 
   useEffect(() => {
-    loadDiscussionLikes();
-    /* setLikeCount(likes); */
-  }, []);
+    if (user !== null && user.id && !isNaN(user.id)) {
+      loadDiscussionLikes();
+    }
+  }, [user]);
 
   const handleLikeButtonClick = (liked: boolean) => {
     if (liked) {
@@ -57,16 +61,21 @@ function DiscussionLikeCounter({
       alignItems="center"
       {...boxProps}
     >
-      <DiscussionLikeButton
-        isLiked={isLiked}
-        onClick={handleLikeButtonClick}
-        discussionId={discussionId}
-        userId={userId}
-        {...buttonProps}
-      />
-      <Typography align="center" {...typographyProps}>
-        {likeCount ?? <CircularProgress />}
-      </Typography>
+      {isLoading ? (
+        <CircularProgress />
+      ) : (
+        <>
+          <DiscussionLikeButton
+            isLiked={isLiked}
+            onClick={handleLikeButtonClick}
+            discussionId={discussionId}
+            {...buttonProps}
+          />
+          <Typography align="center" {...typographyProps}>
+            {likeCount ?? <CircularProgress />}
+          </Typography>
+        </>
+      )}
     </Box>
   );
 }
