@@ -90,9 +90,7 @@ function SuggestedDiscussion(props: DiscussionProps) {
           style={{ marginBottom: '0' }}
         >
           <DiscussionLikeCounter
-            isLiked={props.is_active}
             discussionId={props.id}
-            userId={props.userId} // TODO: Get the global user userId
             likesCount={props.likesCount}
             typographyProps={{
               className: classes.discussionTitle

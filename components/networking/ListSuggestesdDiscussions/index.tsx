@@ -11,7 +11,7 @@ type DiscussionProps = {
     content: string;
     createdAt: string;
     userId: number;
-    is_active: boolean;
+    isActive: boolean;
     likesCount: number;
     userFullName: string;
     contributionsCount: number;
@@ -33,7 +33,7 @@ function ListSuggestedDiscussions(props: DiscussionProps) {
                 content={item.content}
                 createdAt={Moment(item.createdAt).fromNow()}
                 userId={item.userId}
-                is_active={item.is_active}
+                is_active={item.isActive}
                 likesCount={item.likesCount}
                 userFullName={item.userFullName}
                 contributionsCount={item.contributionsCount}
