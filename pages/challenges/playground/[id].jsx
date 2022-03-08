@@ -49,7 +49,7 @@ const PlayGround = () => {
 
   React.useEffect(() => {
     if (state.mounted && user) {
-      fetch(`http://54.210.111.183/api/v1/runner/on/node/${id}`, {
+      fetch(`https://www.uthsocial.com/api/v1/runner/on/node/${id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ const PlayGround = () => {
   }
 
   const onTest = () => {
-    fetch(`http://54.210.111.183/api/v1/runner/check/node/${id}`, {
+    fetch(`https://www.uthsocial.com/api/v1/runner/check/node/${id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ const PlayGround = () => {
 
   const onSubmit = () => {
     const fetcher = async () => {
-      const data = await fetch(`http://54.210.111.183/api/v1/runner/submit`, {
+      await fetch(`https://www.uthsocial.com/api/v1/runner/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

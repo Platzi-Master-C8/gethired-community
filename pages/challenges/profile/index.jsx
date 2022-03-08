@@ -29,7 +29,7 @@ const Profile = () => {
   useEffect(() => {
     if (user) {
       const getChallenger = async () => {
-        const res = await fetch('http://54.210.111.183/api/v1/profile', {
+        const res = await fetch('https://www.uthsocial.com/api/v1/profile', {
           method: 'GET',
           headers: {
             user: user.sub
