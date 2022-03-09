@@ -88,11 +88,11 @@ function Discussion() {
         }}
       >
         <Container>
-          <Grid container justifyContent='start' sx={{ marginLeft: '3rem' }}>
+          <Grid container justifyContent="start" sx={{ marginLeft: '3rem' }}>
             <Grid item sm={11} md={7} lg={11} xl={6}>
               {loading ? (
                 <div className={classes.Discussion_bread}>
-                  <Skeleton variant='text' width={180} height={30} />
+                  <Skeleton variant="text" width={180} height={30} />
                 </div>
               ) : (
                 <DiscussionBreadCrumb />
@@ -100,18 +100,18 @@ function Discussion() {
             </Grid>
           </Grid>
         </Container>
-        <Grid container justifyContent='center'>
+        <Grid container justifyContent="center">
           {loading ? (
             <div className={classes.Discussion_post}>
-              <Skeleton variant='rectangular' width={900} height={500} />
+              <Skeleton variant="rectangular" width={900} height={500} />
             </div>
           ) : (
             discussionData.length > 0 && (
               <Box
                 sx={{ mx: 6 }}
-                display='flex'
-                flexDirection='row'
-                justifyContent='center'
+                display="flex"
+                flexDirection="row"
+                justifyContent="center"
                 flexGrow={1}
               >
                 <DiscussionLikeCounter
@@ -135,8 +135,8 @@ function Discussion() {
           )}
           <Container sx={{ padding: '0px', width: 'inherit' }}>
             <Box
-              flexShrink='1'
-              alignContent='center'
+              flexShrink="1"
+              alignContent="center"
               height={'2.5rem'}
               sx={{
                 display: 'flex',
@@ -153,19 +153,19 @@ function Discussion() {
                 onClick={onClickFormToggle}
                 endIcon={
                   formToggle ? (
-                    <ExpandLess fontSize='large' />
+                    <ExpandLess fontSize="large" />
                   ) : (
-                    <ExpandMore fontSize='large' />
+                    <ExpandMore fontSize="large" />
                   )
                 }
-                variant='contained'
+                variant="contained"
               >
                 New Comment
               </Button>
             </Box>
             {newCommentSucceeded && (
               <div>
-                <Alert severity='success'>
+                <Alert severity="success">
                   Your comment has been published
                 </Alert>
                 <br />
@@ -193,7 +193,7 @@ function Discussion() {
                   placeholder={`Type the content of your ${
                     commentType == 1 ? 'contribution' : 'question'
                   }  here...`}
-                  id='input-content'
+                  id="input-content"
                   fullWidth
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
@@ -218,9 +218,9 @@ function Discussion() {
                         ? setCommentType(1)
                         : setCommentType(2);
                     }}
-                    aria-labelledby='demo-radio-buttons-group-label'
-                    defaultValue='contribution'
-                    name='radio-buttons-group'
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    defaultValue="contribution"
+                    name="radio-buttons-group"
                   >
                     <Container
                       style={{
@@ -234,19 +234,19 @@ function Discussion() {
                       }}
                     >
                       <FormControlLabel
-                        value='contribution'
+                        value="contribution"
                         control={<Radio />}
-                        label='Contribution'
+                        label="Contribution"
                       />
                       <FormControlLabel
-                        value='question'
+                        value="question"
                         control={<Radio />}
-                        label='Question'
+                        label="Question"
                       />
                     </Container>
                   </RadioGroup>
                   <Button
-                    variant='contained'
+                    variant="contained"
                     sx={{
                       width: 'auto',
                       background: 'linear-gradient(90deg,#ae4eff,#5f64ff)'
