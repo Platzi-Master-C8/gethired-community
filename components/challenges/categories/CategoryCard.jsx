@@ -5,22 +5,18 @@ const CardContainer = styled.div`
   border-radius: 8px;
   background-color: #ffffff;
   padding-right: 0.5rem;
-  box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.26);
   overflow: hidden;
   width: 100%;
-  height: 15rem;
+  min-height: 15rem;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 30% 35% 35%;
-  grid-template-rows: 30% 25% 45%;
-  grid-template-areas:
-    ' img title title'
-    ' img difficult buttonCard'
-    ' img text text';
   transition: transform 0.3s;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 
   &:hover {
-    transform: scale(1.1);
+    box-shadow: 0 0 8px 4px rgba(167, 121, 255, 0.5);
+    transform: scale(1.02);
   }
 `;
 
