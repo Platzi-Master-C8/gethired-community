@@ -11,6 +11,8 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import Avatar from '@mui/material/Avatar';
 
+import Moment from 'moment';
+
 import { callApi } from '../../../utils/helpers/callApi';
 import { Typography } from '@mui/material';
 
@@ -82,10 +84,15 @@ function FixedBottomNavigation({ discussionId, newCommentSucceeded }) {
             comments.map((comment) => (
               <ListItem key={comment.id}>
                 <ListItemAvatar>
-                  <Avatar alt="Profile Picture" />
+                  <Avatar alt={comment.fullName} src={comment.profileImage} />
                 </ListItemAvatar>
                 <ListItemText
-                  primary={'Gethired user ' + comment.userId}
+                  primary={
+                    comment.fullName +
+                    '  (' +
+                    Moment(comment.createdAt).fromNow() +
+                    ')'
+                  }
                   secondary={comment.content}
                 />
               </ListItem>
@@ -99,10 +106,15 @@ function FixedBottomNavigation({ discussionId, newCommentSucceeded }) {
           questions.map((question) => (
             <ListItem key={question.id}>
               <ListItemAvatar>
-                <Avatar alt="Profile Picture" />
+                <Avatar alt={question.fullName} src={question.profileImage} />
               </ListItemAvatar>
               <ListItemText
-                primary={'Gethired user ' + question.userId}
+                primary={
+                  question.fullName +
+                  '  (' +
+                  Moment(question.createdAt).fromNow() +
+                  ')'
+                }
                 secondary={question.content}
               />
             </ListItem>
