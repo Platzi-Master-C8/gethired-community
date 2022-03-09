@@ -22,8 +22,11 @@ function FixedBottomNavigation({ discussionId, newCommentSucceeded }) {
   const [commentsToggle, setCommentsToggle] = React.useState(true);
   const ref = React.useRef<HTMLDivElement>(null);
 
-  const [comments, setComments] = React.useState<any>([]);
-  const [questions, setQuestions] = React.useState<any>([]);
+  const [commentsCount, setCommentsCount] = React.useState<number>();
+  const [questionsCount, setQuestionsCount] = React.useState<number>();
+
+  const [comments, setComments] = React.useState<any>({});
+  const [questions, setQuestions] = React.useState<any>({});
 
   React.useEffect(() => {
     (ref.current as HTMLDivElement).ownerDocument.body.scrollTop = 0;
@@ -31,10 +34,12 @@ function FixedBottomNavigation({ discussionId, newCommentSucceeded }) {
 
   React.useEffect(() => {
     callApi(requestUrl + 'comments').then((response) => {
-      setComments(response);
+      setComments(response.rows);
+      setCommentsCount(response.count);
     });
     callApi(requestUrl + 'questions').then((response) => {
-      setQuestions(response);
+      setQuestions(response.rows);
+      setQuestionsCount(response.count);
     });
   }, [newCommentSucceeded]);
 
@@ -55,12 +60,12 @@ function FixedBottomNavigation({ discussionId, newCommentSucceeded }) {
         >
           <BottomNavigationAction
             onClick={() => setCommentsToggle(true)}
-            label={'Contributions (' + comments.length + ')'}
+            label={'Contributions (' + commentsCount + ')'}
             icon={<ForumIcon />}
           />
           <BottomNavigationAction
             onClick={() => setCommentsToggle(false)}
-            label={'Questions (' + questions.length + ')'}
+            label={'Questions (' + questionsCount + ')'}
             icon={<QuestionMarkIcon />}
           />
         </BottomNavigation>
