@@ -128,31 +128,34 @@ function SuggestedDiscussion(props: DiscussionProps) {
             </Typography>
           </Container>
           <Container
-            className={classes.row}
-            style={{ paddingBottom: 0, marginBottom: 0 }}
+            style={{
+              display: 'flex',
+              paddingBottom: 0,
+              marginBottom: 0,
+              marginTop: '.8rem'
+            }}
           >
-            <div
-              className={classes.row}
-              style={{ margin: 0, marginRight: '15px' }}
-            >
-              <CommentRounded className={classes.postDetails} />
-              <Typography ml={1}>{props.contributionsCount}</Typography>
-            </div>
-            <div
-              className={classes.row}
-              style={{ margin: 0, marginRight: '15px' }}
-            >
-              <AccessTimeFilledRounded className={classes.postDetails} />
-              <Typography ml={1}>{props.createdAt}</Typography>
-            </div>
+            <CommentRounded className={classes.postDetails} />
+            <Typography ml={1} mr={1}>
+              {props.contributionsCount}
+            </Typography>
+
+            <AccessTimeFilledRounded className={classes.postDetails} />
+            <Typography ml={1} mr={1}>
+              {props.createdAt}
+            </Typography>
+
             <div
               style={{
+                display: 'flex',
+                flexWrap: 'wrap',
                 backgroundColor: '#AE4EFF',
-                borderRadius: '3px',
+                borderRadius: '12px',
                 color: 'white',
+                justifyContent: 'center',
                 alignContent: 'center',
                 width: 'auto',
-                padding: '2px 3px'
+                padding: '0 10px'
               }}
             >
               {props.category}

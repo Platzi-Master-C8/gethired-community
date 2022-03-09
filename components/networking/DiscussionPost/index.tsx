@@ -84,12 +84,15 @@ function DiscussionPost({
         </Typography>
         <div
           style={{
+            display: 'flex',
+            flexWrap: 'wrap',
             backgroundColor: '#AE4EFF',
-            borderRadius: '3px',
+            borderRadius: '12px',
             color: 'white',
+            justifyContent: 'center',
             alignContent: 'center',
             width: 'auto',
-            padding: '2px 3px'
+            padding: '2px 10px'
           }}
         >
           {category}
